@@ -1,16 +1,16 @@
 library(dplyr)
 library(ggplot2)
 
-field_data = read.csv("~/thesis/field_data.csv")
+metadata = read.csv("~/thesis/metadata/metadata.csv")
 print("Header of field data:")
-print(colnames(field_data))
+print(colnames(metadata))
 
 # Add column to record orign of sex dat
-field_data$sex_origin = ifelse(field_data$sex == "", "", "Carly PCA")
+metadata$sex_origin = ifelse(metadata$sex == "", "", "Carly PCA")
 
 
 # Extract rows that have sex data
-sex_data = subset(field_data, select = c("TAR..mm.", "CUL..mm.", "SKULL..mm.", "MN..mm.", "MX..mm.", "Mass..g.", "sex", "Bird..", "sex_origin"))
+sex_data = subset(metadata, select = c("TAR..mm.", "CUL..mm.", "SKULL..mm.", "MN..mm.", "MX..mm.", "Mass..g.", "sex", "Bird", "sex_origin"))
 print("Header of sex data:")
 colnames(sex_data)
 #sex_data = filter(sex_data, sex != "")
@@ -29,13 +29,13 @@ dim_data = apply(dim_data, 2, as.numeric)
 pca_result <- prcomp(dim_data, scale=TRUE)
 dim_data_pca = data.frame(PC1 = pca_result$x[, 1], PC2 = pca_result$x[, 2])
 dim_data_pca$sex <- sex_data$sex
-dim_data_pca$Bird.. <- sex_data$Bird..
+dim_data_pca$Bird <- sex_data$Bird
 plot(dim_data_pca$PC1, dim_data_pca$PC2, col=colors, pch=16)
 
 # Apply clustering to all data, based on PC1: f < 0 and m > 1
 dim_data_pca$sex = ifelse(dim_data_pca$sex == "",
-                          ifelse(dim_data_pca$PC1 < 0, "F",
-                                 ifelse(dim_data_pca$PC1 > 1, "M", "")),
+                          ifelse(dim_data_pca$PC1 > 0, "F",
+                                 ifelse(dim_data_pca$PC1 < -1, "M", "")),
                                         dim_data_pca$sex)
 
 # Plot the results, show original data vs clustering data in different colors
@@ -57,10 +57,10 @@ color_meaning = sapply(color_list, function(x) color_dict[[x]])
 legend("topright", legend = color_meaning, fill = color_list)
 
 # Put sex data back into the original field data
-sex_prediction = subset(dim_data_pca, select = c("Bird..", "sex"))
+sex_prediction = subset(dim_data_pca, select = c("Bird", "sex"))
 fied_data_without_sex = field_data[, !names(field_data) == "sex"]
-merged_fied_data = merge(fied_data_without_sex, sex_prediction, by = "Bird..")
+merged_fied_data = merge(fied_data_without_sex, sex_prediction, by = "Bird")
 
 # Write data back to csv file
-write.table(merged_fied_data, file = "~/field_data_sexed.tsv", sep = "\t", row.names = TRUE)
+write.table(merged_fied_data, file = "~/thesis/sexing/metadata_sexed.csv", sep = ",", row.names = FALSE, na = "")
 
