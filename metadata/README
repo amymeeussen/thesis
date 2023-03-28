@@ -1,17 +1,4 @@
-# On the cluster
-conda install -c r r-stringi
-
-install.packages("remotes")
-remotes::install_github("jbisanz/qiime2R")
-
-install.packages("BiocManager")
-library(BiocManager)
-BiocManager::install("microbiome")
-
-https://uw-madison-microbiome-hub.github.io/Microbiome_analysis_in-_R/
-
-
-# On the Linux Chromebook
+# How to install R on the Linux Chromebook
 sudo apt-get install r-base
 
 sudo apt-get install libpq5 libclang-dev
