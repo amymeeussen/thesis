@@ -66,8 +66,13 @@ legend("topright", legend = color_meaning, fill = color_list)
 
 # Put sex data back into the original field data
 sex_prediction = subset(dim_data_pca, select = c("Bird", "sex"))
-field_data_without_sex = field_data[, !names(field_data) == "sex"]
+field_data_without_sex = all_data[, !names(all_data) == "sex"]
 merged_field_data = merge(field_data_without_sex, sex_prediction, by = "Bird")
+
+# Add sample id in the format that qiime expects
+merged_field_data = cbind("sample id" = merged_field_data$Sample.ID, merged_field_data)
+merged_field_data$"sample id" = paste0("Sample-", merged_field_data$"sample id")
 
 # Write data back to csv file
 write.table(merged_field_data, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
+write.table(merged_field_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
