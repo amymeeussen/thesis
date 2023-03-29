@@ -1,7 +1,7 @@
 # How to install R on the Linux Chromebook
 sudo apt-get install r-base
 
-sudo apt-get install libpq5 libclang-dev
+sudo apt-get install libfontconfig-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libharfbuzz-dev  libfribidi-dev libpq5 libclang-dev
 sudo dpkg -i rstudio-2023.03.0-386-amd64.deb
 
 install.packages("ggplot2")

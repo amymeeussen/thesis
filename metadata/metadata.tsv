@@ -1,65 +1,184 @@
-"Bird"	"Colony"	"Band"	"eggs"	"pipped.egg"	"chick"	"Date"	"Time"	"TAR..mm."	"CUL..mm."	"SKULL..mm."	"MN..mm."	"MX..mm."	"Mass..g."	"sex"	"capture"	"Notes"	"Person.measuring"	"Sex"	"Area"	"body_condition"
-1	"M4/5"	"1106-11017"	3	0	0	20210515	"9:42"	52.4	45	100.9	13.1	14.2	"580"	""	"wet "	""	"Scott"	""	"SF"	667.822875647278
-2	"M4/5"	"1106-11018"	2	0	0	20210515	"10:25"	59.1	47.6	104.6	14.3	15.4	"680"	""	"wet "	""	"Scott"	""	"SF"	698.559750538778
-3	"M4/5"	"1106-11019"	1	0	0	20210515	"11:18"	56.4	49	108.9	15.4	16.6	"695"	""	"dry  "	"not sure if swab went all the way in cloaca"	"Scott"	""	"SF"	628.439192330908
-4	"M4/5"	"1106-11020"	2	0	0	20210515	"11:45"	58.5	51.5	113.2	16.8	19.8	"775"	""	"dry "	""	"Scott"	""	"SF"	619.883825542009
-5	"M4/5"	"1106-11022"		0	0	20210515	"14:23"	54.7	43.8	104.6	12.5	14.8	"530"	""	"dry "	"barfed before swabbing mouth"	"Scott"	""	"SF"	544.46568791993
-6	"M4/5"	"1106-11021"	3	0	0	20210515	"13:50"	58.5	49.2	113.8	16.8	16.7	"690"	""	"wet "	""	"Scott"	""	"SF"	542.732750957141
-7	"M4/5"	"1106-11024"	1	0	0	20210515	"14:45"	62.5	47.5	111.6	14.7	15.5	"710"	""	"dry "	""	"Scott"	""	"SF"	594.084344821578
-8	"M4/5"	"1106-11025"	1	0	0	20210515	"15:19"	53	45	98.9	13	15.5	"550"	""	"dry "	""	"Amy"	"sent for sexing 10/3/2021"	"SF"	674.738524586858
-9	"M4/5"	"1106-11026"	2	0	0	20210516	"9:23"	54.6	42.8	95.6	12.9	14.4	"580"	""	"wet "	""	"Amy"	"sent for sexing 10/3/2021"	"SF"	792.286317846625
-10	"M4/5"	"1106-11027"	2	0	0	20210516	"10:00"	61.7	47.6	113.8	14.9	15.6	"698"	""	"dry "	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	549.025304591426
-11	"M4/5"	"1106-11030"	2	0	0	20210516	"10:40"	62.9	43.5	116	16.7	17.2	"650"	""	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	481.184534074382
-12	"M4/5"	"1106-11031"	2	0	0	20210516	"12:18"	54.7	41.9	101	13.2	14.4	"500"	""	"wet "	"pillowcase mass not taken (assumed 120g), thumb may have gone in mouth before swabbing"	"Amy"	"sent for sexing 10/3/2021"	"SF"	573.905905533351
-13	"M4/5"	"1106-11032"	3	0	0	20210516	"13:35"	58.9	47.6	115	16.3	17.4	"640"	""	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	486.953960314867
-14	"M4/5"	"1106-11033"	2	0	0	20210516	"13:57"	55.1	43.8	103.7	14.3	15.2	"540"	""	"wet "	"pillowcase mass not taken (assumed 120g), near NW camera"	"Amy"	"sent for sexing 10/3/2021"	"SF"	570.131662556855
-15	"M4/5"	"1106-11028"	3	0	0	20210516	"14:24"	54	41.4	99.9	13.9	14.9	"620"	""	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	736.759642263934
-16	"M4/5"	"1106-11034"	3	0	0	20210516	"14:53"	54.8	51.9	98.7	13.9	15.3	"550"	""	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	679.07857476963
-17	"A5/7"	"1106-11035"	1	0	0	20210517	"8:16"	58.3	44.8	109.8	16.2	16.7	"660"	""	"dry"	"pillowcase mass not taken (assumed 120g), finger went in mouth before swabbing"	"Amy"	""	"SF"	581.434643078736
-18	"A5/7"	"1106-11036"	1	0	0	20210517	"8:40"	64.8	43.7	110.5	14.9	16.1	"750"	""	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	647.554914327289
-19	"A5/7"	"1055-09958"	2	0	0	20210517	"9:30"	54.4	42.1	106.1	17.1		"710"	""	"wet "	"pillowcase mass not taken (assumed 120g), previously banded Darvic Bk/WT 444/1055-08958"	"Amy"	""	"SF"	697.215752563815
-20	"A5/7"	"1106-11037"	3	0	0	20210517	"9:58"	56.1	41.8	100.9	13.7	14.3	"620"	""	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	713.879625691918
-21	"A5/7"	"1106-11038"	3	0	0	20210517	"10:15"	63	43	110.8	16.2	16.5	"700"	""	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	599.216698373887
-22	"A5/7"	"1106-11039"	1	0	0	20210517	"10:40"	62.3	41.3	109.1	15.9	16.6	"700"	""	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	629.29248569174
-23	"A5/7"	"1106-11040"	3	0	0	20210517	"11:19"	41.3	57.8	101.7	14.3	14.2	"580"	""	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	651.325425582492
-24	"A5/7"	"1106-11041"	3	0	0	20210519	"8:02"	57.3	41.9	102	14.1	15.2	"640"	""	"dry"	"along road"	"Amy"	""	"SF"	712.030023801171
-25	"A5/7"	"1106-11043"	2	1	0	20210519	"8:28"	55.6	44.2	103.3	14.1	14.5	"610"	""	"wet "	"along road"	"Amy"	""	"SF"	651.969665215731
-26	"A5/7"	"1106-11045"	2	0	0	20210519	"9:00"	57	43	109.2	15.8	16.6	"610"	""	"dry"	"along road"	"Amy"	""	"SF"	546.794452527136
-27	"A5/7"	"1106-11046"	2	0	0	20210519	"9:24"	60.7	47.2	114.2	16.6	17	"740"	""	"wet "	"along road"	"Amy"	""	"SF"	575.62831908904
-28	"A5/7"	"1106-11047"	2	0	0	20210519	"9:58"	55.1	39.3	105.4	14.2	15.3	"620"	""	"dry"	"along road"	"Amy"	""	"SF"	621.735807998611
-29	"A5/7"	"1106-11048"	3	0	0	20210519	"10:24"	59.8	44.8	111.5	15.7	16.3	"660"	""	"dry"	"on top of road"	"Amy"	""	"SF"	553.817687558073
-30	"A5/7"	"1106-11042"	3	0	0	20210519	"11:25"	54.7	39.9	100	14	14.9	"590"	""	"dry"	""	"Amy"	""	"SF"	698.891742373849
-31	"A5/7"	"1106-11049"	2	0	0	20210519	"11:49"	57.8	47.2	113.7	15.5	16.1	"670"	""	"dry"	""	"Amy"	""	"SF"	528.470828274624
-32	"A5/7"	"1106-11050"	2	0	0	20210519	"12:24"	57.8	41.4	102.9	14.6	15.6	"540"	""	""	""	"Amy"	""	"SF"	584.289515298069
-33	"A5/7"	"1106-11051"	2	0	0	20210519	"12:51"	52.4	39.9	99.8	14.2	15.6	"570"	""	"dry"	"on point"	"Amy"	""	"SF"	679.495545681674
-34	"A5/7"	"1106-11052"	0	1	1	20210519	"13:14"	56.4	40.2	109.1	16.2	16.5	"680"	""	"dry"	"on point, one pipped egg and one fresh chick"	"Amy"	""	"SF"	611.312700386262
-35	"A5/7"	"1106-11054"	2	0	0	20210519	"13:36"	59.8	41.8	107.6	16.5	17.9	"700"	""	"wet"	""	"Amy"	""	"SF"	657.500427933207
-36	"A5/7"	"1106-11055"	2	0	0	20210519	"14:12"	59.2	38.1	98.8	14.1	15.1	"570"	""	"wet"	"on point"	"Amy"	""	"SF"	701.518663094335
-37	"A5/7"	"1106-11056"	2	0	0	20210519	"14:55"	59.8	40.3	105.6	15.1	16.1	"640"	""	"dry"	""	"Amy"	""	"SF"	637.94976357869
-38	"A5/7"	"1106-11058"	1	1	0	20210519	"15:20"	56.8	39	98.2	13.9	14.2	"580"	""	"wet"	""	"Amy"	""	"SF"	727.731873438181
-39	"A5/7"	"1106-11059"	3	0	0	20210519	"15:53"	58.5	42.1	111	16.2	17.5	"780"	""	"dry"	""	"Amy"	""	"SF"	663.895554327803
-40	"ML"	"1055-08474"	1	0	0	20220604	"13:09"	58.5	45.2	113.4	17.3	17.4	"635"	"M"	"wet"	""	"Amy"	""	"ML"	505.073015328386
-41	"ML"	"1055-08475"	2	0	0	20220604	"13:33"	57.2	41.1	107.2	16.5	16.7	"not taken"	""	"dry"	"flew away before weighing"	"Amy"	""	"ML"	
-42	"ML"	"1055-08466"	1	0	0	20220604	"14:30"	57.8	38.9	103.1	14.7	15.2	"580"	""	"dry"	"slight amount of blood in cloaca"	"Amy"	""	"ML"	623.722411454173
-43	"ML"	"1055-08476"	2	0	0	20220604	"15:45"	58.3	40.9	100.7	14.9	15	"520"	"F"	"dry"	""	"Amy"	""	"ML"	602.512295851552
-44	"ML"	"1055-08477"	1	0	0	20220605	"10:50"	61.8	45.7	111.15	16.4	17.4	"580"	""	"dry"	""	"Alex"	"sent for sexing "	"ML"	491.558885279941
-45	"ML"	"1055-08478"	2	0	0	20220605	"11:05"	57.15	43.5	97.1	13.98	14.15	"550"	""	"dry"	""	"Alex"	""	"ML"	715.157138499404
-46	"ML"	"1055-08479"	2	0	0	20220605	"11:40"	57.55	37.5	100	14.9	15.1	"530"	"F"	"dry"	"slight amount of blood in cloaca"	"Amy"	""	"ML"	627.818005861255
-47	"ML"	"1055-08480"	1	0	0	20220605	"11:55"	60.9	42.75	112.9	17.8	18.45	"500"	"M"	"dry"	""	"Amy"	""	"ML"	403.300633490349
-48	"ML"	"1106-11062"	1	0	0	20220605	"12:23"	51.45	37.85	101.3	14.1	14.9	"480"	""	"wet"	""	"Amy"	"sent for sexing"	"ML"	545.79830366971
-49	"ML"	"1106-11063"	1	0	0	20220605	"13:19"	53.95	39.98	99.55	14.3	14.7	"470"	"F"	"dry"	""	"Amy"	""	"ML"	564.754517692481
-50	"ML"	"1106-11064"	2	0	0	20220605	"13:41"	61.9	46.5	107.2	15.8	16.7	"485"	""	"dry"	""	"Alex"	"sent for sexing"	"ML"	460.959581901446
-51	"ML"	"1106-11066"	0	0	0	20220605	"13:58"	56.9	39.6	101.15	14.75	15.1	"445"	"F"	"dry"	"lots of feces on cloaca swab"	"Amy"	""	"ML"	508.381004890068
-53	"ML"	"1106-11061"	2	0	0	20220605	"14:13"	61.6	50.2	115.1	16.5	16.9	"570"	""	"dry"	"did not get blood blot"	"Alex"	""	"ML"	559.4044179853
-54	"ML"	"1106-11067"	1	0	0	20220605	"14:34"	58.5	38.4	103.4	14.5	14.55	"525"	"F"	"wet"	""	"Amy"	""	"ML"	519.768278642879
-55	"ML"	"1106-11070"	0	0	0	20220605	"15:08"	56.2	39.6	100.8	15.8	16.55	"450"	"F"	"wet"	"brine fly larva in mouth"	"Amy"	""	"ML"	433.606479932391
-56	"ML"	"1106-11060"	1	0	0	20220605	"15:15"	56.15	38.7	105.6	15.5	16.4	"435"	""	"dry"	"brood patch"	"Amy"	"sent for sexing"	"ML"	495.420257797466
-57	"ML"	"1106-11071"	2	0	0	20220605	"15:31"	58.4	40.85	105.8	15.75	16.2	"500"	""	"dry"	""	"Amy"	"sent for sexing"	"ML"	489.150677326851
-58	"ML"	"1106-11072"	2	0	0	20220606	"8:15"	56.65	40.1	99	14.1	14.6	"400"	""	"dry"	"no brood patch"	"Alex"	""	"ML"	476.827672865257
-59	"ML"	"1106-11073"	2	0	0	20220606	"8:36"	57.4	40	101.35	14.15	15.05	"420"	""	"wet "	""	"Amy"	"sent for sexing"	"ML"	513.36399660713
-60	"ML"	"1106-11074"	2	0	0	20220606	"9:03"	60.1	40.09	101.9	14.85	15.7	"460"	""	"dry"	"brood patch"	"Amy"	""	"ML"	498.184754080663
-61	"ML"	"1106-11075"	1	0	0	20220606	"9:17"	56.65	41.4	99.2	13.95	14.85	"410"	"F"	"dry"	""	"Alex"	""	"ML"	534.427505676591
-62	"ML"	"1106-11076"	2	0	0	20220606	"9:31"	55.75	37.15	101.3	14.65	15.5	"470"	"F"	"dry"	"no brood patch"	"Alex"	""	"ML"	435.326524350803
-63	"ML"	"1106-11078"	2	0	0	20220606	"9:47"	64.2	45.4	110.9	16.2	16.65	"510"	""	"dry"	"brood patch"	"Alex"	"sent for sexing"	"ML"	450.558820972713
-64	"ML"	"1106-11081"	2	0	0	20220606	"10:07"	60.1	44.9	111.7	15.85	16.4	"540"	""	"dry"	""	"Amy"	"sent for sexing"	"ML"	540.714871854307
-65	"ML"	"1106-11082"	2	0	0	20220606	"10:21"	58.2	41.9	104.2	14.25	15	"520"	""	"dry"	""	"Amy"	"sent for sexing"	"ML"	551.238250164932
+"sample id"	"Sample.ID"	"Bird"	"Extraction.date"	"Extraction.ID"	"Quickdrop.Concentration..ng.ml."	"Notes.x"	"extracted.by"	"Colony"	"Band"	"eggs"	"pipped.egg"	"chick"	"Date"	"Time"	"TAR..mm."	"CUL..mm."	"SKULL..mm."	"MN..mm."	"MX..mm."	"Mass..g."	"capture"	"Notes.y"	"Person.measuring"	"Sex"	"Area"	"sex_origin"	"sex"	"body_condition"	"barcodes"	"type"
+"Sample-1.3X"	"1.3X"	"1.3X"	"01/03/22"	"1.3a"	1	""	"Amy"																						"CACCCACGTTGA"	".X"
+"Sample-1.5X"	"1.5X"	"1.5X"	"01/05/22"	"1.5Xa"	-2	""	"Amy"																						"TCACTTGGTGCG"	".X"
+"Sample-10C"	"10C"	"10"	"04/07/2022"	"10Ca"	4	""	"Amy"	"M4/5"	"1106-11027"	2	0	0	20210516	"10:00"	61.7	47.6	113.8	14.9	15.6	"698"	"dry "	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"M"	548.420114912921	"TTCTTTGCAATG"	"C"
+"Sample-10F"	"10F"	"10"	"8/12/2022"	"10Fa"		""	"David"	"M4/5"	"1106-11027"	2	0	0	20210516	"10:00"	61.7	47.6	113.8	14.9	15.6	"698"	"dry "	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"M"	548.420114912921	"CCTACATGAGAC"	"F"
+"Sample-10M"	"10M"	"10"	"03/24/2022"	"B10Ma"	-8	""	"Amy and Jessica"	"M4/5"	"1106-11027"	2	0	0	20210516	"10:00"	61.7	47.6	113.8	14.9	15.6	"698"	"dry "	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"M"	548.420114912921	"GAGTAGGGCACC"	"M"
+"Sample-11CF1"	"11CF1"	"11CF"	"02/07/2022"	"B11a"	-0.4	""	"Amy"																						"TTCAAGTTCGTT"	"CF"
+"Sample-11CF2"	"11CF2"	"11CF"	"03/24/2022"	"B11Fa"	-9	""	"Amy and Jessica"																						"TGCTCCGTAGAA"	"CF"
+"Sample-11M"	"11M"	"11"	"04/07/2022"	"11Ma"	4	""	"Amy"	"M4/5"	"1106-11030"	2	0	0	20210516	"10:40"	62.9	43.5	116	16.7	17.2	"650"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"M"	480.654125164186	"GAGCCTCCCTCC"	"M"
+"Sample-12.10X"	"12.10X"	"12.10X"	"12/10/21"	"12.10Ca"	-8	""	"Amy"																						"ACAATAGACACC"	".X"
+"Sample-12.9X"	"12.9X"	"12.9X"	"12/9/21"	"12.9 Ca"	-2	""	"Amy"																						"GCGGATGCGGAT"	".X"
+"Sample-12C"	"12C"	"12"	"02/17/2022"	"B12Ca"		""	"Amy"	"M4/5"	"1106-11031"	2	0	0	20210516	"12:18"	54.7	41.9	101	13.2	14.4	"500"	"wet "	"pillowcase mass not taken (assumed 120g), thumb may have gone in mouth before swabbing"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	573.273290009881	"GAATAAGCTGAT"	"C"
+"Sample-12M"	"12M"	"12"	"04/05/2022"	"12Ma"	4	""	"Berenice"	"M4/5"	"1106-11031"	2	0	0	20210516	"12:18"	54.7	41.9	101	13.2	14.4	"500"	"wet "	"pillowcase mass not taken (assumed 120g), thumb may have gone in mouth before swabbing"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	573.273290009881	"GACTTATGCCCG"	"M"
+"Sample-13C"	"13C"	"13"	"04/05/2022"	"13Ca"	12	"lots of soil in original sample"	"Berenice"	"M4/5"	"1106-11032"	3	0	0	20210516	"13:35"	58.9	47.6	115	16.3	17.4	"640"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"M"	486.417191775739	"ATCGGGCTTAAC"	"C"
+"Sample-13F"	"13F"	"13"	"03/22/2022"	"B13Fa"	6	"Step 21 - some drops of lysate spilled out of pipette "	"Amy"	"M4/5"	"1106-11032"	3	0	0	20210516	"13:35"	58.9	47.6	115	16.3	17.4	"640"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"M"	486.417191775739	"CATTACTTATGC"	"F"
+"Sample-13M"	"13M"	"13"	"03/24/2022"	"B13Ma"	-5	""	"Amy and Jessica"	"M4/5"	"1106-11032"	3	0	0	20210516	"13:35"	58.9	47.6	115	16.3	17.4	"640"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"M"	486.417191775739	"TCTGGGCATTGA"	"M"
+"Sample-14C"	"14C"	"14"	"8/10/2022"	"14Ca"		""	"David"	"M4/5"	"1106-11033"	2	0	0	20210516	"13:57"	55.1	43.8	103.7	14.3	15.2	"540"	"wet "	"pillowcase mass not taken (assumed 120g), near NW camera"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	569.503207375129	"CACACTGAAGTC"	"C"
+"Sample-14F"	"14F"	"14"	"04/05/2022"	"14Fa"	2	""	"Berenice"	"M4/5"	"1106-11033"	2	0	0	20210516	"13:57"	55.1	43.8	103.7	14.3	15.2	"540"	"wet "	"pillowcase mass not taken (assumed 120g), near NW camera"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	569.503207375129	"ACTTTCTTCGAA"	"F"
+"Sample-14M"	"14M"	"14"	"8/12/2022"	"14Ma"		""	"David"	"M4/5"	"1106-11033"	2	0	0	20210516	"13:57"	55.1	43.8	103.7	14.3	15.2	"540"	"wet "	"pillowcase mass not taken (assumed 120g), near NW camera"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	569.503207375129	"AGAATAGCGCTT"	"M"
+"Sample-15C"	"15C"	"15"	"02/17/2022"	"B15Ca"		""	"Amy"	"M4/5"	"1106-11028"	3	0	0	20210516	"14:24"	54	41.4	99.9	13.9	14.9	"620"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	735.947513337801	"TGAGCTGCGGGA"	"C"
+"Sample-15F"	"15F"	"15"	"8/10/2022"	"15Fa"		""	"David"	"M4/5"	"1106-11028"	3	0	0	20210516	"14:24"	54	41.4	99.9	13.9	14.9	"620"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	735.947513337801	"CAATTAATGTAT"	"F"
+"Sample-15M"	"15M"	"15"	"04/05/2022"	"15Ma"	2	""	"Berenice"	"M4/5"	"1106-11028"	3	0	0	20210516	"14:24"	54	41.4	99.9	13.9	14.9	"620"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	735.947513337801	"AGAGGTATTTGA"	"M"
+"Sample-16C"	"16C"	"16"	"8/10/2022"	"16Ca"		""	"David"	"M4/5"	"1106-11034"	3	0	0	20210516	"14:53"	54.8	51.9	98.7	13.9	15.3	"550"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	678.330027588092	"CACGTCGCGGAG"	"C"
+"Sample-16F"	"16F"	"16"	"04/05/2022"	"16Fa"	1	""	"Berenice"	"M4/5"	"1106-11034"	3	0	0	20210516	"14:53"	54.8	51.9	98.7	13.9	15.3	"550"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	678.330027588092	"AGGTGGTGGAGT"	"F"
+"Sample-16M"	"16M"	"16"	"03/24/2022"	"B16Ma"	-2	""	"Amy and Jessica"	"M4/5"	"1106-11034"	3	0	0	20210516	"14:53"	54.8	51.9	98.7	13.9	15.3	"550"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	678.330027588092	"ACCCACCACTAG"	"M"
+"Sample-17C"	"17C"	"17"	"12/10/21"	"B17Ca"	21	""	"Amy"	"A5/7"	"1106-11035"	1	0	0	20210517	"8:16"	58.3	44.8	109.8	16.2	16.7	"660"	"dry"	"pillowcase mass not taken (assumed 120g), finger went in mouth before swabbing"	"Amy"	""	"SF"	""	"M"	580.793728640414	"CGCCGCCAGGTG"	"C"
+"Sample-17F"	"17F"	"17"	"01/05/22"	"B17Fa"	-1	""	"Amy"	"A5/7"	"1106-11035"	1	0	0	20210517	"8:16"	58.3	44.8	109.8	16.2	16.7	"660"	"dry"	"pillowcase mass not taken (assumed 120g), finger went in mouth before swabbing"	"Amy"	""	"SF"	""	"M"	580.793728640414	"AGGTCCAAATCA"	"F"
+"Sample-17M"	"17M"	"17"	"01/03/22"	"B17Ma"	1	""	"Amy"	"A5/7"	"1106-11035"	1	0	0	20210517	"8:16"	58.3	44.8	109.8	16.2	16.7	"660"	"dry"	"pillowcase mass not taken (assumed 120g), finger went in mouth before swabbing"	"Amy"	""	"SF"	""	"M"	580.793728640414	"TAGTTGAGCTGA"	"M"
+"Sample-18C"	"18C"	"18"	"12/10/21"	"B18Ca"	-2	""	"Amy"	"A5/7"	"1106-11036"	1	0	0	20210517	"8:40"	64.8	43.7	110.5	14.9	16.1	"750"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"M"	646.841115624135		
+"Sample-18C"	"18C"	"18"	"01/05/22"	"B18Ca"	-3	""	"Amy"	"A5/7"	"1106-11036"	1	0	0	20210517	"8:40"	64.8	43.7	110.5	14.9	16.1	"750"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"M"	646.841115624135		
+"Sample-18M"	"18M"	"18"	"01/03/22"	"B18Ma"	3	""	"Amy"	"A5/7"	"1106-11036"	1	0	0	20210517	"8:40"	64.8	43.7	110.5	14.9	16.1	"750"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"M"	646.841115624135	"CGTTACCGGACT"	"M"
+"Sample-19C"	"19C"	"19"	"01/03/22"	"B19Ca"	221	""	"Amy"																						"GTCCTGACACTG"	"C"
+"Sample-19F"	"19F"	"19"	"12/9/21"	"B19Fa"	-2	""	"Amy"																						"TCGACATCTCTT"	"F"
+"Sample-19M"	"19M"	"19"	"12/10/21"	"B19Ma"	3	""	"Amy"																						"CGACTGCAGCTT"	"M"
+"Sample-1C"	"1C"	"1"	"8/10/2022"	"1Ca"		""	"David"	"M4/5"	"1106-11017"	3	0	0	20210515	"9:42"	52.4	45	100.9	13.1	14.2	"580"	"wet "	""	"Scott"	""	"SF"	""	"F"	667.08673560413	"CCGCCGTAGGGC"	"C"
+"Sample-1C"	"1C"	"1"	"04/14/2022"	"1Fa"	0.1	"had cagu on side"	"Amy"	"M4/5"	"1106-11017"	3	0	0	20210515	"9:42"	52.4	45	100.9	13.1	14.2	"580"	"wet "	""	"Scott"	""	"SF"	""	"F"	667.08673560413	"CCGCCGTAGGGC"	"C"
+"Sample-1M"	"1M"	"1"	"04/07/2022"	"1Ma"	2	"label on original tube unclear guessing that it's 1M based on bird band #"	"Amy"	"M4/5"	"1106-11017"	3	0	0	20210515	"9:42"	52.4	45	100.9	13.1	14.2	"580"	"wet "	""	"Scott"	""	"SF"	""	"F"	667.08673560413	"GCAGGCCCACGA"	"M"
+"Sample-2.17X"	"2.17X"	"2.17X"	"02/17/2022"	"2.17a"		""	"Amy"																						"AATTCCGAACGC"	".X"
+"Sample-2.7X"	"2.7X"	"2.7X"	"02/07/2022"	"2.7a"	-0.15	""	"Amy"																						"AATTGGCGGGCG"	".X"
+"Sample-20C"	"20C"	"20"	"12/10/21"	"B20Ca"	-5	"Spilled during step 4 only added ~400ul to tube in step 5"	"Amy"	"A5/7"	"1106-11037"	3	0	0	20210517	"9:58"	56.1	41.8	100.9	13.7	14.3	"620"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"F"	713.092717369932	"ATTCGCCAAGAA"	"C"
+"Sample-20F"	"20F"	"20"	"12/9/21"	"B20Fa"	-3	""	"Amy"	"A5/7"	"1106-11037"	3	0	0	20210517	"9:58"	56.1	41.8	100.9	13.7	14.3	"620"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"F"	713.092717369932	"AGTGCGTTCTAG"	"F"
+"Sample-20M"	"20M"	"20"	"01/03/22"	"B20Ma"	1	""	"Amy"	"A5/7"	"1106-11037"	3	0	0	20210517	"9:58"	56.1	41.8	100.9	13.7	14.3	"620"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"F"	713.092717369932	"CAGTGATACTGC"	"M"
+"Sample-21C"	"21C"	"21"	"01/05/22"	"B21Ca"	5	""	"Amy"	"A5/7"	"1106-11038"	3	0	0	20210517	"10:15"	63	43	110.8	16.2	16.5	"700"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"M"	598.55618280564	"CGGACATGCGGA"	"C"
+"Sample-21F"	"21F"	"21"	"12/10/21"	"B21Fa"	-6	""	"Amy"	"A5/7"	"1106-11038"	3	0	0	20210517	"10:15"	63	43	110.8	16.2	16.5	"700"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"M"	598.55618280564	"GGACTCAACTAA"	"F"
+"Sample-21M"	"21M"	"21"	"01/03/22"	"B21Ma"	1	""	"Amy"	"A5/7"	"1106-11038"	3	0	0	20210517	"10:15"	63	43	110.8	16.2	16.5	"700"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"M"	598.55618280564	"GATGACCCAAAT"	"M"
+"Sample-22C"	"22C"	"22"	"01/05/22"	"B22Ca"	-3	""	"Amy"	"A5/7"	"1106-11039"	1	0	0	20210517	"10:40"	62.3	41.3	109.1	15.9	16.6	"700"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"M"	628.598817633243	"ACGTGGTTCCAC"	"C"
+"Sample-22F"	"22F"	"22"	"01/03/22"	"B22Fa"	0	""	"Amy"	"A5/7"	"1106-11039"	1	0	0	20210517	"10:40"	62.3	41.3	109.1	15.9	16.6	"700"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"M"	628.598817633243	"ACCGTCTTTCTC"	"F"
+"Sample-22M"	"22M"	"22"	"02/07/2022"	"B22Ma"	-0.45	""	"Amy"	"A5/7"	"1106-11039"	1	0	0	20210517	"10:40"	62.3	41.3	109.1	15.9	16.6	"700"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"M"	628.598817633243	"CTCGACTGCCTG"	"M"
+"Sample-23C"	"23C"	"23"	"02/07/2022"	"B23Ca"	2.95	""	"Amy"	"A5/7"	"1106-11040"	3	0	0	20210517	"11:19"	41.3	57.8	101.7	14.3	14.2	"580"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"F"	650.607470651063	"TTGATAGTCTTA"	"C"
+"Sample-23F"	"23F"	"23"	"01/03/22"	"B23Fa"	0	""	"Amy"	"A5/7"	"1106-11040"	3	0	0	20210517	"11:19"	41.3	57.8	101.7	14.3	14.2	"580"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"F"	650.607470651063	"ATAGATCAGAAC"	"F"
+"Sample-23M"	"23M"	"23"	"01/05/22"	"B23Ma"	-2	""	"Amy"	"A5/7"	"1106-11040"	3	0	0	20210517	"11:19"	41.3	57.8	101.7	14.3	14.2	"580"	"dry"	"pillowcase mass not taken (assumed 120g)"	"Amy"	""	"SF"	""	"F"	650.607470651063	"AGTCCTTTATCC"	"M"
+"Sample-24C"	"24C"	"24"	"02/07/2022"	"B24Ca"	1.1	""	"Amy"	"A5/7"	"1106-11041"	3	0	0	20210519	"8:02"	57.3	41.9	102	14.1	15.2	"640"	"dry"	"along road"	"Amy"	""	"SF"	""	"F"	711.245154292267	"CGTTAAGTCAGC"	"C"
+"Sample-24F"	"24F"	"24"	"01/05/22"	"B24Fa"	-4	""	"Amy"	"A5/7"	"1106-11041"	3	0	0	20210519	"8:02"	57.3	41.9	102	14.1	15.2	"640"	"dry"	"along road"	"Amy"	""	"SF"	""	"F"	711.245154292267	"GACTAAGACTAA"	"F"
+"Sample-25F"	"25F"	"25"	"3/3/2022"	"B25Fa"	-1.2	""	"Amy"	"A5/7"	"1106-11043"	2	1	0	20210519	"8:28"	55.6	44.2	103.3	14.1	14.5	"610"	"wet "	"along road"	"Amy"	""	"SF"	""	"F"	651.251000140027	"AGAAACAGCTCT"	"F"
+"Sample-25M"	"25M"	"25"	"01/05/22"	"B25Ma"	-3	""	"Amy"	"A5/7"	"1106-11043"	2	1	0	20210519	"8:28"	55.6	44.2	103.3	14.1	14.5	"610"	"wet "	"along road"	"Amy"	""	"SF"	""	"F"	651.251000140027	"CGCCCTCTTCTT"	"M"
+"Sample-26C"	"26C"	"26"	"02/07/2022"	"B26Ca"	-0.5	""	"Amy"	"A5/7"	"1106-11045"	2	0	0	20210519	"9:00"	57	43	109.2	15.8	16.6	"610"	"dry"	"along road"	"Amy"	""	"SF"	""	"M"	546.191721913144	"AAGGACCGTTTC"	"C"
+"Sample-26F"	"26F"	"26"	"01/05/22"	"B26Fa"	-3	""	"Amy"	"A5/7"	"1106-11045"	2	0	0	20210519	"9:00"	57	43	109.2	15.8	16.6	"610"	"dry"	"along road"	"Amy"	""	"SF"	""	"M"	546.191721913144	"GTAGCACTCATG"	"F"
+"Sample-26M"	"26M"	"26"	"02/17/2022"	"B26Ma"		""	"Amy"	"A5/7"	"1106-11045"	2	0	0	20210519	"9:00"	57	43	109.2	15.8	16.6	"610"	"dry"	"along road"	"Amy"	""	"SF"	""	"M"	546.191721913144	"TTATAGATCTCC"	"M"
+"Sample-27C"	"27C"	"27"	"01/05/22"	"B27Ca"	583	""	"Amy"	"A5/7"	"1106-11046"	2	0	0	20210519	"9:24"	60.7	47.2	114.2	16.6	17	"740"	"wet "	"along road"	"Amy"	""	"SF"	""	"M"	574.993804951978	"ATCACTCTTGTA"	"C"
+"Sample-27M"	"27M"	"27"	"02/07/2022"	"B27Ma"	-0.35	""	"Amy"	"A5/7"	"1106-11046"	2	0	0	20210519	"9:24"	60.7	47.2	114.2	16.6	17	"740"	"wet "	"along road"	"Amy"	""	"SF"	""	"M"	574.993804951978	"ATTTAATCATCG"	"M"
+"Sample-28C"	"28C"	"28"	"01/05/22"	"B28Ca"	-2	""	"Amy"	"A5/7"	"1106-11047"	2	0	0	20210519	"9:58"	55.1	39.3	105.4	14.2	15.3	"620"	"dry"	"along road"	"Amy"	""	"SF"	""	"F"	621.050469653344	"TGCGCAAAGGAG"	"C"
+"Sample-28F"	"28F"	"28"	"8/12/2022"	"28Fa"		""	"David"	"A5/7"	"1106-11047"	2	0	0	20210519	"9:58"	55.1	39.3	105.4	14.2	15.3	"620"	"dry"	"along road"	"Amy"	""	"SF"	""	"F"	621.050469653344	"TCACCTCCTTGT"	"F"
+"Sample-28M"	"28M"	"28"	"02/07/2022"	"B28Ma"	-0.55	""	"Amy"	"A5/7"	"1106-11047"	2	0	0	20210519	"9:58"	55.1	39.3	105.4	14.2	15.3	"620"	"dry"	"along road"	"Amy"	""	"SF"	""	"F"	621.050469653344	"GCGTCTCGTCCA"	"M"
+"Sample-29C"	"29C"	"29"	"02/17/2022"	"B29Ca"		""	"Amy"	"A5/7"	"1106-11048"	3	0	0	20210519	"10:24"	59.8	44.8	111.5	15.7	16.3	"660"	"dry"	"on top of road"	"Amy"	""	"SF"	""	"M"	553.207215243808	"TTGAATCCTAAT"	"C"
+"Sample-29F"	"29F"	"29"	"01/05/22"	"B29Fa"	-2	""	"Amy"	"A5/7"	"1106-11048"	3	0	0	20210519	"10:24"	59.8	44.8	111.5	15.7	16.3	"660"	"dry"	"on top of road"	"Amy"	""	"SF"	""	"M"	553.207215243808	"GGTAGCGACGCC"	"F"
+"Sample-2C"	"2C"	"2"	"03/24/2022"	"B2Ca"	-9	""	"Amy and Jessica"	"M4/5"	"1106-11018"	2	0	0	20210515	"10:25"	59.1	47.6	104.6	14.3	15.4	"680"	"wet "	""	"Scott"	""	"SF"	""	""	697.789729289649	"ACAGAGAATTAC"	"C"
+"Sample-2F"	"2F"	"2"	"8/10/2022"	"2Fa"		""	"David"	"M4/5"	"1106-11018"	2	0	0	20210515	"10:25"	59.1	47.6	104.6	14.3	15.4	"680"	"wet "	""	"Scott"	""	"SF"	""	""	697.789729289649	"GATCGGTTAATG"	"F"
+"Sample-2M"	"2M"	"2"	"8/12/2022"	"2Ma"		""	"David"	"M4/5"	"1106-11018"	2	0	0	20210515	"10:25"	59.1	47.6	104.6	14.3	15.4	"680"	"wet "	""	"Scott"	""	"SF"	""	""	697.789729289649	"GTATAGTCCGTG"	"M"
+"Sample-3.17X"	"3.17X"	"3.17X"	"3/17/2022"	"3.17a"	4	""	"Berenice and Amy"																						"AGAACCGTCATA"	".X"
+"Sample-3.22X"	"3.22X"	"3.22X"	"03/22/2022"	"3.22a"	1	""	"Amy"																						"ATAAGTAACCGC"	".X"
+"Sample-3.24X"	"3.24X"	"3.24X"	"03/24/2022"	"3.24a"	-10	""	"Amy and Jessica"																						"GCACCCTGGTCT"	".X"
+"Sample-3.3X"	"3.3X"	"3.3X"	"3/3/2022"	"3.3a"	-0.8	""	"Amy"																						"CATTAAAGTTCT"	".X"
+"Sample-30C"	"30C"	"30"	"3/17/2022"	"B30Ca"	3	""	"Berenice and Amy"	"A5/7"	"1106-11042"	3	0	0	20210519	"11:25"	54.7	39.9	100	14	14.9	"590"	"dry"	""	"Amy"	""	"SF"	""	"F"	698.121355170673	"CAACAGGTAACT"	"C"
+"Sample-30F"	"30F"	"30"	"02/17/2022"	"B30Fa"		""	"Amy"	"A5/7"	"1106-11042"	3	0	0	20210519	"11:25"	54.7	39.9	100	14	14.9	"590"	"dry"	""	"Amy"	""	"SF"	""	"F"	698.121355170673	"TCGTGACGCTAA"	"F"
+"Sample-30M"	"30M"	"30"	"3/3/2022"	"B30Ma"	-1.3	""	"Amy"	"A5/7"	"1106-11042"	3	0	0	20210519	"11:25"	54.7	39.9	100	14	14.9	"590"	"dry"	""	"Amy"	""	"SF"	""	"F"	698.121355170673	"CCGAAGATTCTG"	"M"
+"Sample-31C"	"31C"	"31"	"3/3/2022"	"B31Ca"	-0.4	""	"Amy"	"A5/7"	"1106-11049"	2	0	0	20210519	"11:49"	57.8	47.2	113.7	15.5	16.1	"670"	"dry"	""	"Amy"	""	"SF"	""	"M"	527.888295761116	"CGGTGCGAAAGC"	"C"
+"Sample-31F"	"31F"	"31"	"3/17/2022"	"B31Fa"	-3	""	"Berenice and Amy"	"A5/7"	"1106-11049"	2	0	0	20210519	"11:49"	57.8	47.2	113.7	15.5	16.1	"670"	"dry"	""	"Amy"	""	"SF"	""	"M"	527.888295761116	"CTGTGATCGGAT"	"F"
+"Sample-31M"	"31M"	"31"	"8/10/2022"	"31Ma"		""	"David"	"A5/7"	"1106-11049"	2	0	0	20210519	"11:49"	57.8	47.2	113.7	15.5	16.1	"670"	"dry"	""	"Amy"	""	"SF"	""	"M"	527.888295761116	"GACAAGAAGGTG"	"M"
+"Sample-32C"	"32C"	"32"	"02/07/2022"	"B32Ca"	0.85	""	"Amy"	"A5/7"	"1106-11050"	2	0	0	20210519	"12:24"	57.8	41.4	102.9	14.6	15.6	"540"	""	""	"Amy"	""	"SF"	""	"F"	583.645453938857	"CACGAGCTACTC"	"C"
+"Sample-32F"	"32F"	"32"	"3/17/2022"	"B32Fa"	-2	""	"Berenice and Amy"	"A5/7"	"1106-11050"	2	0	0	20210519	"12:24"	57.8	41.4	102.9	14.6	15.6	"540"	""	""	"Amy"	""	"SF"	""	"F"	583.645453938857	"TGGACGGCCCAG"	"F"
+"Sample-32M"	"32M"	"32"	"3/3/2022"	"B32Ma"	-1.6	""	"Amy"	"A5/7"	"1106-11050"	2	0	0	20210519	"12:24"	57.8	41.4	102.9	14.6	15.6	"540"	""	""	"Amy"	""	"SF"	""	"F"	583.645453938857	"GCTGTTTGACCG"	"M"
+"Sample-33F"	"33F"	"33"	"02/17/2022"	"B33Fa"		""	"Amy"	"A5/7"	"1106-11051"	2	0	0	20210519	"12:51"	52.4	39.9	99.8	14.2	15.6	"570"	"dry"	"on point"	"Amy"	""	"SF"	""	"F"	678.746538873795	"GCTCAGGACTCT"	"F"
+"Sample-33M"	"33M"	"33"	"8/12/2022"	"33Ma"		""	"David"	"A5/7"	"1106-11051"	2	0	0	20210519	"12:51"	52.4	39.9	99.8	14.2	15.6	"570"	"dry"	"on point"	"Amy"	""	"SF"	""	"F"	678.746538873795	"ACTAGGATCAGT"	"M"
+"Sample-34C"	"34C"	"34"	"8/12/2022"	"34Ca"		""	"David"	"A5/7"	"1106-11052"	0	1	1	20210519	"13:14"	56.4	40.2	109.1	16.2	16.5	"680"	"dry"	"on point, one pipped egg and one fresh chick"	"Amy"	""	"SF"	""	"M"	610.63885141515	"ATGAAGCACTGT"	"C"
+"Sample-34F"	"34F"	"34"	"3/17/2022"	"B34Fa"	-1	""	"Berenice and Amy"	"A5/7"	"1106-11052"	0	1	1	20210519	"13:14"	56.4	40.2	109.1	16.2	16.5	"680"	"dry"	"on point, one pipped egg and one fresh chick"	"Amy"	""	"SF"	""	"M"	610.63885141515	"CGGACTCGTTAC"	"F"
+"Sample-34M"	"34M"	"34"	"02/17/2022"	"B34Ma"		""	"Amy"	"A5/7"	"1106-11052"	0	1	1	20210519	"13:14"	56.4	40.2	109.1	16.2	16.5	"680"	"dry"	"on point, one pipped egg and one fresh chick"	"Amy"	""	"SF"	""	"M"	610.63885141515	"GACGGCTATGTT"	"M"
+"Sample-35C"	"35C"	"35"	"02/07/2022"	"B35Ca"	0.05	""	"Amy"	"A5/7"	"1106-11054"	2	0	0	20210519	"13:36"	59.8	41.8	107.6	16.5	17.9	"700"	"wet"	""	"Amy"	""	"SF"	""	"M"	656.775666306975	"GGCATGTTATCG"	"C"
+"Sample-35F"	"35F"	"35"	"3/17/2022"	"B35Fa"	-2	""	"Berenice and Amy"	"A5/7"	"1106-11054"	2	0	0	20210519	"13:36"	59.8	41.8	107.6	16.5	17.9	"700"	"wet"	""	"Amy"	""	"SF"	""	"M"	656.775666306975	"TCACGTATTCTC"	"F"
+"Sample-36F"	"36F"	"36"	"3/3/2022"	"B36Fa"	-1.7	""	"Amy"	"A5/7"	"1106-11055"	2	0	0	20210519	"14:12"	59.2	38.1	98.8	14.1	15.1	"570"	"wet"	"on point"	"Amy"	""	"SF"	""	"F"	700.745380240825	"ATAAGGTCGCCT"	"F"
+"Sample-36M"	"36M"	"36"	"02/17/2022"	"B36Ma"		""	"Amy"	"A5/7"	"1106-11055"	2	0	0	20210519	"14:12"	59.2	38.1	98.8	14.1	15.1	"570"	"wet"	"on point"	"Amy"	""	"SF"	""	"F"	700.745380240825	"TCGTTCAGGACC"	"M"
+"Sample-37C"	"37C"	"37"	"3/3/2022"	"B37Ca"	-0.3	""	"Amy"	"A5/7"	"1106-11056"	2	0	0	20210519	"14:55"	59.8	40.3	105.6	15.1	16.1	"640"	"dry"	""	"Amy"	""	"SF"	""	""	637.246552617202	"CAGACGAGGAAC"	"C"
+"Sample-37M"	"37M"	"37"	"02/17/2022"	"B37Ma"		""	"Amy"	"A5/7"	"1106-11056"	2	0	0	20210519	"14:55"	59.8	40.3	105.6	15.1	16.1	"640"	"dry"	""	"Amy"	""	"SF"	""	""	637.246552617202	"TTGCAAGTACCG"	"M"
+"Sample-38C"	"38C"	"38"	"02/17/2022"	"B38Ca"		""	"Amy"	"A5/7"	"1106-11058"	1	1	0	20210519	"15:20"	56.8	39	98.2	13.9	14.2	"580"	"wet"	""	"Amy"	""	"SF"	""	"F"	726.929695806584	"TGAACGTTGGAT"	"C"
+"Sample-38F"	"38F"	"38"	"8/10/2022"	"38Fa"		""	"David"	"A5/7"	"1106-11058"	1	1	0	20210519	"15:20"	56.8	39	98.2	13.9	14.2	"580"	"wet"	""	"Amy"	""	"SF"	""	"F"	726.929695806584	"GTGTTGTCGTGC"	"F"
+"Sample-38M"	"38M"	"38"	"3/17/2022"	"B38Ma"	0	""	"Berenice and Amy"	"A5/7"	"1106-11058"	1	1	0	20210519	"15:20"	56.8	39	98.2	13.9	14.2	"580"	"wet"	""	"Amy"	""	"SF"	""	"F"	726.929695806584	"GCTTGGTAGGTT"	"M"
+"Sample-39F"	"39F"	"39"	"8/12/2022"	"39Fa"		""	"David"	"A5/7"	"1106-11059"	3	0	0	20210519	"15:53"	58.5	42.1	111	16.2	17.5	"780"	"dry"	""	"Amy"	""	"SF"	""	"M"	663.163743364402	"CGTCGATTGCAC"	"F"
+"Sample-39M"	"39M"	"39"	"8/12/2022"	"39Ma"		""	"David"	"A5/7"	"1106-11059"	3	0	0	20210519	"15:53"	58.5	42.1	111	16.2	17.5	"780"	"dry"	""	"Amy"	""	"SF"	""	"M"	663.163743364402	"CTCGATGTAAGC"	"M"
+"Sample-3C"	"3C"	"3"	"04/07/2022"	"3Ca"	2	""	"Amy"	"M4/5"	"1106-11019"	1	0	0	20210515	"11:18"	56.4	49	108.9	15.4	16.6	"695"	"dry  "	"not sure if swab went all the way in cloaca"	"Scott"	""	"SF"	""	"M"	627.74646485626	"ATGAGATGATAC"	"C"
+"Sample-3F"	"3F"	"3"	"8/10/2022"	"3Fa"		""	"David"	"M4/5"	"1106-11019"	1	0	0	20210515	"11:18"	56.4	49	108.9	15.4	16.6	"695"	"dry  "	"not sure if swab went all the way in cloaca"	"Scott"	""	"SF"	""	"M"	627.74646485626	"TGGGAGGTGGTA"	"F"
+"Sample-3M"	"3M"	"3"	"8/12/2022"	"3Ma"		""	"David"	"M4/5"	"1106-11019"	1	0	0	20210515	"11:18"	56.4	49	108.9	15.4	16.6	"695"	"dry  "	"not sure if swab went all the way in cloaca"	"Scott"	""	"SF"	""	"M"	627.74646485626	"ACGCGTGCCCGG"	"M"
+"Sample-4.14X"	"4.14X"	"4.14X"	"04/14/2022"	"4.14a"	0	""	"Amy"																						"ACGCAATGTCTG"	".X"
+"Sample-4.5X"	"4.5X"	"4.5X"	"04/05/2022"	"4.5Ca"	1	""	"Berenice"																						"AGAAAGGGTGTG"	".X"
+"Sample-4.7X"	"4.7X"	"4.7X"	"04/07/2022"	"4.7 Ca"	1	""	"Amy"																						"GTCTCGCCTACG"	".X"
+"Sample-40C"	"40C"	"40"	"9/6/2022"	"40Ca"		"75ul for extraction"	"Amy"	"ML"	"1055-08474"	1	0	0	20220604	"13:09"	58.5	45.2	113.4	17.3	17.4	"635"	"wet"	""	"Amy"	""	"ML"	"Carly PCA"	"M"	504.516274185105	"CAAATCATTTCA"	"C"
+"Sample-40F"	"40F"	"40"	"9/6/2022"	"40Fa"		"75ul for extraction"	"Amy"	"ML"	"1055-08474"	1	0	0	20220604	"13:09"	58.5	45.2	113.4	17.3	17.4	"635"	"wet"	""	"Amy"	""	"ML"	"Carly PCA"	"M"	504.516274185105	"ATTATCGTCCCT"	"F"
+"Sample-40M"	"40M"	"40"	"9/9/2022"	"40M"		"50ul for extraction"	"David"	"ML"	"1055-08474"	1	0	0	20220604	"13:09"	58.5	45.2	113.4	17.3	17.4	"635"	"wet"	""	"Amy"	""	"ML"	"Carly PCA"	"M"	504.516274185105	"CTACAATTGAGG"	"M"
+"Sample-41C"	"41C"	"41"	"9/8/2022"	"41C"		"50ul for extraction"	"Amy"																						"GTCCATGGTTCG"	"C"
+"Sample-41F"	"41F"	"41"	"9/9/2022"	"41F"		"50ul for extraction"	"David"																						"AGGCGCTCTCCT"	"F"
+"Sample-41M"	"41M"	"41"	"8/4/2022"	"41Ma"		""	"Amy and David"																						"CGTTAGTGACTG"	"M"
+"Sample-42C"	"42C"	"42"	"9/8/2022"	"42C"		"50ul for extraction"	"Amy"	"ML"	"1055-08466"	1	0	0	20220604	"14:30"	57.8	38.9	103.1	14.7	15.2	"580"	"dry"	"slight amount of blood in cloaca"	"Amy"	""	"ML"	""	"F"	623.034883279228	"CGAACAGAGCGC"	"C"
+"Sample-42F"	"42F"	"42"	"9/6/2022"	"42Fa"		"75ul for extraction"	"Amy"	"ML"	"1055-08466"	1	0	0	20220604	"14:30"	57.8	38.9	103.1	14.7	15.2	"580"	"dry"	"slight amount of blood in cloaca"	"Amy"	""	"ML"	""	"F"	623.034883279228	"TCTGAATGGTAG"	"F"
+"Sample-42M"	"42M"	"42"	"9/9/2022"	"42M"		"50ul for extraction"	"David"	"ML"	"1055-08466"	1	0	0	20220604	"14:30"	57.8	38.9	103.1	14.7	15.2	"580"	"dry"	"slight amount of blood in cloaca"	"Amy"	""	"ML"	""	"F"	623.034883279228	"ATCTGTTACAAT"	"M"
+"Sample-43C"	"43C"	"43"	"9/9/2022"	"43C"		"50ul for extraction"	"David"	"ML"	"1055-08476"	2	0	0	20220604	"15:45"	58.3	40.9	100.7	14.9	15	"520"	"dry"	""	"Amy"	""	"ML"	"Carly PCA"	"F"	601.848147551696	"TGGGCCGGAATG"	"C"
+"Sample-43F"	"43F"	"43"	"9/8/2022"	"43F"		"50ul for extraction"	"Amy"	"ML"	"1055-08476"	2	0	0	20220604	"15:45"	58.3	40.9	100.7	14.9	15	"520"	"dry"	""	"Amy"	""	"ML"	"Carly PCA"	"F"	601.848147551696	"ATAATAACTTGT"	"F"
+"Sample-43F"	"43F"	"43"	"8/4/2022"	"43Fa"		""	"Amy and David"	"ML"	"1055-08476"	2	0	0	20220604	"15:45"	58.3	40.9	100.7	14.9	15	"520"	"dry"	""	"Amy"	""	"ML"	"Carly PCA"	"F"	601.848147551696	"ATAATAACTTGT"	"F"
+"Sample-43M"	"43M"	"43"	"9/9/2022"	"43M"		"50ul for extraction"	"David"	"ML"	"1055-08476"	2	0	0	20220604	"15:45"	58.3	40.9	100.7	14.9	15	"520"	"dry"	""	"Amy"	""	"ML"	"Carly PCA"	"F"	601.848147551696	"ACCATTACCATT"	"M"
+"Sample-44F"	"44F"	"44"	"9/8/2022"	"44F"		"50ul for extraction"	"Amy"	"ML"	"1055-08477"	1	0	0	20220605	"10:50"	61.8	45.7	111.15	16.4	17.4	"580"	"dry"	""	"Alex"	"sent for sexing "	"ML"	""	"M"	491.017040739696	"ATTCCATTTAGA"	"F"
+"Sample-45C"	"45C"	"45"	"8/4/2022"	"45Ca"		""	"Amy and David"	"ML"	"1055-08478"	2	0	0	20220605	"11:05"	57.15	43.5	97.1	13.98	14.15	"550"	"dry"	""	"Alex"	""	"ML"	""	"F"	714.368821977178	"CAGGGAGGATCC"	"C"
+"Sample-45M"	"45M"	"45"	"9/8/2022"	"45M"		"50ul for extraction"	"Amy"	"ML"	"1055-08478"	2	0	0	20220605	"11:05"	57.15	43.5	97.1	13.98	14.15	"550"	"dry"	""	"Alex"	""	"ML"	""	"F"	714.368821977178	"ATATATAGTATC"	"M"
+"Sample-46C"	"46C"	"46"	"9/6/2022"	"46Ca"		"75ul  for extraction"	"Amy"	"ML"	"1055-08479"	2	0	0	20220605	"11:40"	57.55	37.5	100	14.9	15.1	"530"	"dry"	"slight amount of blood in cloaca"	"Amy"	""	"ML"	"Carly PCA"	"F"	627.125963119418	"TGACCGGCTGTT"	"C"
+"Sample-46F"	"46F"	"46"	"8/4/2022"	"46Fa"		""	"Amy and David"	"ML"	"1055-08479"	2	0	0	20220605	"11:40"	57.55	37.5	100	14.9	15.1	"530"	"dry"	"slight amount of blood in cloaca"	"Amy"	""	"ML"	"Carly PCA"	"F"	627.125963119418	"GTTATGACGGAT"	"F"
+"Sample-47C"	"47C"	"47"	"9/8/2022"	"47C"		"50ul for extraction"	"Amy"	"ML"	"1055-08480"	1	0	0	20220605	"11:55"	60.9	42.75	112.9	17.8	18.45	"500"	"dry"	""	"Amy"	""	"ML"	"Carly PCA"	"M"	402.856075874002	"CTGCTGGGAAGG"	"C"
+"Sample-47F"	"47F"	"47"	"8/4/2022"	"47Fa"		""	"Amy and David"	"ML"	"1055-08480"	1	0	0	20220605	"11:55"	60.9	42.75	112.9	17.8	18.45	"500"	"dry"	""	"Amy"	""	"ML"	"Carly PCA"	"M"	402.856075874002	"TTGCTCAATTTG"	"F"
+"Sample-48C"	"48C"	"48"	"8/4/2022"	"48Ca"		"Step 5: half of volume transfered, lots of feathers in sample"	"Amy and David"	"ML"	"1106-11062"	1	0	0	20220605	"12:23"	51.45	37.85	101.3	14.1	14.9	"480"	"wet"	""	"Amy"	"sent for sexing"	"ML"	""	"F"	545.196671108944	"CGCTCGACTCCA"	"C"
+"Sample-49M"	"49M"	"49"	"9/9/2022"	"49M"		"50ul for extraction"	"David"	"ML"	"1106-11063"	1	0	0	20220605	"13:19"	53.95	39.98	99.55	14.3	14.7	"470"	"dry"	""	"Amy"	""	"ML"	"Carly PCA"	"F"	564.131989728581	"TCCTCTTTGGTC"	"M"
+"Sample-4C"	"4C"	"4"	"04/14/2022"	"4Ca"	-0.1	""	"Amy"	"M4/5"	"1106-11020"	2	0	0	20210515	"11:45"	58.5	51.5	113.2	16.8	19.8	"775"	"dry "	""	"Scott"	""	"SF"	""	"M"	619.200528633919	"TCAAACTTTCGT"	"C"
+"Sample-4F"	"4F"	"4"	"04/07/2022"	"4Fa"	4	""	"Amy"	"M4/5"	"1106-11020"	2	0	0	20210515	"11:45"	58.5	51.5	113.2	16.8	19.8	"775"	"dry "	""	"Scott"	""	"SF"	""	"M"	619.200528633919	"ATGAATGCGTCC"	"F"
+"Sample-4M"	"4M"	"4"	"04/14/2022"	"4Ma"	0.2	""	"Amy"	"M4/5"	"1106-11020"	2	0	0	20210515	"11:45"	58.5	51.5	113.2	16.8	19.8	"775"	"dry "	""	"Scott"	""	"SF"	""	"M"	619.200528633919	"CGGGCACCGGTC"	"M"
+"Sample-50M"	"50M"	"50"	"9/6/2022"	"50Ma"		"75ul for extraction"	"Amy"	"ML"	"1106-11064"	2	0	0	20220605	"13:41"	61.9	46.5	107.2	15.8	16.7	"485"	"dry"	""	"Alex"	"sent for sexing"	"ML"	""	"M"	460.451466922334	"TGGAGAGGAGAT"	"M"
+"Sample-51C"	"51C"	"51"	"9/6/2022"	"51Ca"		"light brown sample/75ul  for extraction"	"Amy"	"ML"	"1106-11066"	0	0	0	20220605	"13:58"	56.9	39.6	101.15	14.75	15.1	"445"	"dry"	"lots of feces on cloaca swab"	"Amy"	""	"ML"	"Carly PCA"	"F"	507.820617355404	"GCGCGAATGGTG"	"C"
+"Sample-51M"	"51M"	"51"	"9/6/2022"	"51Ma"		"75ul for extraction"	"Amy"	"ML"	"1106-11066"	0	0	0	20220605	"13:58"	56.9	39.6	101.15	14.75	15.1	"445"	"dry"	"lots of feces on cloaca swab"	"Amy"	""	"ML"	"Carly PCA"	"F"	507.820617355404	"ATTCAGATGGCA"	"M"
+"Sample-53M"	"53M"	"53"	"8/4/2022"	"53Ma"		""	"Amy and David"	"ML"	"1106-11061"	2	0	0	20220605	"14:13"	61.6	50.2	115.1	16.5	16.9	"570"	"dry"	"did not get blood blot"	"Alex"	""	"ML"	""	"M"	432.024309200671	"TGACAACCGAAT"	"M"
+"Sample-54C"	"54C"	"54"	"9/8/2022"	"54C"		"50ul for extraction"	"Amy"	"ML"	"1106-11067"	1	0	0	20220605	"14:34"	58.5	38.4	103.4	14.5	14.55	"525"	"wet"	""	"Amy"	""	"ML"	"Carly PCA"	"F"	558.787787427393	"AACACATGGGTT"	"C"
+"Sample-54F"	"54F"	"54"	"8/4/2022"	"54Fa"		""	"Amy and David"	"ML"	"1106-11067"	1	0	0	20220605	"14:34"	58.5	38.4	103.4	14.5	14.55	"525"	"wet"	""	"Amy"	""	"ML"	"Carly PCA"	"F"	558.787787427393	"CGTACCAGATCC"	"F"
+"Sample-55C"	"55C"	"55"	"9/6/2022"	"55Ca"		"dark brown sample, lots of organic material/75ul  for extraction"	"Amy"	"ML"	"1106-11070"	0	0	0	20220605	"15:08"	56.2	39.6	100.8	15.8	16.55	"450"	"wet"	"brine fly larva in mouth"	"Amy"	""	"ML"	"Carly PCA"	"F"	519.195338935331	"TCGCATGGATAC"	"C"
+"Sample-55M"	"55M"	"55"	"8/5/2022"	"55Ma"		"Step 5: 2/3 of the needed volume left over transferred"	"Amy and David"	"ML"	"1106-11070"	0	0	0	20220605	"15:08"	56.2	39.6	100.8	15.8	16.55	"450"	"wet"	"brine fly larva in mouth"	"Amy"	""	"ML"	"Carly PCA"	"F"	519.195338935331	"TTGCCTGGGTCA"	"M"
+"Sample-56C"	"56C"	"56"	"9/9/2022"	"56C"		"50ul for extraction"	"David"	"ML"	"1106-11060"	1	0	0	20220605	"15:15"	56.15	38.7	105.6	15.5	16.4	"435"	"dry"	"brood patch"	"Amy"	"sent for sexing"	"ML"	""	"F"	433.128516232005	"CTTTGGGCCGCT"	"C"
+"Sample-56C"	"56C"	"56"	"9/9/2022"	"56C"		"half volume at step 5"	"David"	"ML"	"1106-11060"	1	0	0	20220605	"15:15"	56.15	38.7	105.6	15.5	16.4	"435"	"dry"	"brood patch"	"Amy"	"sent for sexing"	"ML"	""	"F"	433.128516232005	"CTTTGGGCCGCT"	"C"
+"Sample-56F"	"56F"	"56"	"8/5/2022"	"56Fa"		""	"Amy and David"	"ML"	"1106-11060"	1	0	0	20220605	"15:15"	56.15	38.7	105.6	15.5	16.4	"435"	"dry"	"brood patch"	"Amy"	"sent for sexing"	"ML"	""	"F"	433.128516232005	"GCCGGTACTCTA"	"F"
+"Sample-56M"	"56M"	"56"	"9/6/2022"	"56Ma"		"75ul for extraction"	"Amy"	"ML"	"1106-11060"	1	0	0	20220605	"15:15"	56.15	38.7	105.6	15.5	16.4	"435"	"dry"	"brood patch"	"Amy"	"sent for sexing"	"ML"	""	"F"	433.128516232005	"AAGCACGTCTCA"	"M"
+"Sample-57C"	"57C"	"57"	"9/8/2022"	"57C"		"50ul for extraction"	"Amy"	"ML"	"1106-11071"	2	0	0	20220605	"15:31"	58.4	40.85	105.8	15.75	16.2	"500"	"dry"	""	"Amy"	"sent for sexing"	"ML"	""	""	494.874156872729	"CCTGGAATTAAG"	"C"
+"Sample-57F"	"57F"	"57"	"9/9/2022"	"57F"		"50ul for extraction"	"David"	"ML"	"1106-11071"	2	0	0	20220605	"15:31"	58.4	40.85	105.8	15.75	16.2	"500"	"dry"	""	"Amy"	"sent for sexing"	"ML"	""	""	494.874156872729	"TCTAGGTTATTC"	"F"
+"Sample-57M"	"57M"	"57"	"8/4/2022"	"57Ma"		""	"Amy and David"	"ML"	"1106-11071"	2	0	0	20220605	"15:31"	58.4	40.85	105.8	15.75	16.2	"500"	"dry"	""	"Amy"	"sent for sexing"	"ML"	""	""	494.874156872729	"GGTTTAACACGC"	"M"
+"Sample-59C"	"59C"	"59"	"9/6/2022"	"59Ca"		"75ul for extraction"	"Amy"	"ML"	"1106-11073"	2	0	0	20220606	"8:36"	57.4	40	101.35	14.15	15.05	"420"	"wet "	""	"Amy"	"sent for sexing"	"ML"	""	"F"	476.302066515912	"CTATTAAGCGGC"	"C"
+"Sample-5C"	"5C"	"5"	"04/14/2022"	"5Ca"	-0.1	""	"Amy"	"M4/5"	"1106-11022"		0	0	20210515	"14:23"	54.7	43.8	104.6	12.5	14.8	"530"	"dry "	"barfed before swabbing mouth"	"Scott"	""	"SF"	""	"F"	543.865524299285	"ATATTTCATGGT"	"C"
+"Sample-5F"	"5F"	"5"	"8/10/2022"	"5Fa"		""	"David"	"M4/5"	"1106-11022"		0	0	20210515	"14:23"	54.7	43.8	104.6	12.5	14.8	"530"	"dry "	"barfed before swabbing mouth"	"Scott"	""	"SF"	""	"F"	543.865524299285	"CCTGTAGGTTGC"	"F"
+"Sample-5M"	"5M"	"5"	"03/22/2022"	"B5Ma"	1	""	"Amy"	"M4/5"	"1106-11022"		0	0	20210515	"14:23"	54.7	43.8	104.6	12.5	14.8	"530"	"dry "	"barfed before swabbing mouth"	"Scott"	""	"SF"	""	"F"	543.865524299285	"ATTAGCAGCGTA"	"M"
+"Sample-60F"	"60F"	"60"	"8/5/2022"	"60Fa"		"Step 5: half the volume needed left over transferred"	"Amy and David"	"ML"	"1106-11074"	2	0	0	20220606	"9:03"	60.1	40.09	101.9	14.85	15.7	"460"	"dry"	"brood patch"	"Amy"	""	"ML"	""	"F"	512.798116329	"ACGGACTGGCGC"	"F"
+"Sample-61C"	"61C"	"61"	"9/9/2022"	"61C"		"50ul for extraction"	"David"	"ML"	"1106-11075"	1	0	0	20220606	"9:17"	56.65	41.4	99.2	13.95	14.85	"410"	"dry"	""	"Alex"	""	"ML"	"Carly PCA"	"F"	497.635605856279	"ATTAGATTGGAG"	"C"
+"Sample-61F"	"61F"	"61"	"9/8/2022"	"61F"		"50ul for extraction"	"Amy"	"ML"	"1106-11075"	1	0	0	20220606	"9:17"	56.65	41.4	99.2	13.95	14.85	"410"	"dry"	""	"Alex"	""	"ML"	"Carly PCA"	"F"	497.635605856279	"GTAGATCGTGTA"	"F"
+"Sample-61M"	"61M"	"61"	"9/9/2022"	"61M"		"50ul for extraction"	"David"	"ML"	"1106-11075"	1	0	0	20220606	"9:17"	56.65	41.4	99.2	13.95	14.85	"410"	"dry"	""	"Alex"	""	"ML"	"Carly PCA"	"F"	497.635605856279	"TCGTCCTCGCGA"	"M"
+"Sample-62F"	"62F"	"62"	"8/4/2022"	"62Fa"		""	"Amy and David"	"ML"	"1106-11076"	2	0	0	20220606	"9:31"	55.75	37.15	101.3	14.65	15.5	"470"	"dry"	"no brood patch"	"Alex"	""	"ML"	"Carly PCA"	"F"	533.838407127507	"TGTCCTATCAAT"	"F"
+"Sample-62M"	"62M"	"62"	"9/9/2022"	"62M"		"50ul for extraction"	"David"	"ML"	"1106-11076"	2	0	0	20220606	"9:31"	55.75	37.15	101.3	14.65	15.5	"470"	"dry"	"no brood patch"	"Alex"	""	"ML"	"Carly PCA"	"F"	533.838407127507	"GCCGCTCTTTGG"	"M"
+"Sample-63F"	"63F"	"63"	"9/8/2022"	"63F"		"50ul for extraction"	"Amy"	"ML"	"1106-11078"	2	0	0	20220606	"9:47"	64.2	45.4	110.9	16.2	16.65	"510"	"dry"	"brood patch"	"Alex"	"sent for sexing"	"ML"	""	"M"	434.846664648321	"CCTCGGGTACTA"	"F"
+"Sample-63M"	"63M"	"63"	"9/8/2022"	"63M"		"50ul for extraction"	"Amy"	"ML"	"1106-11078"	2	0	0	20220606	"9:47"	64.2	45.4	110.9	16.2	16.65	"510"	"dry"	"brood patch"	"Alex"	"sent for sexing"	"ML"	""	"M"	434.846664648321	"ATTCGAGCTGTG"	"M"
+"Sample-64F"	"64F"	"64"	"8/4/2022"	"64Fa"		""	"Amy and David"	"ML"	"1106-11081"	2	0	0	20220606	"10:07"	60.1	44.9	111.7	15.85	16.4	"540"	"dry"	""	"Amy"	"sent for sexing"	"ML"	""	"M"	450.062170735043	"TCTTCAACTACC"	"F"
+"Sample-65F"	"65F"	"65"	"9/9/2022"	"65F"		"50ul for extraction"	"David"	"ML"	"1106-11082"	2	0	0	20220606	"10:21"	58.2	41.9	104.2	14.25	15	"520"	"dry"	""	"Amy"	"sent for sexing"	"ML"	""	"F"	540.118842751962	"TAGGCTCGTGCT"	"F"
+"Sample-65M"	"65M"	"65"	"8/4/2022"	"65Ma"		""	"Amy and David"	"ML"	"1106-11082"	2	0	0	20220606	"10:21"	58.2	41.9	104.2	14.25	15	"520"	"dry"	""	"Amy"	"sent for sexing"	"ML"	""	"F"	540.118842751962	"CATACTTGTCTA"	"M"
+"Sample-66F"	"66F"	"66"	"8/5/2022"	"66Fa"		"Step 5: half the volume needed left over transferred"	"Amy and David"	"ML"	"1106-11181"	2	0	0	20220606	"10:31"	54.15	49.25	100.65	14.3	14.9	"475"	"dry"	"brood patch"	"Amy"	"sent for sexing"	"ML"	""	"F"	550.630621160209	"TCCGAGTCACCA"	"F"
+"Sample-66M"	"66M"	"66"	"9/6/2022"	"66Ma"		"75ul for extraction"	"Amy"	"ML"	"1106-11181"	2	0	0	20220606	"10:31"	54.15	49.25	100.65	14.3	14.9	"475"	"dry"	"brood patch"	"Amy"	"sent for sexing"	"ML"	""	"F"	550.630621160209	"TGTCCAGTTCGG"	"M"
+"Sample-6C"	"6C"	"6"	"04/14/2022"	"6Ca"	-0.1	""	"Amy"	"M4/5"	"1106-11021"	3	0	0	20210515	"13:50"	58.5	49.2	113.8	16.8	16.7	"690"	"wet "	""	"Scott"	""	"SF"	""	"M"	542.134497550022	"CTTACTTTAACG"	"C"
+"Sample-6F"	"6F"	"6"	"03/22/2022"	"B6Fa"	7	""	"Amy"	"M4/5"	"1106-11021"	3	0	0	20210515	"13:50"	58.5	49.2	113.8	16.8	16.7	"690"	"wet "	""	"Scott"	""	"SF"	""	"M"	542.134497550022	"CACTTAAGAGAA"	"F"
+"Sample-6M"	"6M"	"6"	"04/07/2022"	"6Ma"	7	""	"Amy"	"M4/5"	"1106-11021"	3	0	0	20210515	"13:50"	58.5	49.2	113.8	16.8	16.7	"690"	"wet "	""	"Scott"	""	"SF"	""	"M"	542.134497550022	"AGGTACGCAATT"	"M"
+"Sample-7C"	"7C"	"7"	"04/14/2022"	"7Ca"	-0.1	""	"Amy"	"M4/5"	"1106-11024"	1	0	0	20210515	"14:45"	62.5	47.5	111.6	14.7	15.5	"710"	"dry "	""	"Scott"	""	"SF"	""	"M"	593.429486638101	"GGCCGCGATCGA"	"C"
+"Sample-7F"	"7F"	"7"	"04/07/2022"	"7Fa"	3	""	"Amy"	"M4/5"	"1106-11024"	1	0	0	20210515	"14:45"	62.5	47.5	111.6	14.7	15.5	"710"	"dry "	""	"Scott"	""	"SF"	""	"M"	593.429486638101	"GTGTACATAACG"	"F"
+"Sample-7M"	"7M"	"7"	"04/14/2022"	"7Ma"	0.1	""	"Amy"	"M4/5"	"1106-11024"	1	0	0	20210515	"14:45"	62.5	47.5	111.6	14.7	15.5	"710"	"dry "	""	"Scott"	""	"SF"	""	"M"	593.429486638101	"GATTAATGGAAC"	"M"
+"Sample-8.10X"	"8.10X"	"8.10X"	"8/10/2022"	"8.10Xa"		""	"David"																						"TGTGACAGGGCG"	".X"
+"Sample-8.12X"	"8.12X"	"8.12X"	"8/12/2022"	"8.12Xa"		""	"David"																						"TCCTATCGGCCG"	".X"
+"Sample-8.4X"	"8.4X"	"8.4X"	"8/4/2022"	"8.4Xa"		""	"Amy and David"																						"CTTGGCCTGTAG"	".X"
+"Sample-8C"	"8C"	"8"	"8/12/2022"	"8Ca"		""	"David"	"M4/5"	"1106-11025"	1	0	0	20210515	"15:19"	53	45	98.9	13	15.5	"550"	"dry "	""	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	673.994761435406	"TACGTCGTTATT"	"C"
+"Sample-8F"	"8F"	"8"	"8/10/2022"	"8Fa"		""	"David"	"M4/5"	"1106-11025"	1	0	0	20210515	"15:19"	53	45	98.9	13	15.5	"550"	"dry "	""	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	673.994761435406	"CTGTCGTGTCAG"	"F"
+"Sample-8M"	"8M"	"8"	"03/24/2022"	"B8Ma"	-9	""	"Amy and Jessica"	"M4/5"	"1106-11025"	1	0	0	20210515	"15:19"	53	45	98.9	13	15.5	"550"	"dry "	""	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	673.994761435406	"CTAGGATCACTG"	"M"
+"Sample-9.6X"	"9.6X"	"9.6X"	"9/6/2022"	"9.6Xa"		"75ul for extraction"	"Amy"																						"AAGGCCTTTACG"	".X"
+"Sample-9.8X"	"9.8X"	"9.8X"	"9/8/2022"	"9.8X"		"50ul for extraction"	"Amy"																						"CGAGACCTGGGC"	".X"
+"Sample-9.9X"	"9.9X"	"9.9X"	"9/9/2022"	"9.9X"		"50ul for extraction"	"David"																						"TTGACCGCGGTT"	".X"
+"Sample-9C"	"9C"	"9"	"03/24/2022"	"B9Ca"	-9	""	"Amy and Jessica"	"M4/5"	"1106-11026"	2	0	0	20210516	"9:23"	54.6	42.8	95.6	12.9	14.4	"580"	"wet "	""	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	791.412981958512	"CAGAAGGTGTGG"	"C"
+"Sample-9F"	"9F"	"9"	"02/07/2022"	"B9Fa"	-0.05	""	"Amy"	"M4/5"	"1106-11026"	2	0	0	20210516	"9:23"	54.6	42.8	95.6	12.9	14.4	"580"	"wet "	""	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	791.412981958512	"CGTGGAAGACGA"	"F"
+"Sample-9M"	"9M"	"9"	"8/10/2022"	"9Ma"		""	"David"	"M4/5"	"1106-11026"	2	0	0	20210516	"9:23"	54.6	42.8	95.6	12.9	14.4	"580"	"wet "	""	"Amy"	"sent for sexing 10/3/2021"	"SF"	""	"F"	791.412981958512	"CAGAGGCAGGCT"	"M"
+"Sample-e5.7"	"e5.7"	"e5.7"	"02/17/2022"	"A5/7a egg"		"skipped transfer of 700ul to new microcentrifuge tube on step 6. "	"Amy"																						"TGGAAGAACGGC"	"e."
+"Sample-N5.7"	"N5.7"	"N5.7"	"02/07/2022"	"nest A5/7a"	-0.25	""	"Amy"																						"CTCCTCCCTTAC"	"N."
+"Sample-NS5.7"	"NS5.7"	"NS5.7"	"3/3/2022"	"A 5/7 noose. a"	-1	""	"Amy"																						"GCGAACCTATAC"	"NS."
+"Sample-SGH"	"SGH"	"SG"	"8/12/2022"	"A 5/7 sgha"		"scott glove head"	"David"																						"AATGGCGACTAT"	"SGH"
+"Sample-SGW"	"SGW"	"SG"	"8/11/2022"	"A.57 SGWa"		"Scott glove wing"	"David"																						"GGTCCACCTAAC"	"SGW"
+"Sample-SL5.7"	"SL5.7"	"SL5.7"	"3/17/2022"	"A 5/7 soil near nest a"	1	""	"Berenice and Amy"																						"TATCGCGCGATA"	"SL."

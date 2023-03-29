@@ -1,24 +1,24 @@
 library(dplyr)
 library(ggplot2)
+library(tidyverse)
+library(smatr)
 
 field_data = read.csv("~/thesis/metadata/field_data.csv")
 extraction_notes = read.csv("~/thesis/metadata/extraction_notes.csv")
 argon_lab_data = read.csv("~/thesis/metadata/argon_lab_data.csv")
+
+# Add column to record origin of sex data
+field_data$sex_origin = ifelse(field_data$sex == "", "", "Carly PCA")
 
 # Convert sample ID to bird id
 extraction_notes$Bird = ifelse(grepl("\\.", extraction_notes$Sample.ID),
                                extraction_notes$Sample.ID,
                                substr(extraction_notes$Sample.ID, 1, nchar(extraction_notes$Sample.ID) - 1))
 
-# Merge in field data for each experiment
-all_data = merge(extraction_notes, field_data, by = "Bird", all.x = TRUE)
-all_data = merge(all_data, argon_lab_data, by = "Sample.ID", all.x = TRUE)
-
-# Add column to record origin of sex data
-all_data$sex_origin = ifelse(all_data$sex == "", "", "Carly PCA")
-
+# ------ SEX DATA -------
 # Extract rows that have sex data
-sex_data = subset(all_data, select = c("TAR..mm.", "CUL..mm.", "SKULL..mm.", "MN..mm.", "MX..mm.", "Mass..g.", "sex", "Bird", "sex_origin"))
+sex_data = subset(field_data, select = c("TAR..mm.", "CUL..mm.", "SKULL..mm.", "MN..mm.", "MX..mm.", "Mass..g.", "sex", "Bird", "sex_origin"))
+
 print("Header of sex data:")
 colnames(sex_data)
 #sex_data = filter(sex_data, sex != "")
@@ -42,8 +42,8 @@ plot(dim_data_pca$PC1, dim_data_pca$PC2, col=colors, pch=16)
 
 # Apply clustering to all data, based on PC1: f < 0 and m > 1
 dim_data_pca$sex = ifelse(dim_data_pca$sex == "",
-                          ifelse(dim_data_pca$PC1 > 0, "F",
-                                 ifelse(dim_data_pca$PC1 < -1, "M", "")),
+                          ifelse(dim_data_pca$PC1 < 0, "F",
+                                 ifelse(dim_data_pca$PC1 > 1, "M", "")),
                           dim_data_pca$sex)
 
 # Plot the results, show original data vs clustering data in different colors
@@ -66,13 +66,42 @@ legend("topright", legend = color_meaning, fill = color_list)
 
 # Put sex data back into the original field data
 sex_prediction = subset(dim_data_pca, select = c("Bird", "sex"))
-field_data_without_sex = all_data[, !names(all_data) == "sex"]
-merged_field_data = merge(field_data_without_sex, sex_prediction, by = "Bird")
+field_data_without_sex = field_data[, !names(field_data) == "sex"]
+field_data = merge(field_data_without_sex, sex_prediction, by = "Bird")
+
+
+# ------ BODY CONDITION INDEX -------
+
+# subset morphometric measurements and mass
+BC = select(field_data, c('TAR..mm.','CUL..mm.','SKULL..mm.','MN..mm.', 'MX..mm.','Mass..g.'))
+
+# Find which morphometric variable has the highest correlation with mass
+BC <- as.data.frame(sapply(BC, as.numeric))
+BC = BC[complete.cases(BC),]
+round(cor(BC), digits = 2)
+BC$logmass = log(BC$Mass..g)  
+
+# Check for outliers in the plot
+plot(BC$SKULL..mm., BC$Mass..g., main = "Scatter plot of Skull(mm) vs. Mass(g)", xlab = "Skull(mm)", ylab = "Mass(g)")
+
+# Find the mean skull length (105.49mm)
+skull_mean = mean(BC$SKULL..mm.)
+
+# Find the standardized major axis slope (b = 3.167328)
+sma = sma(BC$Mass..g. ~ BC$SKULL..mm., BC, log = "xy", method= "SMA")
+plot(sma)
+
+# Create an extra column in field data with body condition data
+field_data$body_condition = BC$Mass..g. * (skull_mean/BC$SKULL..mm.)^ 3.167328
+
+# Merge in field data for each experiment
+all_data = merge(extraction_notes, field_data, by = "Bird", all.x = TRUE)
+all_data = merge(all_data, argon_lab_data, by = "Sample.ID", all.x = TRUE)
 
 # Add sample id in the format that qiime expects
-merged_field_data = cbind("sample id" = merged_field_data$Sample.ID, merged_field_data)
-merged_field_data$"sample id" = paste0("Sample-", merged_field_data$"sample id")
+all_data = cbind("sample id" = all_data$Sample.ID, all_data)
+all_data$"sample id" = paste0("Sample-", all_data$"sample id")
 
-# Write data back to csv file
-write.table(merged_field_data, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
-write.table(merged_field_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
+# Write data back to csv and tsv file
+write.table(all_data, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
+write.table(all_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
