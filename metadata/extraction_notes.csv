@@ -1,184 +1,182 @@
 Sample ID,Extraction date,Extraction ID, Quickdrop Concentration (ng/ml),Notes,extracted by
-19F,12/9/21,B19Fa,-2.00,,Amy
-20F,12/9/21,B20Fa,-3.00,,Amy
-12.9X,12/9/21,12.9 Ca,-2.00,,Amy
-17C,12/10/21,B17Ca,21.00,,Amy
-18C,12/10/21,B18Ca,-2.00,,Amy
-19M,12/10/21,B19Ma,3.00,,Amy
-20C,12/10/21,B20Ca,-5.00,Spilled during step 4 only added ~400ul to tube in step 5,Amy
-21F,12/10/21,B21Fa,-6.00,,Amy
-12.10X,12/10/21,12.10Ca,-8.00,,Amy
-17M,01/03/22,B17Ma,1.00,,Amy
-18M,01/03/22,B18Ma,3,,Amy
-19C,01/03/22,B19Ca,221,,Amy
-20M,01/03/22,B20Ma,1,,Amy
-21M,01/03/22,B21Ma,1,,Amy
-22F,01/03/22,B22Fa,0,,Amy
-23F,01/03/22,B23Fa,0,,Amy
 1.3X,01/03/22,1.3a,1,,Amy
-17F,01/05/22,B17Fa,-1,,Amy
-18C,01/05/22,B18Ca,-3,,Amy
-21C,01/05/22,B21Ca,5,,Amy
-22C,01/05/22,B22Ca,-3,,Amy
-23M,01/05/22,B23Ma,-2,,Amy
-24F,01/05/22,B24Fa,-4,,Amy
-25M,01/05/22,B25Ma,-3,,Amy
-26F,01/05/22,B26Fa,-3,,Amy
-27C,01/05/22,B27Ca,583,,Amy
-28C,01/05/22,B28Ca,-2,,Amy
-29F,01/05/22,B29Fa,-2,,Amy
 1.5X,01/05/22,1.5Xa,-2,,Amy
-2.7X,02/07/2022,2.7a,-0.15,,Amy
-N5.7,02/07/2022,nest A5/7a,-0.25,,Amy
-9F,02/07/2022,B9Fa,-0.05,,Amy
-11CF1,02/07/2022,B11a,-0.4,,Amy
-22M,02/07/2022,B22Ma,-0.45,,Amy
-23C,02/07/2022,B23Ca,2.95,,Amy
-24C,02/07/2022,B24Ca,1.1,,Amy
-26C,02/07/2022,B26Ca,-0.5,,Amy
-27M,02/07/2022,B27Ma,-0.35,,Amy
-28M,02/07/2022,B28Ma,-0.55,,Amy
-32C,02/07/2022,B32Ca,0.85,,Amy
-35C,02/07/2022,B35Ca,0.05,,Amy
-e5.7,02/17/2022,A5/7a egg,,skipped transfer of 700ul to new microcentrifuge tube on step 6. ,Amy
-12C,02/17/2022,B12Ca,,,Amy
-15C,02/17/2022,B15Ca,,,Amy
-26M,02/17/2022,B26Ma,,,Amy
-29C,02/17/2022,B29Ca,,,Amy
-30F,02/17/2022,B30Fa,,,Amy
-33F,02/17/2022,B33Fa,,,Amy
-34M,02/17/2022,B34Ma,,,Amy
-36M,02/17/2022,B36Ma,,,Amy
-37M,02/17/2022,B37Ma,,,Amy
-38C,02/17/2022,B38Ca,,,Amy
-2.17X,02/17/2022,2.17a,,,Amy
-3.3X,3/3/2022,3.3a,-0.8,,Amy
-NS5.7,3/3/2022,A 5/7 noose. a,-1,,Amy
-25F,3/3/2022,B25Fa,-1.2,,Amy
-30M,3/3/2022,B30Ma,-1.3,,Amy
-31C,3/3/2022,B31Ca,-0.4,,Amy
-32M,3/3/2022,B32Ma,-1.6,,Amy
-36F,3/3/2022,B36Fa,-1.7,,Amy
-37C,3/3/2022,B37Ca,-0.3,,Amy
-3.17X,3/17/2022,3.17a,4,,Berenice and Amy
-SL5.7,3/17/2022,A 5/7 soil near nest a,1,,Berenice and Amy
-30C,3/17/2022,B30Ca,3,,Berenice and Amy
-31F,3/17/2022,B31Fa,-3,,Berenice and Amy
-32F,3/17/2022,B32Fa,-2,,Berenice and Amy
-34F,3/17/2022,B34Fa,-1,,Berenice and Amy
-35F,3/17/2022,B35Fa,-2,,Berenice and Amy
-38M,3/17/2022,B38Ma,0,,Berenice and Amy
-3.22X,03/22/2022,3.22a,1,,Amy
-5M,03/22/2022,B5Ma,1,,Amy
-6F,03/22/2022,B6Fa,7,,Amy
-13F,03/22/2022,B13Fa,6,Step 21 - some drops of lysate spilled out of pipette ,Amy
-16M,03/24/2022,B16Ma,-2,,Amy and Jessica
-13M,03/24/2022,B13Ma,-5,,Amy and Jessica
+10C,04/07/2022,10Ca,4,,Amy
+10F,8/12/2022,10Fa,,,David
 10M,03/24/2022,B10Ma,-8,,Amy and Jessica
-9C,03/24/2022,B9Ca,-9,,Amy and Jessica
-2C,03/24/2022,B2Ca,-9,,Amy and Jessica
+11CF1,02/07/2022,B11a,-0.4,,Amy
 11CF2,03/24/2022,B11Fa,-9,,Amy and Jessica
-8M,03/24/2022,B8Ma,-9,,Amy and Jessica
-3.24X,03/24/2022,3.24a,-10,,Amy and Jessica
-4.5X,04/05/2022,4.5Ca,1,,Berenice
+11M,04/07/2022,11Ma,4,,Amy
+12.10X,12/10/21,12.10Ca,-8.00,,Amy
+12.9X,12/9/21,12.9 Ca,-2.00,,Amy
+12C,02/17/2022,B12Ca,,,Amy
 12M,04/05/2022,12Ma,4,,Berenice
 13C,04/05/2022,13Ca,12,lots of soil in original sample,Berenice
-14F,04/05/2022,14Fa,2,,Berenice
-15M,04/05/2022,15Ma,2,,Berenice
-16F,04/05/2022,16Fa,1,,Berenice
-4.7X,04/07/2022,4.7 Ca,1,,Amy
-1M,04/07/2022,1Ma,2,label on original tube unclear guessing that it's 1M based on bird band #,Amy
-3C,04/07/2022,3Ca,2,,Amy
-4F,04/07/2022,4Fa,4,,Amy
-6M,04/07/2022,6Ma,7,,Amy
-7F,04/07/2022,7Fa,3,,Amy
-10C,04/07/2022,10Ca,4,,Amy
-11M,04/07/2022,11Ma,4,,Amy
-4C,04/14/2022,4Ca,-0.1,,Amy
-7C,04/14/2022,7Ca,-0.1,,Amy
-1C,04/14/2022,1Fa,0.1,had cagu on side,Amy
-4M,04/14/2022,4Ma,0.2,,Amy
-5C,04/14/2022,5Ca,-0.1,,Amy
-6C,04/14/2022,6Ca,-0.1,,Amy
-7M,04/14/2022,7Ma,0.1,,Amy
-4.14X,04/14/2022,4.14a,0,,Amy
-8.4X,8/4/2022,8.4Xa,,,Amy and David
-43F,8/4/2022,43Fa,,,Amy and David
-57M,8/4/2022,57Ma,,,Amy and David
-46F,8/4/2022,46Fa,,,Amy and David
-65M,8/4/2022,65Ma,,,Amy and David
-53M,8/4/2022,53Ma,,,Amy and David
-45C,8/4/2022,45Ca,,,Amy and David
-47F,8/4/2022,47Fa,,,Amy and David
-64F,8/4/2022,64Fa,,,Amy and David
-54F,8/4/2022,54Fa,,,Amy and David
-48C,8/4/2022,48Ca,,"Step 5: half of volume transfered, lots of feathers in sample",Amy and David
-41M,8/4/2022,41Ma,,,Amy and David
-62F,8/4/2022,62Fa,,,Amy and David
-56F,8/5/2022,56Fa,,,Amy and David
-55M,8/5/2022,55Ma,,Step 5: 2/3 of the needed volume left over transferred,Amy and David
-66F,8/5/2022,66Fa,,Step 5: half the volume needed left over transferred,Amy and David
-60F,8/5/2022,60Fa,,Step 5: half the volume needed left over transferred,Amy and David
-8.10X,8/10/2022,8.10Xa,,,David
-9M,8/10/2022,9Ma,,,David
-38F,8/10/2022,38Fa,,,David
-1C,8/10/2022,1Ca,,,David
-16C,8/10/2022,16Ca,,,David
-31M,8/10/2022,31Ma,,,David
-3F,8/10/2022,3Fa,,,David
+13F,03/22/2022,B13Fa,6,Step 21 - some drops of lysate spilled out of pipette ,Amy
+13M,03/24/2022,B13Ma,-5,,Amy and Jessica
 14C,8/10/2022,14Ca,,,David
-8F,8/10/2022,8Fa,,,David
-5F,8/10/2022,5Fa,,,David
-15F,8/10/2022,15Fa,,,David
-2F,8/10/2022,2Fa,,,David
-SGW,8/11/2022,A.57 SGWa,,Scott glove wing,David
-8.12X,8/12/2022,8.12Xa,,,David
-3M,8/12/2022,3Ma,,,David
-33M,8/12/2022,33Ma,,,David
-8C,8/12/2022,8Ca,,,David
-39F,8/12/2022,39Fa,,,David
-SGH,8/12/2022,A 5/7 sgha,,scott glove head,David
-39M,8/12/2022,39Ma,,,David
-2M,8/12/2022,2Ma,,,David
-10F,8/12/2022,10Fa,,,David
+14F,04/05/2022,14Fa,2,,Berenice
 14M,8/12/2022,14Ma,,,David
+15C,02/17/2022,B15Ca,,,Amy
+15F,8/10/2022,15Fa,,,David
+15M,04/05/2022,15Ma,2,,Berenice
+16C,8/10/2022,16Ca,,,David
+16F,04/05/2022,16Fa,1,,Berenice
+16M,03/24/2022,B16Ma,-2,,Amy and Jessica
+17C,12/10/21,B17Ca,21.00,,Amy
+17F,01/05/22,B17Fa,-1,,Amy
+17M,01/03/22,B17Ma,1.00,,Amy
+18C,12/10/21,B18Ca,-2.00,,Amy
+18F,01/05/22,B18Fa,-3,,Amy
+18M,01/03/22,B18Ma,3,,Amy
+19C,01/03/22,B19Ca,221,,Amy
+19F,12/9/21,B19Fa,-2.00,,Amy
+19M,12/10/21,B19Ma,3.00,,Amy
+1C,8/10/2022,1Ca,,,David
+1F,04/14/2022,1Fa,0.1,had cagu on side,Amy
+1M,04/07/2022,1Ma,2,label on original tube unclear guessing that it's 1M based on bird band #,Amy
+2.17X,02/17/2022,2.17a,,,Amy
+2.7X,02/07/2022,2.7a,-0.15,,Amy
+20C,12/10/21,B20Ca,-5.00,Spilled during step 4 only added ~400ul to tube in step 5,Amy
+20F,12/9/21,B20Fa,-3.00,,Amy
+20M,01/03/22,B20Ma,1,,Amy
+21C,01/05/22,B21Ca,5,,Amy
+21F,12/10/21,B21Fa,-6.00,,Amy
+21M,01/03/22,B21Ma,1,,Amy
+22C,01/05/22,B22Ca,-3,,Amy
+22F,01/03/22,B22Fa,0,,Amy
+22M,02/07/2022,B22Ma,-0.45,,Amy
+23C,02/07/2022,B23Ca,2.95,,Amy
+23F,01/03/22,B23Fa,0,,Amy
+23M,01/05/22,B23Ma,-2,,Amy
+24C,02/07/2022,B24Ca,1.1,,Amy
+24F,01/05/22,B24Fa,-4,,Amy
+25F,3/3/2022,B25Fa,-1.2,,Amy
+25M,01/05/22,B25Ma,-3,,Amy
+26C,02/07/2022,B26Ca,-0.5,,Amy
+26F,01/05/22,B26Fa,-3,,Amy
+26M,02/17/2022,B26Ma,,,Amy
+27C,01/05/22,B27Ca,583,,Amy
+27M,02/07/2022,B27Ma,-0.35,,Amy
+28C,01/05/22,B28Ca,-2,,Amy
 28F,8/12/2022,28Fa,,,David
+28M,02/07/2022,B28Ma,-0.55,,Amy
+29C,02/17/2022,B29Ca,,,Amy
+29F,01/05/22,B29Fa,-2,,Amy
+2C,03/24/2022,B2Ca,-9,,Amy and Jessica
+2F,8/10/2022,2Fa,,,David
+2M,8/12/2022,2Ma,,,David
+3.17X,3/17/2022,3.17a,4,,Berenice and Amy
+3.22X,03/22/2022,3.22a,1,,Amy
+3.24X,03/24/2022,3.24a,-10,,Amy and Jessica
+3.3X,3/3/2022,3.3a,-0.8,,Amy
+30C,3/17/2022,B30Ca,3,,Berenice and Amy
+30F,02/17/2022,B30Fa,,,Amy
+30M,3/3/2022,B30Ma,-1.3,,Amy
+31C,3/3/2022,B31Ca,-0.4,,Amy
+31F,3/17/2022,B31Fa,-3,,Berenice and Amy
+31M,8/10/2022,31Ma,,,David
+32C,02/07/2022,B32Ca,0.85,,Amy
+32F,3/17/2022,B32Fa,-2,,Berenice and Amy
+32M,3/3/2022,B32Ma,-1.6,,Amy
+33F,02/17/2022,B33Fa,,,Amy
+33M,8/12/2022,33Ma,,,David
 34C,8/12/2022,34Ca,,,David
-51C,9/6/2022,51Ca,,light brown sample/75ul  for extraction,Amy
-55C,9/6/2022,55Ca,,"dark brown sample, lots of organic material/75ul  for extraction",Amy
-46C,9/6/2022,46Ca,,75ul  for extraction,Amy
-50M,9/6/2022,50Ma,,75ul for extraction,Amy
-51M,9/6/2022,51Ma,,75ul for extraction,Amy
-66M,9/6/2022,66Ma,,75ul for extraction,Amy
-40F,9/6/2022,40Fa,,75ul for extraction,Amy
-42F,9/6/2022,42Fa,,75ul for extraction,Amy
+34F,3/17/2022,B34Fa,-1,,Berenice and Amy
+34M,02/17/2022,B34Ma,,,Amy
+35C,02/07/2022,B35Ca,0.05,,Amy
+35F,3/17/2022,B35Fa,-2,,Berenice and Amy
+36F,3/3/2022,B36Fa,-1.7,,Amy
+36M,02/17/2022,B36Ma,,,Amy
+37C,3/3/2022,B37Ca,-0.3,,Amy
+37M,02/17/2022,B37Ma,,,Amy
+38C,02/17/2022,B38Ca,,,Amy
+38F,8/10/2022,38Fa,,,David
+38M,3/17/2022,B38Ma,0,,Berenice and Amy
+39F,8/12/2022,39Fa,,,David
+39M,8/12/2022,39Ma,,,David
+3C,04/07/2022,3Ca,2,,Amy
+3F,8/10/2022,3Fa,,,David
+3M,8/12/2022,3Ma,,,David
+4.14X,04/14/2022,4.14a,0,,Amy
+4.5X,04/05/2022,4.5Ca,1,,Berenice
+4.7X,04/07/2022,4.7 Ca,1,,Amy
 40C,9/6/2022,40Ca,,75ul for extraction,Amy
-56M,9/6/2022,56Ma,,75ul for extraction,Amy
-59C,9/6/2022,59Ca,,75ul for extraction,Amy
-9.6X,9/6/2022,9.6Xa,,75ul for extraction,Amy
-54C,9/8/2022,54C,,50ul for extraction,Amy
-41C,9/8/2022,41C,,50ul for extraction,Amy
-42C,9/8/2022,42C,,50ul for extraction,Amy
-57C,9/8/2022,57C,,50ul for extraction,Amy
-63F,9/8/2022,63F,,50ul for extraction,Amy
-61F,9/8/2022,61F,,50ul for extraction,Amy
-43F,9/8/2022,43F,,50ul for extraction,Amy
-44F,9/8/2022,44F,,50ul for extraction,Amy
-9.8X,9/8/2022,9.8X,,50ul for extraction,Amy
-45M,9/8/2022,45M,,50ul for extraction,Amy
-47C,9/8/2022,47C,,50ul for extraction,Amy
-63M,9/8/2022,63M,,50ul for extraction,Amy
-56C,9/9/2022,56C,,half volume at step 5,David
-43C,9/9/2022,43C,,50ul for extraction,David
-43M,9/9/2022,43M,,50ul for extraction,David
-57F,9/9/2022,57F,,50ul for extraction,David
-62M,9/9/2022,62M,,50ul for extraction,David
-42M,9/9/2022,42M,,50ul for extraction,David
-61C,9/9/2022,61C,,50ul for extraction,David
-9.9X,9/9/2022,9.9X,,50ul for extraction,David
+40F,9/6/2022,40Fa,,75ul for extraction,Amy
 40M,9/9/2022,40M,,50ul for extraction,David
-65F,9/9/2022,65F,,50ul for extraction,David
+41C,9/8/2022,41C,,50ul for extraction,Amy
 41F,9/9/2022,41F,,50ul for extraction,David
-56C,9/9/2022,56C,,50ul for extraction,David
+41M,8/4/2022,41Ma,,,Amy and David
+42C,9/8/2022,42C,,50ul for extraction,Amy
+42F,9/6/2022,42Fa,,75ul for extraction,Amy
+42M,9/9/2022,42M,,50ul for extraction,David
+43C,9/9/2022,43C,,50ul for extraction,David
+43F,8/4/2022,43Fa,,,Amy and David
+43M,9/9/2022,43M,,50ul for extraction,David
+44F,9/8/2022,44F,,50ul for extraction,Amy
+45C,8/4/2022,45Ca,,,Amy and David
+45M,9/8/2022,45M,,50ul for extraction,Amy
+46C,9/6/2022,46Ca,,75ul  for extraction,Amy
+46F,8/4/2022,46Fa,,,Amy and David
+47C,9/8/2022,47C,,50ul for extraction,Amy
+47F,8/4/2022,47Fa,,,Amy and David
+48C,8/4/2022,48Ca,,"Step 5: half of volume transfered, lots of feathers in sample",Amy and David
 49M,9/9/2022,49M,,50ul for extraction,David
+4C,04/14/2022,4Ca,-0.1,,Amy
+4F,04/07/2022,4Fa,4,,Amy
+4M,04/14/2022,4Ma,0.2,,Amy
+50M,9/6/2022,50Ma,,75ul for extraction,Amy
+51C,9/6/2022,51Ca,,light brown sample/75ul  for extraction,Amy
+51M,9/6/2022,51Ma,,75ul for extraction,Amy
+53M,8/4/2022,53Ma,,,Amy and David
+54C,9/8/2022,54C,,50ul for extraction,Amy
+54F,8/4/2022,54Fa,,,Amy and David
+55C,9/6/2022,55Ca,,"dark brown sample, lots of organic material/75ul  for extraction",Amy
+55M,8/5/2022,55Ma,,Step 5: 2/3 of the needed volume left over transferred,Amy and David
+56C,9/9/2022,56C,,half volume at step 5,David
+56F,8/5/2022,56Fa,,,Amy and David
+56M,9/6/2022,56Ma,,75ul for extraction,Amy
+57C,9/8/2022,57C,,50ul for extraction,Amy
+57F,9/9/2022,57F,,50ul for extraction,David
+57M,8/4/2022,57Ma,,,Amy and David
+59C,9/6/2022,59Ca,,75ul for extraction,Amy
+5C,04/14/2022,5Ca,-0.1,,Amy
+5F,8/10/2022,5Fa,,,David
+5M,03/22/2022,B5Ma,1,,Amy
+60F,8/5/2022,60Fa,,Step 5: half the volume needed left over transferred,Amy and David
+61C,9/9/2022,61C,,50ul for extraction,David
+61F,9/8/2022,61F,,50ul for extraction,Amy
 61M,9/9/2022,61M,,50ul for extraction,David
+62F,8/4/2022,62Fa,,,Amy and David
+62M,9/9/2022,62M,,50ul for extraction,David
+63F,9/8/2022,63F,,50ul for extraction,Amy
+63M,9/8/2022,63M,,50ul for extraction,Amy
+64F,8/4/2022,64Fa,,,Amy and David
+65F,9/9/2022,65F,,50ul for extraction,David
+65M,8/4/2022,65Ma,,,Amy and David
+66F,8/5/2022,66Fa,,Step 5: half the volume needed left over transferred,Amy and David
+66M,9/6/2022,66Ma,,75ul for extraction,Amy
+6C,04/14/2022,6Ca,-0.1,,Amy
+6F,03/22/2022,B6Fa,7,,Amy
+6M,04/07/2022,6Ma,7,,Amy
+7C,04/14/2022,7Ca,-0.1,,Amy
+7F,04/07/2022,7Fa,3,,Amy
+7M,04/14/2022,7Ma,0.1,,Amy
+8.10X,8/10/2022,8.10Xa,,,David
+8.12X,8/12/2022,8.12Xa,,,David
+8.4X,8/4/2022,8.4Xa,,,Amy and David
+8C,8/12/2022,8Ca,,,David
+8F,8/10/2022,8Fa,,,David
+8M,03/24/2022,B8Ma,-9,,Amy and Jessica
+9.6X,9/6/2022,9.6Xa,,75ul for extraction,Amy
+9.8X,9/8/2022,9.8X,,50ul for extraction,Amy
+9.9X,9/9/2022,9.9X,,50ul for extraction,David
+9C,03/24/2022,B9Ca,-9,,Amy and Jessica
+9F,02/07/2022,B9Fa,-0.05,,Amy
+9M,8/10/2022,9Ma,,,David
+e5.7,02/17/2022,A5/7a egg,,skipped transfer of 700ul to new microcentrifuge tube on step 6. ,Amy
+N5.7,02/07/2022,nest A5/7a,-0.25,,Amy
+NS5.7,3/3/2022,A 5/7 noose. a,-1,,Amy
+SGH,8/12/2022,A 5/7 sgha,,scott glove head,David
+SGW,8/11/2022,A.57 SGWa,,Scott glove wing,David
+SL5.7,3/17/2022,A 5/7 soil near nest a,1,,Berenice and Amy
