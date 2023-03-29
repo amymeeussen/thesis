@@ -13,7 +13,7 @@ echo "Activating qiime environemnt" && \
 source activate qiime2-2022.8 && \
 echo "Starting demultiplexing" && \
 date && \
-qiime demux emp-paired --m-barcodes-file metadata.tsv --m-barcodes-column barcodes --i-seqs emp-paired-end-sequences.qza --o-per-sample-sequences demux.qza --o-error-correction-details demux-details.qza --p-no-golay-error-correction && \
+qiime demux emp-paired --m-barcodes-file ~/thesis/metadata/metadata.tsv --m-barcodes-column barcodes --i-seqs emp-paired-end-sequences.qza --o-per-sample-sequences demux.qza --o-error-correction-details demux-details.qza --p-no-golay-error-correction && \
 echo "Finished demultiplexing" && \
 echo "Starting visualization" && \
 qiime demux summarize --i-data demux.qza --o-visualization demux.qzv &&\
