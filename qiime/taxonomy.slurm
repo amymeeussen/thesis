@@ -7,21 +7,22 @@
 #SBATCH --job-name=taxonomy
 #SBATCH --error=taxonomy.log
 #SBATCH --output=taxonomy.log
-	
+
+mkdir -p taxonomy && \	
 date && \
 \
 echo "Activating qiime environemnt" && \
 source activate qiime2-2022.8 && \
 echo "starting taxonomy assignment" && \
-qiime feature-classifier classify-sklearn --i-classifier TrainClassifier/classifier.qza --i-reads DADA2/rep-seqs-dada2.qza --verbose --o-classification taxonomy.qza && \
+qiime feature-classifier classify-sklearn --i-classifier ~/TrainClassifier/classifier.qza --i-reads ~/DADA2/rep-seqs-dada2.qza --verbose --o-classification ~/taxonomy/taxonomy.qza && \
 echo "finish taxonomy assignment" && \
 \
 echo "start visualization" && \
-qiime metadata tabulate --m-input-file taxonomy.qza --o-visualization taxonomy.qzv && \
+qiime metadata tabulate --m-input-file ~/taxonomy/taxonomy.qza --o-visualization ~/taxonomy/taxonomy.qzv && \
 echo "finished visualization" && \
 \
 echo "start barplot" && \
-qiime taxa barplot --i-table DADA2/dada2-table.qza --i-taxonomy taxonomy.qza --m-metadata-file metadata.tsv --o-visualization TaxonomicAssignment/taxa-bar-plots.qzv && \
+qiime taxa barplot --i-table ~/DADA2/dada2-table.qza --i-taxonomy ~/taxonomy/taxonomy.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/taxonomy/taxa-bar-plots.qzv && \
 echo "finished barplot" && \
 date\
 
