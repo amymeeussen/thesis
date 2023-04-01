@@ -16,11 +16,9 @@ extraction_notes$Bird = ifelse(grepl("\\.", extraction_notes$Sample.ID),
                                substr(extraction_notes$Sample.ID, 1, nchar(extraction_notes$Sample.ID) - 1))
 
 # ------ SEX DATA -------
+
 # Extract rows that have sex data
 sex_data = subset(field_data, select = c("TAR..mm.", "CUL..mm.", "SKULL..mm.", "MN..mm.", "MX..mm.", "Mass..g.", "sex", "Bird", "sex_origin"))
-
-print("Header of sex data:")
-colnames(sex_data)
 #sex_data = filter(sex_data, sex != "")
 sex_data = filter(sex_data, Mass..g. != "not taken")
 sex_data = filter(sex_data, MX..mm. != "NA")
@@ -67,17 +65,18 @@ legend("topright", legend = color_meaning, fill = color_list)
 # Put sex data back into the original field data
 sex_prediction = subset(dim_data_pca, select = c("Bird", "sex"))
 field_data_without_sex = field_data[, !names(field_data) == "sex"]
-field_data = merge(field_data_without_sex, sex_prediction, by = "Bird")
+field_data = merge(field_data_without_sex, sex_prediction, by = "Bird", all.x = TRUE)
 
 
 # ------ BODY CONDITION INDEX -------
 
 # subset morphometric measurements and mass
-BC = select(field_data, c('TAR..mm.','CUL..mm.','SKULL..mm.','MN..mm.', 'MX..mm.','Mass..g.'))
+BC = select(field_data, c('TAR..mm.','CUL..mm.','SKULL..mm.','MN..mm.', 'MX..mm.','Mass..g.', 'Bird'))
 
 # Find which morphometric variable has the highest correlation with mass
+BC = filter(BC, Mass..g. != "not taken")
+BC = filter(BC, MX..mm. != "NA")
 BC <- as.data.frame(sapply(BC, as.numeric))
-BC = BC[complete.cases(BC),]
 round(cor(BC), digits = 2)
 BC$logmass = log(BC$Mass..g)  
 
@@ -87,12 +86,15 @@ plot(BC$SKULL..mm., BC$Mass..g., main = "Scatter plot of Skull(mm) vs. Mass(g)",
 # Find the mean skull length (105.49mm)
 skull_mean = mean(BC$SKULL..mm.)
 
-# Find the standardized major axis slope (b = 3.167328)
-sma = sma(BC$Mass..g. ~ BC$SKULL..mm., BC, log = "xy", method= "SMA")
+# Find the standardized major axis slope 
+dim_BC = subset(BC, select = c("TAR..mm.", "CUL..mm.", "SKULL..mm.", "MN..mm.", "MX..mm.", "Mass..g."))
+sma = sma(dim_BC$Mass..g. ~ dim_BC$SKULL..mm., dim_BC, log = "xy", method= "SMA")
 plot(sma)
 
-# Create an extra column in field data with body condition data
-field_data$body_condition = BC$Mass..g. * (skull_mean/BC$SKULL..mm.)^ 3.167328
+# Create an extra column with body condition data
+BC$body_condition = BC$Mass..g. * (skull_mean/BC$SKULL..mm.)^ 3.127186
+field_data = merge(field_data, BC, by = "Bird", all.x = TRUE)
+
 
 # Merge in field data for each experiment
 all_data = merge(extraction_notes, field_data, by = "Bird", all.x = TRUE)
