@@ -125,8 +125,13 @@ new_row[1] = "#q2:types"
 phy_data = rbind(new_row, phy_data)
 write.table(phy_data, file = "~/thesis/metadata/metadata_phyloseq.tsv", sep = "\t", row.names = FALSE, na = "", quote = FALSE)
 
-# ------ EXCLUDE ENVIRONMENTAL SAMPLES -------
+# ------ EXCLUDE ENVIRONMENTAL SAMPLES-------
 
+#test if I can demux with metadata that excludes env_samples
 no_env_samples = subset(all_data, Environmental_control == "false", select = "sample id", )
-write.table(no_env_samples, file = "~/thesis/metadata/Samples_to_keep.tsv", sep = "\t", row.names = FALSE, na = "", , quote = FALSE)
+write.table(no_env_samples, file = "~/thesis/metadata/metadata_noenv.tsv", sep = "\t", row.names = FALSE, na = "", , quote = FALSE)
+
+
+#no_env_samples = subset(all_data, Environmental_control == "false", select = "sample id", )
+#write.table(no_env_samples, file = "~/thesis/metadata/Samples_to_keep.tsv", sep = "\t", row.names = FALSE, na = "", , quote = FALSE)
 
