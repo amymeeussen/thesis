@@ -5,8 +5,8 @@ Sample-1.5X	1.5X	TCACTTGGTGCG													control
 Sample-10C	10	TTCTTTGCAATG	61.7	47.6	113.8	14.9	15.6	698	550.09899623001	M	SF	M4/5	2	dry 	sample
 Sample-10F	10	CCTACATGAGAC	61.7	47.6	113.8	14.9	15.6	698	550.09899623001	M	SF	M4/5	2	dry 	sample
 Sample-10M	10	GAGTAGGGCACC	61.7	47.6	113.8	14.9	15.6	698	550.09899623001	M	SF	M4/5	2	dry 	sample
-Sample-11CF1	11CF	TTCAAGTTCGTT													sample
-Sample-11CF2	11CF	TGCTCCGTAGAA													sample
+Sample-11C	11		62.9	43.5	116	16.7	17.2	650	482.496270674895	M	SF	M4/5	2	dry	sample
+Sample-11F	11		62.9	43.5	116	16.7	17.2	650	482.496270674895	M	SF	M4/5	2	dry	sample
 Sample-11M	11	GAGCCTCCCTCC	62.9	43.5	116	16.7	17.2	650	482.496270674895	M	SF	M4/5	2	dry	sample
 Sample-12.10X	12.10X	ACAATAGACACC													control
 Sample-12.9X	12.9X	GCGGATGCGGAT													control
@@ -221,6 +221,6 @@ Sample-9M	9	CAGAGGCAGGCT	54.6	42.8	95.6	12.9	14.4	580	788.301812354357	F	SF	M4/5
 Sample-e5.7	e5.7	TGGAAGAACGGC													control
 Sample-N5.7	N5.7	CTCCTCCCTTAC													control
 Sample-NS5.7	NS5.7	GCGAACCTATAC													control
-Sample-SGH	SG	AATGGCGACTAT													sample
-Sample-SGW	SG	GGTCCACCTAAC													sample
+Sample-SGH	SGH	AATGGCGACTAT													control
+Sample-SGW	SGW	GGTCCACCTAAC													control
 Sample-SL5.7	SL5.7	TATCGCGCGATA													control

@@ -11,11 +11,14 @@ argon_lab_data = read.csv("~/thesis/metadata/argon_lab_data.csv")
 field_data$sex_origin = ifelse(field_data$sex == "", "", "Carly PCA")
 
 # Convert sample ID to bird id
-extraction_notes$Sample_or_control = ifelse(grepl("\\.", extraction_notes$SampleShort),
-                                            "control", "sample")
-extraction_notes$Bird = ifelse(grepl("\\.", extraction_notes$SampleShort),
-                               extraction_notes$SampleShort,
-                               substr(extraction_notes$SampleShort, 1, nchar(extraction_notes$SampleShort) - 1))
+char_list = c("C", "F", "M")
+extraction_notes$Sample_or_control = ifelse(grepl(paste(char_list, collapse = "|"), extraction_notes$SampleShort),
+                                            "sample", "control")
+extraction_notes$Bird = ifelse(extraction_notes$Sample_or_control == "sample",
+                               substr(extraction_notes$SampleShort, 1, nchar(extraction_notes$SampleShort) - 1),
+                               extraction_notes$SampleShort)
+extraction_notes$Environmental_control = ifelse(extraction_notes$Sample_or_control == "control" & !grepl("X", extraction_notes$SampleShort),
+                                                "true", "false")
 
 
 # ------ SEX DATA -------
@@ -111,6 +114,9 @@ all_data$"sample id" = paste0("Sample-", all_data$"sample id")
 write.table(all_data, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
 write.table(all_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
 
+
+# ------ PHYLOSEQ METADATA -------
+
 # Also write metadata with special second row to make qza_to_phyloseq happy
 # https://forum.qiime2.org/t/qiime2r-missing-sample/8681/24?page=2
 phy_data = subset(all_data, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture", "Sample_or_control"))
@@ -118,3 +124,9 @@ new_row = ifelse(sapply(phy_data, is.numeric), "numerical", "categorical")
 new_row[1] = "#q2:types"
 phy_data = rbind(new_row, phy_data)
 write.table(phy_data, file = "~/thesis/metadata/metadata_phyloseq.tsv", sep = "\t", row.names = FALSE, na = "", quote = FALSE)
+
+# ------ EXCLUDE ENVIRONMENTAL SAMPLES -------
+
+no_env_samples = subset(all_data, Environmental_control == "false", select = "sample id", )
+write.table(no_env_samples, file = "~/thesis/metadata/Samples_to_keep.tsv", sep = "\t", row.names = FALSE, na = "", , quote = FALSE)
+
