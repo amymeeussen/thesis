@@ -127,11 +127,6 @@ write.table(phy_data, file = "~/thesis/metadata/metadata_phyloseq.tsv", sep = "\
 
 # ------ EXCLUDE ENVIRONMENTAL SAMPLES-------
 
-#test if I can demux with metadata that excludes env_samples
-no_env_samples = subset(all_data, Environmental_control == "false", select = "sample id", )
+# Test if I can demux with metadata that excludes env_samples
+no_env_samples = subset(all_data, Environmental_control == "false")
 write.table(no_env_samples, file = "~/thesis/metadata/metadata_noenv.tsv", sep = "\t", row.names = FALSE, na = "", , quote = FALSE)
-
-
-#no_env_samples = subset(all_data, Environmental_control == "false", select = "sample id", )
-#write.table(no_env_samples, file = "~/thesis/metadata/Samples_to_keep.tsv", sep = "\t", row.names = FALSE, na = "", , quote = FALSE)
-
