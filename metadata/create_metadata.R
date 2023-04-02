@@ -110,7 +110,8 @@ write.table(all_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.n
 
 # Also write metadata with special second row to make qza_to_phyloseq happy
 # https://forum.qiime2.org/t/qiime2r-missing-sample/8681/24?page=2
-new_row = ifelse(sapply(all_data, is.numeric), "numerical", "categorical")
+phy_data = subset(all_data, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture"))
+new_row = ifelse(sapply(phy_data, is.numeric), "numerical", "categorical")
 new_row[1] = "#q2:types"
-all_data = rbind(new_row, all_data)
-write.table(all_data, file = "~/thesis/metadata/metadata_phyloseq.tsv", sep = "\t", row.names = FALSE, na = "")
+phy_data = rbind(new_row, phy_data)
+write.table(phy_data, file = "~/thesis/metadata/metadata_phyloseq.tsv", sep = "\t", row.names = FALSE, na = "", quote = FALSE)
