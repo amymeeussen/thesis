@@ -1,4 +1,4 @@
-Sample ID,Extraction date,Extraction ID, Quickdrop Concentration (ng/ml),Notes,extracted by
+SampleShort,ExtractionDate,ExtractionID, QuickdropConcentration,NotesExtraction,PersonExtracting
 1.3X,01/03/22,1.3a,1,,Amy
 1.5X,01/05/22,1.5Xa,-2,,Amy
 10C,04/07/2022,10Ca,4,,Amy

@@ -11,26 +11,26 @@ argon_lab_data = read.csv("~/thesis/metadata/argon_lab_data.csv")
 field_data$sex_origin = ifelse(field_data$sex == "", "", "Carly PCA")
 
 # Convert sample ID to bird id
-extraction_notes$Bird = ifelse(grepl("\\.", extraction_notes$Sample.ID),
-                               extraction_notes$Sample.ID,
-                               substr(extraction_notes$Sample.ID, 1, nchar(extraction_notes$Sample.ID) - 1))
+extraction_notes$Bird = ifelse(grepl("\\.", extraction_notes$SampleShort),
+                               extraction_notes$SampleShort,
+                               substr(extraction_notes$SampleShort, 1, nchar(extraction_notes$SampleShort) - 1))
 
 # ------ SEX DATA -------
 
 # Extract rows that have sex data
-sex_data = subset(field_data, select = c("TAR..mm.", "CUL..mm.", "SKULL..mm.", "MN..mm.", "MX..mm.", "Mass..g.", "sex", "Bird", "sex_origin"))
+sex_data = subset(field_data, select = c("TAR", "CUL", "SKULL", "MN", "MX", "Mass", "sex", "Bird", "sex_origin"))
 #sex_data = filter(sex_data, sex != "")
-sex_data = filter(sex_data, Mass..g. != "not taken")
-sex_data = filter(sex_data, MX..mm. != "NA")
+sex_data = filter(sex_data, Mass != "not taken")
+sex_data = filter(sex_data, MX != "NA")
 nrow(sex_data)
 
 # Plot sample two dimensional graph
 colors = ifelse(sex_data$sex == "F", "red",
                 ifelse(sex_data$sex == "M", "blue", "black"))
-plot(sex_data$TAR..mm., sex_data$CUL..mm., col=colors, pch=16)
+plot(sex_data$TAR, sex_data$CUL, col=colors, pch=16)
 
 # Do PCA on the sex data
-dim_data = subset(sex_data, select = c("TAR..mm.", "CUL..mm.", "SKULL..mm.", "MN..mm.", "MX..mm.", "Mass..g."))
+dim_data = subset(sex_data, select = c("TAR", "CUL", "SKULL", "MN", "MX", "Mass"))
 dim_data = apply(dim_data, 2, as.numeric)
 pca_result <- prcomp(dim_data, scale=TRUE)
 dim_data_pca = data.frame(PC1 = pca_result$x[, 1], PC2 = pca_result$x[, 2])
@@ -71,39 +71,46 @@ field_data = merge(field_data_without_sex, sex_prediction, by = "Bird", all.x = 
 # ------ BODY CONDITION INDEX -------
 
 # subset morphometric measurements and mass
-BC = select(field_data, c('TAR..mm.','CUL..mm.','SKULL..mm.','MN..mm.', 'MX..mm.','Mass..g.', 'Bird'))
+BC = select(field_data, c('TAR','CUL','SKULL','MN', 'MX','Mass', 'Bird'))
 
 # Find which morphometric variable has the highest correlation with mass
-BC = filter(BC, Mass..g. != "not taken")
-BC = filter(BC, MX..mm. != "NA")
-BC <- as.data.frame(sapply(BC, as.numeric))
+BC = filter(BC, Mass != "not taken")
+BC = filter(BC, MX != "NA")
+BC = as.data.frame(sapply(BC, as.numeric))
 round(cor(BC), digits = 2)
-BC$logmass = log(BC$Mass..g)  
+BC$logmass = log(BC$Mass)  
 
 # Check for outliers in the plot
-plot(BC$SKULL..mm., BC$Mass..g., main = "Scatter plot of Skull(mm) vs. Mass(g)", xlab = "Skull(mm)", ylab = "Mass(g)")
+plot(BC$SKULL, BC$Mass, main = "Scatter plot of Skull(mm) vs. Mass(g)", xlab = "Skull(mm)", ylab = "Mass(g)")
 
 # Find the mean skull length (105.49mm)
-skull_mean = mean(BC$SKULL..mm.)
+skull_mean = mean(BC$SKULL)
 
 # Find the standardized major axis slope 
-dim_BC = subset(BC, select = c("TAR..mm.", "CUL..mm.", "SKULL..mm.", "MN..mm.", "MX..mm.", "Mass..g."))
-sma = sma(dim_BC$Mass..g. ~ dim_BC$SKULL..mm., dim_BC, log = "xy", method= "SMA")
+dim_BC = subset(BC, select = c("TAR", "CUL", "SKULL", "MN", "MX", "Mass"))
+sma = sma(dim_BC$Mass ~ dim_BC$SKULL, dim_BC, log = "xy", method= "SMA")
 plot(sma)
 
 # Create an extra column with body condition data
-BC$body_condition = BC$Mass..g. * (skull_mean/BC$SKULL..mm.)^ 3.127186
-field_data = merge(field_data, BC, by = "Bird", all.x = TRUE)
+BC$body_condition = BC$Mass * (skull_mean/BC$SKULL)^ 3.127186
+field_data = merge(field_data, subset(BC, select = c("Bird", "body_condition")), by = "Bird", all.x = TRUE)
 
 
 # Merge in field data for each experiment
 all_data = merge(extraction_notes, field_data, by = "Bird", all.x = TRUE)
-all_data = merge(all_data, argon_lab_data, by = "Sample.ID", all.x = TRUE)
+all_data = merge(all_data, argon_lab_data, by = "SampleShort", all.x = TRUE)
 
 # Add sample id in the format that qiime expects
-all_data = cbind("sample id" = all_data$Sample.ID, all_data)
+all_data = cbind("sample id" = all_data$SampleShort, all_data)
 all_data$"sample id" = paste0("Sample-", all_data$"sample id")
 
 # Write data back to csv and tsv file
 write.table(all_data, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
 write.table(all_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
+
+# Also write metadata with special second row to make qza_to_phyloseq happy
+# https://forum.qiime2.org/t/qiime2r-missing-sample/8681/24?page=2
+new_row = ifelse(sapply(all_data, is.numeric), "numerical", "categorical")
+new_row[1] = "#q2:types"
+all_data = rbind(new_row, all_data)
+write.table(all_data, file = "~/thesis/metadata/metadata_phyloseq.tsv", sep = "\t", row.names = FALSE, na = "")

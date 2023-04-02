@@ -1,4 +1,4 @@
-Bird,Colony,Band,eggs,pipped egg,chick,Date,Time,TAR (mm),CUL (mm),SKULL (mm),MN (mm),MX (mm),Mass (g),sex,capture,Notes,Person measuring,Sex,Area
+Bird,Colony,Band,eggs,pipped egg,chick,Date,Time,TAR,CUL,SKULL,MN,MX,Mass,sex,capture,NotesField,PersonMeasuring,Sex,Area
 1,M4/5,1106-11017,3,0,0,20210515,9:42,52.4,45,100.9,13.1,14.2,580,,wet ,,Scott,,SF
 2,M4/5,1106-11018,2,0,0,20210515,10:25,59.1,47.6,104.6,14.3,15.4,680,,wet ,,Scott,,SF
 3,M4/5,1106-11019,1,0,0,20210515,11:18,56.4,49,108.9,15.4,16.6,695,,dry  ,not sure if swab went all the way in cloaca,Scott,,SF
