@@ -110,6 +110,9 @@ all_data = merge(all_data, argon_lab_data, by = "SampleShort", all.x = TRUE)
 all_data = cbind("sample id" = all_data$SampleShort, all_data)
 all_data$"sample id" = paste0("Sample-", all_data$"sample id")
 
+# Filter out the environmental samples
+all_data = subset(all_data, Environmental_control == "false")
+
 # Write data back to csv and tsv file
 write.table(all_data, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
 write.table(all_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
@@ -124,9 +127,3 @@ new_row = ifelse(sapply(phy_data, is.numeric), "numerical", "categorical")
 new_row[1] = "#q2:types"
 phy_data = rbind(new_row, phy_data)
 write.table(phy_data, file = "~/thesis/metadata/metadata_phyloseq.tsv", sep = "\t", row.names = FALSE, na = "", quote = FALSE)
-
-# ------ EXCLUDE ENVIRONMENTAL SAMPLES-------
-
-# Test if I can demux with metadata that excludes env_samples
-no_env_samples = subset(all_data, Environmental_control == "false")
-write.table(no_env_samples, file = "~/thesis/metadata/metadata_noenv.tsv", sep = "\t", row.names = FALSE, na = "", , quote = FALSE)
