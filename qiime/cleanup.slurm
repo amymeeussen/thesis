@@ -25,4 +25,5 @@ echo "finish reclassification" \
 && \ 
 echo "start taxa barplot" && \
 qiime taxa barplot --i-table ~/filtered/table-filtered.qza --i-taxonomy ~/taxonomy/taxonomy.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/filtered/taxa-bar-plot-filtered.qzv && \
-echo "finished taxa barplot" \
+echo "finished taxa barplot" && \
+date \
