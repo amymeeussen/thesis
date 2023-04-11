@@ -59,24 +59,24 @@ source activate qiime2-2022.8
 #qiime taxa barplot --i-table ~/qiime/denoising/table-filtered.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/denoising/taxa-bar-plot-filtered.qzv && \
 #echo "finished taxa barplot" && \
 #\
-#echo "Starting removing unwanted" && \
-#time qiime fragment-insertion sepp --i-representative-sequences ~/qiime/denoising/sequences-filtered.qza --i-reference-database ~/qiime/train_classifier/sepp-refs-silva-128.qza --o-tree ~/qiime/PhylogeneticTree/SILVAtree.qza --o-placements ~/qiime/PhylogeneticTree/SILVAtree_placements.qza --p-threads 20
-#qiime fragment-insertion filter-features --i-table ~/qiime/denoising/table-filtered.qza --i-tree ~/qiime/PhylogeneticTree/SILVAtree.qza --o-filtered-table ~/qiime/PhylogeneticTree/SILVA-filtered-table.qza --o-removed-table ~/qiime/PhylogeneticTree/removed_table.qza --verbose && \
-#\
-#echo "start rarify"
-#qiime diversity alpha-rarefaction --i-table ~/qiime/denoising/table-filtered.qza --i-phylogeny ~/qiime/PhylogeneticTree/SILVAtree.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-max-depth 29652 --p-steps 30 --p-iterations 20 --o-visualization ~/qiime/diversity/alpha-rarefaction-rooted.qzv
-#\
+echo "Starting PhylogeneticTree" && \
+time qiime fragment-insertion sepp --i-representative-sequences ~/qiime/denoising/sequences-filtered.qza --i-reference-database ~/qiime/train_classifier/sepp-refs-silva-128.qza --o-tree ~/qiime/PhylogeneticTree/SILVAtree.qza --o-placements ~/qiime/PhylogeneticTree/SILVAtree_placements.qza --p-threads 20
+qiime fragment-insertion filter-features --i-table ~/qiime/denoising/table-filtered.qza --i-tree ~/qiime/PhylogeneticTree/SILVAtree.qza --o-filtered-table ~/qiime/PhylogeneticTree/SILVA-filtered-table.qza --o-removed-table ~/qiime/PhylogeneticTree/removed_table.qza --verbose && \
+\
+echo "start rarify"
+qiime diversity alpha-rarefaction --i-table ~/qiime/denoising/table-filtered.qza --i-phylogeny ~/qiime/PhylogeneticTree/SILVAtree.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-max-depth 60000 --p-steps 30 --p-iterations 20 --o-visualization ~/qiime/diversity/alpha-rarefaction-rooted.qzv
+\
 #echo "Starting alpha diversity" && \
 #rm -rf ~/qiime/core-metric-results/ && \
 #qiime diversity core-metrics-phylogenetic --i-phylogeny ~/qiime/PhylogeneticTree/SILVAtree.qza --i-table ~/qiime/PhylogeneticTree/SILVA-filtered-table.qza --p-sampling-depth 29652 --m-metadata-file ~/thesis/metadata/metadata.tsv --output-dir ~/qiime/core-metric-results/ 
-#qiime diversity alpha-group-significance --i-alpha-diversity ~/qiime/core-metric-results/faith_pd_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/decontam-faith-pd-group-significance.qzv && \
-#qiime diversity alpha-group-significance --i-alpha-diversity ~/qiime/core-metric-results/evenness_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/decontam-evenness-group-significance.qzv && \
-#qiime diversity alpha-correlation --i-alpha-diversity ~/qiime/core-metric-results/faith_pd_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/decontam-alpha-correlation-test.qzv && \
+#qiime diversity alpha-group-significance --i-alpha-diversity ~/qiime/core-metric-results/faith_pd_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/faith-pd-group-significance.qzv && \
+#qiime diversity alpha-group-significance --i-alpha-diversity ~/qiime/core-metric-results/evenness_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/evenness-group-significance.qzv && \
+#qiime diversity alpha-correlation --i-alpha-diversity ~/qiime/core-metric-results/faith_pd_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/alpha-correlation-test.qzv && \
 #\
-echo "start beta diversity"
-qiime diversity beta-group-significance --i-distance-matrix ~/qiime/core-metric-results/unweighted_unifrac_distance_matrix.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-Area-group-significance.qzv && \
-qiime diversity beta-group-significance --i-distance-matrix ~/qiime/core-metric-results/unweighted_unifrac_distance_matrix.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column type --p-pairwise --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-sampletype-group-significance.qzv && \
-\
-qiime emperor plot --i-pcoa ~/qiime/core-metric-results/unweighted_unifrac_pcoa_results.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-emperor.qzv && \
-qiime emperor plot --i-pcoa ~/qiime/core-metric-results/bray_curtis_pcoa_results.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/bray-curtis-emperor.qzv && \
+#echo "start beta diversity"
+#qiime diversity beta-group-significance --i-distance-matrix ~/qiime/core-metric-results/unweighted_unifrac_distance_matrix.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-Area-group-significance.qzv && \
+#qiime diversity beta-group-significance --i-distance-matrix ~/qiime/core-metric-results/unweighted_unifrac_distance_matrix.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column type --p-pairwise --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-sampletype-group-significance.qzv && \
+#\
+#qiime emperor plot --i-pcoa ~/qiime/core-metric-results/unweighted_unifrac_pcoa_results.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-emperor.qzv && \
+#qiime emperor plot --i-pcoa ~/qiime/core-metric-results/bray_curtis_pcoa_results.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/bray-curtis-emperor.qzv && \
 date\

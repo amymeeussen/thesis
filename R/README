@@ -1,4 +1,5 @@
 # How to install R on the Linux Chromebook
+# ----------------------------------------
 
 # Allow for a newer version of R
 gpg --armor --export '95C0FAF38DB3CCAD0C080A7BDC78B2DDEABC47B7' | \
@@ -12,5 +13,16 @@ sudo apt-get install r-base
 sudo apt-get install libfontconfig-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libharfbuzz-dev  libfribidi-dev libpq5 libclang-dev
 sudo dpkg -i rstudio-2023.03.0-386-amd64.deb
 
+
+# Install packages
+# ----------------
 install.packages("ggplot2")
 install.packages("dplyr")
+install.packages('qiime2R')
+install.packages("tidyverse")
+
+
+# Running code on the supercomputer
+# ---------------------------------
+source activate R-4.2.0
+Rscript beta.r

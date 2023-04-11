@@ -5,8 +5,8 @@
 #SBATCH --time=10:00:00
 #SBATCH --partition=nodes
 #SBATCH --job-name=train
-#SBATCH --error=/home/aparsons/qiime/train.log
-#SBATCH --output=/home/aparsons/qiime/train.log
+#SBATCH --error=/home/aparsons/qiime/log/train.log
+#SBATCH --output=/home/aparsons/qiime/log/train.log
 
 rm -rf ~/qiime/train_classifier
 mkdir -p ~/qiime/train_classifier
