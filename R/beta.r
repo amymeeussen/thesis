@@ -1,15 +1,17 @@
 library('qiime2R')
-library(tidyverse)
 library('ggplot2')
 
 ps = qza_to_phyloseq(features = "/home/aparsons/qiime/denoising/table-filtered.qza", 
                      tree = "/home/aparsons/qiime/PhylogeneticTree/SILVAtree.qza",
                      taxonomy = "/home/aparsons/qiime/taxonomy/taxonomy.qza",
                      metadata = "/home/aparsons/thesis/metadata/metadata_phyloseq.tsv")
+
 ps
 
+library('phyloseq')
 
-# explore phyloseq object
+#explore phyloseq object
+
 nsamples(ps)
 sample_names(ps)
 sample_variables(ps)
@@ -64,7 +66,7 @@ dev.off()
 
 png("bray.png", 490, 350)
 ps_rare_bray <- ordinate(ps_rare, "NMDS", "bray")
-plot_ordination(ps_rare, ps_rare_bray, type="samples", color="Area") + geom_point(size = 3) 
+plot_ordination(ps_rare, ps_rare_bray, type="samples", color="colony") + geom_point(size = 3) 
 dev.off()
 
 png("bar.png", 1200, 1600)
@@ -81,4 +83,3 @@ png("heatmap.png", 690, 550)
 (ps_fam_rare <- rarefy_even_depth(ps_rare, sample.size = 4000, rngseed = 123, replace = FALSE))
 plot_heatmap(ps_fam_rare, sample.label = "Area", taxa.label = "Family")
 dev.off()
-
