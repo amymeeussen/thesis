@@ -8,6 +8,7 @@ extraction_notes = read.csv("~/thesis/metadata/extraction_notes.csv")
 argon_lab_data = read.csv("~/thesis/metadata/argon_lab_data.csv")
 
 # Add column to record origin of sex data
+field_data = rename(field_data, Sexing = Sex)
 field_data$sex_origin = ifelse(field_data$sex == "", "", "Carly PCA")
 
 # Convert sample ID to bird id
@@ -122,7 +123,7 @@ write.table(all_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.n
 
 # Also write metadata with special second row to make qza_to_phyloseq happy
 # https://forum.qiime2.org/t/qiime2r-missing-sample/8681/24?page=2
-phy_data = subset(all_data, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture", "Sample_or_control"))
+phy_data = subset(all_data, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture", "Sample_or_control", "type"))
 new_row = ifelse(sapply(phy_data, is.numeric), "numerical", "categorical")
 new_row[1] = "#q2:types"
 phy_data = rbind(new_row, phy_data)
