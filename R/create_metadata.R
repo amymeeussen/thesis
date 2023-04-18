@@ -114,16 +114,19 @@ all_data$"sample id" = paste0("Sample-", all_data$"sample id")
 # Filter out the environmental samples
 all_data = subset(all_data, Environmental_control == "false")
 
+#Filter out negative lab controls
+all_data2 = subset(all_data, Sample_or_control == "sample")
+
 # Write data back to csv and tsv file
-write.table(all_data, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
-write.table(all_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
+write.table(all_data2, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
+write.table(all_data2, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
 
 
 # ------ PHYLOSEQ METADATA -------
 
 # Also write metadata with special second row to make qza_to_phyloseq happy
 # https://forum.qiime2.org/t/qiime2r-missing-sample/8681/24?page=2
-phy_data = subset(all_data, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture", "Sample_or_control", "type"))
+phy_data = subset(all_data, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture", "Sample_or_control", "type", "Concentration"))
 new_row = ifelse(sapply(phy_data, is.numeric), "numerical", "categorical")
 new_row[1] = "#q2:types"
 phy_data = rbind(new_row, phy_data)
