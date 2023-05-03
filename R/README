@@ -10,8 +10,9 @@ deb http://cloud.r-project.org/bin/linux/debian bullseye-cran40/
 
 sudo apt-get install r-base
 
-sudo apt-get install libfontconfig-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libharfbuzz-dev  libfribidi-dev libpq5 libclang-dev
+sudo apt-get install libfontconfig-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libharfbuzz-dev  libfribidi-dev libpq5 libclang-dev libmpfr-dev libxt-dev
 sudo dpkg -i rstudio-2023.03.0-386-amd64.deb
+
 
 
 # Install packages
@@ -20,6 +21,9 @@ install.packages("ggplot2")
 install.packages("dplyr")
 install.packages('qiime2R')
 install.packages("tidyverse")
+
+install.packages("BiocManager")
+BiocManager::install("ANCOMBC")
 
 
 # Running code on the supercomputer
