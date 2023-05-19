@@ -9,6 +9,12 @@ library(ANCOMBC)
 library(mia)
 library(pheatmap)
 
+# This Rscript runs the phyloseq and mia package find relative abundances, run ANCOMBC
+# and create a volcano plot
+# Input: phyloseq object
+# Output: Raw count and relative abundance table of dominant taxa per sample type, stacked barplot of
+# dominant taxa, ANCOMBC results, volcano plot
+
 
 
 # Create a phyloseq object
@@ -237,10 +243,6 @@ fig_age = df_fig_age %>%
         panel.grid.minor.y = element_blank(),
         axis.text.x = element_text(angle = 60, hjust = 1))
 fig_age
-
-
-
-
 
 
 
