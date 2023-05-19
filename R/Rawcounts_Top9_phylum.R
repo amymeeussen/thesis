@@ -8,6 +8,9 @@ library(ggforce)
 library(ANCOMBC)
 library(mia)
 
+#This Rscript uses the package physloseq to plot raw count data of top 9 Phyla in each colony
+#Input: phyloseq object
+#Output: Nine barplots with raw count data of top 9 Phyla in each colony
 
 
 # Create a phyloseq object
