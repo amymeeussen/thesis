@@ -43,7 +43,7 @@ phyloseq::psmelt(ps_filtered) %>%
   geom_jitter(aes(color = OTU), height = 0, width = .2) +
   labs(x = "", y = "Abundance\n") +
   facet_wrap(~ OTU, scales = "free") + 
-  ggtitle("Raw Count data of top 9 Phylums in both Mono Lake and SF Bay")
+  ggtitle("Raw Count data of top 9 Phyla in both Mono Lake and SF Bay")
 
 
 
