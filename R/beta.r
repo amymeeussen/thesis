@@ -66,8 +66,10 @@ dev.off()
 
 png("bray.png", 490, 350)
 ps_rare_bray <- ordinate(ps_rare, "NMDS", "bray")
-plot_ordination(ps_rare, ps_rare_bray, type="samples", color="colony") + geom_point(size = 3) 
+plot_ordination(ps_rare, ps_rare_bray, type="samples", color="Area") + geom_point(size = 3) 
 dev.off()
+
+#bar plot
 
 png("bar.png", 1200, 1600)
 plot_bar(ps, fill="Phylum")
