@@ -3,13 +3,23 @@ library(ggplot2)
 library(tidyverse)
 library(smatr)
 
+# This Rscript adds 
+
+
+
+
 field_data = read.csv("~/thesis/metadata/field_data.csv")
 extraction_notes = read.csv("~/thesis/metadata/extraction_notes.csv")
 argon_lab_data = read.csv("~/thesis/metadata/argon_lab_data.csv")
 
 # Add column to record origin of sex data
-field_data = rename(field_data, Sexing = Sex)
+#field_data = rename(field_data, Sexing == sex)
 field_data$sex_origin = ifelse(field_data$sex == "", "", "Carly PCA")
+
+#Change column labeled "Sex" to "sexed" 
+colnames(field_data)[colnames(field_data) == "Sex"] <- "Sexed"
+
+# Print the updated data frame
 
 # Convert sample ID to bird id
 char_list = c("C", "F", "M")
@@ -101,7 +111,7 @@ plot(sma)
 # Create an extra column with body condition data
 BC$body_condition = BC$Mass * (skull_mean/BC$SKULL)^ 3.127186
 field_data = merge(field_data, subset(BC, select = c("Bird", "body_condition")), by = "Bird", all.x = TRUE)
-
+field_data$condition_score = ifelse(field_data$body_condition >= 610.5, "low", "high") 
 
 # Merge in field data for each experiment
 all_data = merge(extraction_notes, field_data, by = "Bird", all.x = TRUE)
@@ -114,16 +124,22 @@ all_data$"sample id" = paste0("Sample-", all_data$"sample id")
 # Filter out the environmental samples
 all_data = subset(all_data, Environmental_control == "false")
 
+#Filter out negative lab controls
+all_data2 = subset(all_data, Sample_or_control == "sample")
+
+#filter out low read birds (based on a rarefication level of 15,000)
+all_data3 = all_data2 %>% filter(!Bird %in% c("20", "60", "66", "46"))
+
 # Write data back to csv and tsv file
-write.table(all_data, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
-write.table(all_data, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
+write.table(all_data3, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
+write.table(all_data3, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.names = FALSE, na = "")
 
 
 # ------ PHYLOSEQ METADATA -------
 
 # Also write metadata with special second row to make qza_to_phyloseq happy
 # https://forum.qiime2.org/t/qiime2r-missing-sample/8681/24?page=2
-phy_data = subset(all_data, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture", "Sample_or_control", "type"))
+phy_data = subset(all_data, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture", "Sample_or_control", "type", "Concentration", "condition_score"))
 new_row = ifelse(sapply(phy_data, is.numeric), "numerical", "categorical")
 new_row[1] = "#q2:types"
 phy_data = rbind(new_row, phy_data)

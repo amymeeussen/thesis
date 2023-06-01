@@ -40,6 +40,7 @@ echo "adding pseudocount to deal with zeros in table" && \
 qiime composition add-pseudocount --i-table ~/qiime/ANCOM/cloaca-table.qza --o-composition-table ~/qiime/ANCOM/comp-cloaca-table.qza && \
 echo "starting difference in mouth samples between two areas" && \
 qiime composition ancom --i-table ~/qiime/ANCOM/comp-cloaca-table.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/ancom-area-cloaca.qzv && \
+
 echo "collapsing feature table to level 6" && \
 qiime taxa collapse --i-table ~/qiime/ANCOM/cloaca-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-level 6 --o-collapsed-table ~/qiime/ANCOM/cloaca-table-l6.qza && \
 echo "add pseudocount" && \
