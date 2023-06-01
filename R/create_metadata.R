@@ -3,6 +3,11 @@ library(ggplot2)
 library(tidyverse)
 library(smatr)
 
+# This Rscript adds 
+
+
+
+
 field_data = read.csv("~/thesis/metadata/field_data.csv")
 extraction_notes = read.csv("~/thesis/metadata/extraction_notes.csv")
 argon_lab_data = read.csv("~/thesis/metadata/argon_lab_data.csv")
@@ -10,6 +15,9 @@ argon_lab_data = read.csv("~/thesis/metadata/argon_lab_data.csv")
 # Add column to record origin of sex data
 #field_data = rename(field_data, Sexing == sex)
 field_data$sex_origin = ifelse(field_data$sex == "", "", "Carly PCA")
+
+#Change column labeled "Sex" to "sexed" 
+field_data$Sexed = field_data$Sex
 
 # Convert sample ID to bird id
 char_list = c("C", "F", "M")
