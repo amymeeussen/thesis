@@ -17,7 +17,9 @@ argon_lab_data = read.csv("~/thesis/metadata/argon_lab_data.csv")
 field_data$sex_origin = ifelse(field_data$sex == "", "", "Carly PCA")
 
 #Change column labeled "Sex" to "sexed" 
-field_data$Sexed = field_data$Sex
+colnames(field_data)[colnames(field_data) == "Sex"] <- "Sexed"
+
+# Print the updated data frame
 
 # Convert sample ID to bird id
 char_list = c("C", "F", "M")
