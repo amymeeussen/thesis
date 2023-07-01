@@ -101,5 +101,9 @@ echo "starting Mycoplasma iowae" && \
 qiime taxa filter-table --i-table ~/qiime/denoising/dada2-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-include "p__Firmicutes; c__Bacilli; o__Mycoplasmatales; f__Mycoplasmataceae; g__Mycoplasma; s__Mycoplasma_iowae" --o-filtered-table ~/qiime/pathogens/table-Mycoplasma-iowae.qza && \
 \
 qiime feature-table summarize --i-table ~/qiime/pathogens/table-Mycoplasma-iowae.qza --m-sample-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/pathogens/table-Mycoplasma-iowae.qzv && \
-date \
-
+\
+echo"starting clostridium perfrigens" && \
+qiime taxa filter-table --i-table ~/qiime/denoising/dada2-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-include "p__Firmicutes; c__Clostridia; o__Clostridiales; f__Clostridiaceae; g__Clostridium_sensu_stricto_1; s__Clostridium_perfringens" --o-filtered-table ~/qiime/pathogens/table-clostridium.qza && \
+\
+qiime feature-table summarize --i-table ~/qiime/pathogens/table-clostridium.qza --m-sample-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/pathogens/table-clostridium.qzv && \
+date\

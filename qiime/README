@@ -1,0 +1,5 @@
+https://docs.qiime2.org/2023.5/install/native/#install-qiime-2-within-a-conda-environment
+
+wget https://data.qiime2.org/distro/core/qiime2-2023.5-py38-linux-conda.yml
+conda env create -n qiime2-2023.5 --file qiime2-2023.5-py38-linux-conda.yml
+conda activate qiime2-2023.5
