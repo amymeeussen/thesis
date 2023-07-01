@@ -3,9 +3,9 @@ library(ggplot2)
 library(tidyverse)
 library(smatr)
 
-# This Rscript adds 
-
-
+# This Rscript creates a PCA with 6 morphometric measurements, which I used to look for clustering 
+#and predict sex data. It also adds predicted sex, body condition index, and it removes the four birds
+#that did not have sufficient reads on all 3 of their samples. 
 
 
 field_data = read.csv("~/thesis/metadata/field_data.csv")
@@ -111,7 +111,7 @@ plot(sma)
 # Create an extra column with body condition data
 BC$body_condition = BC$Mass * (skull_mean/BC$SKULL)^ 3.127186
 field_data = merge(field_data, subset(BC, select = c("Bird", "body_condition")), by = "Bird", all.x = TRUE)
-field_data$condition_score = ifelse(field_data$body_condition >= 610.5, "low", "high") 
+field_data$condition_score = ifelse(field_data$body_condition >= 610.5, "high", "low") 
 
 # Merge in field data for each experiment
 all_data = merge(extraction_notes, field_data, by = "Bird", all.x = TRUE)
@@ -139,8 +139,21 @@ write.table(all_data3, file = "~/thesis/metadata/metadata.tsv", sep = "\t", row.
 
 # Also write metadata with special second row to make qza_to_phyloseq happy
 # https://forum.qiime2.org/t/qiime2r-missing-sample/8681/24?page=2
-phy_data = subset(all_data, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture", "Sample_or_control", "type", "Concentration", "condition_score"))
+phy_data = subset(all_data3, select = c("sample id", "Bird", "barcodes", "TAR", "CUL", "SKULL", "MN", "MX", "Mass", "body_condition", "sex", "Area", "Colony", "eggs", "capture", "Sample_or_control", "type", "Concentration", "condition_score"))
 new_row = ifelse(sapply(phy_data, is.numeric), "numerical", "categorical")
 new_row[1] = "#q2:types"
 phy_data = rbind(new_row, phy_data)
 write.table(phy_data, file = "~/thesis/metadata/metadata_phyloseq.tsv", sep = "\t", row.names = FALSE, na = "", quote = FALSE)
+
+#-----------------------ANCOMB metadata-----------------------
+
+#remove bird 19 and 41 because they don't have body condition data
+all_data_rmbc = all_data3 %>% filter(!Bird %in% c("19", "41"))
+write.table(all_data_rmbc, file = "~/thesis/metadata/metadata_rmbc.tsv", sep = "\t", row.names = FALSE, na = "" )
+
+#remove birds 2, 37, 41, 57 because they don't have sex data
+all_data_rmsex = all_data_rmbc %>% filter(!Bird %in% c("2", "37", "41", "57"))
+
+write.table(all_data_rmsex, file = "~/thesis/metadata/metadata_rmsex.tsv", sep = "\t", row.names = FALSE, na = "" )
+
+

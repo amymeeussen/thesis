@@ -38,6 +38,7 @@ volc = ggplot(data) +
   ggtitle("Differentially abundant Genus in Mouth Samples of ML and SF CAGU") +
   xlab("clr") + ylab("W") +
   theme_minimal()
+volc
 
 # add a column of NAs
 data$diffexpressed = "NO"
@@ -55,17 +56,17 @@ p3
 data$label = NA
 
 #Create labels
-data$label[data$id == "d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Vibrionales;f__Vibrionaceae;g__Vibrio	"] = "(g) Vibrio"
+data$label[data$id == "d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Vibrionales;f__Vibrionaceae;g__Vibrio"] = "(g) Vibrio"
 
-data$label[data$id == "d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Streptococcaceae;g__Streptococcus	"] = "(g) Streptococcus"
+data$label[data$id == "d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f__Streptococcaceae;g__Streptococcus"] = "(g) Streptococcus"
 
-data$label[data$id == "d_Bacteria;p_Fusobacteriota;c_Fusobacteriia;o_Fusobacteriales;f_Fusobacteriaceae;g_Cetobacterium "] = "(g) Cetobacterium"
+data$label[data$id == "d_Bacteria;p_Fusobacteriota;c_Fusobacteriia;o_Fusobacteriales;f_Fusobacteriaceae;g_Cetobacterium"] = "(g) Cetobacterium"
 
 
-ggplot(data=data, aes(x= clr, y = W, col=diffexpressed, label=label)) + 
+ggplot(data=data, mapping=aes(x= clr, y = W, col=diffexpressed, label=label)) + 
   geom_point() + 
   theme_minimal() +
-    geom_label_repel(force_pull = 100, point.padding = 5, grid::arrow()) +
+ geom_label_repel(mapping=aes(label = label)) +
   ggtitle("Volcano plot of differentially abundant taxa (genus) in CAGU cloaca at Mono Lake and SF Bay")
 
 
@@ -100,7 +101,7 @@ p3
 data$label = NA
 
 #Create labels
-data$label[data$id == "d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Cardiobacteriales;f__Cardiobacteriaceae;g__Cardiobacterium"] = "(g) Cardiobacterium"
+data$label[data$id == "d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Cardiobacteriales;f__Cardiobacteriaceae;g__Cardiobacterium"] = "(g) Cadiobacterium"
 
 data$label[data$id == "d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Vibrionales;f__Vibrionaceae;g__Vibrio"] = "(g) Vibrio"
 
@@ -111,7 +112,7 @@ data$label[data$id == "d__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;f
 ggplot(data=data, aes(x= clr, y = W, col=diffexpressed, label=label)) + 
   geom_point() + 
   theme_minimal() +
-  geom_label_repel(force_pull = 100, point.padding = 5, grid::arrow()) +
+ geom_label_repel(box.padding = 2, direction = "y") +
   ggtitle("Volcano plot of differentially abundant taxa (genus) in CAGU mouth at Mono Lake and SF Bay")
 
 #----------------------Volcano Plot: Foot--------------------------------------------
@@ -125,7 +126,7 @@ sig.w = data$W >125 #arbitrarily setting sig W value
 data$sig.w = sig.w
 volc = ggplot(data) +
   geom_point(aes(x=clr, y=W, colour = sig.w)) +
-  ggtitle("Differentially abundant Genus in Mouth Samples of ML and SF CAGU") +
+  ggtitle("Differentially abundant Genus in Foot Samples of ML and SF CAGU") +
   xlab("clr") + ylab("W") +
   theme_minimal()
 
@@ -141,23 +142,20 @@ p = ggplot(data=data, aes(x=clr, y= W, colour=diffexpressed)) + geom_point() + t
 p3 = p + scale_color_manual(values=c("blue", "black", "red"))
 p3
 
-#Create an column full of NAs
+# Create an column full of NAs
 data$label = NA
 
-#Create labels
+# Create labels
 data$label[data$id == "d__Bacteria;p__Bacteroidota;c__Bacteroidia;o__Flavobacteriales;f__Flavobacteriaceae;g__Salinimicrobium	"] = "(g) Salinimicrobium"
-
 data$label[data$id == "d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Ectothiorhodospirales;f__Ectothiorhodospiraceae;g__Thioalkalivibrio	"] = "(g) Thioalkalivibrio"
-
 data$label[data$id == "d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Oceanospirillales;f__Halomonadaceae;g__Marinospirillum	"] = "(g) Marinospirillum"
-
 data$label[data$id == "d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Virgibacillus	"] = "(g) Virgibacillus"
 
 ggplot(data=data, aes(x= clr, y = W, col=diffexpressed, label=label)) + 
   geom_point() + 
   theme_minimal() +
-  geom_label_repel(force_pull = 100, point.padding = 5, grid::arrow()) +
-  ggtitle("Volcano plot of differentially abundant taxa (genus) in CAGU mouth at Mono Lake and SF Bay")
+ geom_label_repel(mapping=aes(label = label)) +
+  ggtitle("Volcano plot of differentially abundant taxa (genus) in CAGU foot at Mono Lake and SF Bay")
 
 
 

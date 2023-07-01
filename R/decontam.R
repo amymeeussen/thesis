@@ -130,6 +130,7 @@ final_biom
 
 library(biomformat);packageVersion("biomformat")
 
+#feature-table
 # If taxa_are_rows=TRUE: otu = as(otu_table(globalpatterns),"matrix"))
 # If taxa_are_rows=FALSE: t(otu_table(globalpatterns),"matrix"))
 # Upload otu_biom.biom to HPC and run biom.slurm to convert into .qza file
@@ -137,6 +138,18 @@ library(biomformat);packageVersion("biomformat")
 otu = as(otu_table(final_biom),"matrix") 
 otu_biom = make_biom(data=otu)
 write_biom(otu_biom,"otu_biom.biom")
+
+#Taxonomy Table
+
+taxa = as(tax_table(ps), "matrix")
+#tax_cols = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus")
+taxa1 = as.data.frame(taxa)
+#taxa$taxonomy = do.call(paste, c(taxa[tax_cols]))
+#for(co in tax_cols)taxa[co] = NULL
+write.table(taxa1, "~/qiime/taxonomy/taxa.txt", quote = FALSE, col.names = FALSE, sep = "\t")
+
+
+
 
 
 

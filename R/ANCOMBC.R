@@ -8,12 +8,14 @@ library(ggforce)
 library(ANCOMBC)
 library(mia)
 library(pheatmap)
+library(ggrepel)
+library(MicEco)
 
 # This Rscript runs the phyloseq and mia package find relative abundances, run ANCOMBC
 # and create a volcano plot
 # Input: phyloseq object
 # Output: Raw count and relative abundance table of dominant taxa per sample type, stacked barplot of
-# dominant taxa, ANCOMBC results, volcano plot
+# dominant taxa, ANCOMBC results, volcano plot of differential abundances, and heatmaps
 
 
 
@@ -154,7 +156,7 @@ dominant_taxa_SF_F = countDominantTaxa(tse_SF_F,rank = "Phylum")
 
 dominant_foot = rbind(dominant_taxa_ML_F, dominant_taxa_SF_F)
 
-dominant_foot$Area <- c(rep("ML", 5), rep("SF", 4))
+dominant_foot$Area <- c(rep("ML", 4), rep("SF", 4))
 
 ggplot(dominant_foot, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
@@ -257,7 +259,7 @@ tse_phylum <- agglomerateByRank(tse,
                                 onRankOnly = TRUE)
 
 # Add clr-transformation on samples
-tse_phylum <- transformCounts(tse_phylum, method = "clr", assay_name = "counts", pseudocount=1)
+tse_phylum <- transformCounts(tse_phylum, method = "clr", assay_name = "counts", psuedocount = 1)
 
 # Add z-transformation on features (taxa)
 tse_phylum <- transformCounts(tse_phylum, MARGIN = "features", assay.type = "clr", 
@@ -268,12 +270,12 @@ tse_phylum_subset <- tse_phylum[ , tse_phylum$type %in% c("M") ]
 
 # Add clr-transformation
 tse_phylum_subset <- transformCounts(tse_phylum_subset, method = "clr",
-                                     MARGIN="samples",
+                                     MARGIN= "samples",
                                      assay_name = "counts", pseudocount=1)
 # Does z-transformation
-tse_phylum_subset <- transformCounts(tse_phylum_subset, assay_name = "clr",
-                                     MARGIN = "features", 
-                                     method = "z", name = "clr_z")
+#tse_phylum_subset <- transformCounts(tse_phylum_subset, assay_name = "clr",
+#                                     MARGIN = "features", 
+ #                                    method = "z", name = "clr_z")
 
 # Get n most abundant taxa, and subsets the data by them
 top_taxa <- getTopTaxa(tse_phylum_subset)
@@ -596,18 +598,19 @@ volc = ggplot(data) +
 geom_point(aes(x=clr, y=W, colour = sig.w)) +
 ggtitle("Differentially abundant Genus in Mouth Samples of ML and SF CAGU") +
  xlab("clr") + ylab("W") +
-  theme_minimal() +
+  theme_minimal()
   
 # add a column of NAs
 data$diffexpressed = "NO"
 # if clr > 2.5 and W < 500, set as "SF Bay" 
-#data$diffexpressed[data$clr > 2.25 & data$W > 100] <- "SF Bay"
+data$diffexpressed[data$clr > 2.25 & data$W > 100] <- "SF Bay"
 # if clr < -2.5 and pvalue < 500, set as "ML"
-#data$diffexpressed[data$clr < -2.5 & data$W > 100] <- "Mono Lake"
+data$diffexpressed[data$clr < -2.5 & data$W > 100] <- "Mono Lake"
 
 # Re-plot but this time color the points with "diffexpressed"
 p = ggplot(data=data, aes(x=clr, y= W, colour=diffexpressed)) + geom_point() + theme_minimal()
 p3 = p + scale_color_manual(values=c("blue", "black", "red"))
+p3
 
 #Create an column full of NAs
 data$label = NA
@@ -624,14 +627,14 @@ data$label[data$id == "d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__O
 ggplot(data=data, aes(x= clr, y = W, col=diffexpressed, label=label)) + 
   geom_point() + 
   theme_minimal() +
-  geom_label_repel(force_pull = 100, point.padding = 5, grid::arrow()) +
+#  geom_label_repel(force_pull = 100, point.padding = 5, grid::arrow()) +
   ggtitle("Volcano plot of differentially abundant taxa (genus) in Mono Lake and SF Bay")
 
 # Make a table with significantly differentially abundant taxa
 
 #Make a column called "area" with NAs
 Data$Area = "NO"
-
+a
 #Add labels to all significantly differentially abundant bacteria
 data$area[data$clr > 0 & data$sig.w == "TRUE" ] <- "SF Bay"
 data$area[data$clr < 0 & data$sig.w == "TRUE" ] <- "Mono Lake"
