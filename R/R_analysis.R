@@ -10,6 +10,8 @@ library(mia)
 library(ade4)
 library(dplyr)
 library(MicEco)
+library(breakaway)
+library(microbiome)
 
 
 # This Rscript uses the phyloseq packages to create relative abundance tables per sample; it rarefies
@@ -30,63 +32,38 @@ ps = qza_to_phyloseq(
 #---------------------------------Unrarefied Data Exploration----------------------------------
 
 
-#filter out negative controls
-ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
-
-
-#filter out empty rows for body condition
-ps.bc.one = subset_samples(ps.no, Bird != 19)
-ps.bc = subset_samples(ps.bc.one, Bird != 41)
-
-
-
-
-
-
 #Relative Abundance of Phylums between sample types
-ps.rel = transform_sample_counts(ps.no, function(x) x/sum(x)*100)
+ps.rel = transform_sample_counts(ps, function(x) x/sum(x)*100)
 # agglomerate taxa
 glom <- tax_glom(ps.rel, taxrank = 'Phylum', NArm = FALSE)
 ps.melt <- psmelt(glom)
 # change to character for easy-adjusted level
 ps.melt$Phylum <- as.character(ps.melt$Phylum)
 
-ps.melt <- ps.melt %>%
-  group_by(type, Phylum) %>%
-  mutate(median=median(Abundance))
-# select group median > 1
-keep <- unique(ps.melt$Phylum[ps.melt$median > 1])
-ps.melt$Phylum[!(ps.melt$Phylum %in% keep)] <- "< 1%"
-#to get the same rows together
-ps.melt_sum <- ps.melt %>%
-  group_by(Bird,type,Phylum) %>%
-  summarise(Abundance=sum(Abundance))
-
-ggplot(ps.melt_sum, aes(x = Bird, y = Abundance, fill = Phylum)) + 
-  geom_bar(stat = "identity", aes(fill=Phylum)) + 
-  labs(x="", y="%") +
-  facet_wrap(~type, scales= "free_x", nrow=1) +
-  theme_classic() + 
-  theme(strip.background = element_blank(), 
-        axis.text.x.bottom = element_text(angle = -90))
 
 
 #Relative Abundance of Phylums between Areas
 ps.melt <- ps.melt %>%
-  group_by(sex, Phylum) %>%
+  group_by(type, Phylum) %>%
   mutate(median=median(Abundance))
 # select group median > 1%
 keep <- unique(ps.melt$Phylum[ps.melt$median > 1])
 ps.melt$Phylum[!(ps.melt$Phylum %in% keep)] <- "< 1%"
 #to get the same rows together
 ps.melt_sum <- ps.melt %>%
-  group_by(Bird,sex,Phylum) %>%
+  group_by(Area,type,Phylum) %>%
   summarise(Abundance=sum(Abundance))
 
-ggplot(ps.melt_sum, aes(x = Bird, y = Abundance, fill = Phylum)) + 
+ps.area_sum <- ps.melt %>%
+  group_by(Area) %>%
+  summarise(Abundance=sum(Abundance))
+
+
+
+ggplot(ps.melt_sum, aes(x = Area, y = Abundance, fill = Phylum)) + 
   geom_bar(stat = "identity", aes(fill=Phylum)) + 
   labs(x="", y="%") +
-  facet_wrap(~sex, scales= "free_x", nrow=1) +
+#  facet_wrap(~sex, scales= "free_x", nrow=1) +
   theme_classic() + 
   theme(strip.background = element_blank(), 
         axis.text.x.bottom = element_text(angle = -90))
@@ -134,6 +111,51 @@ ps_venn(ps.cloaca, fraction = 0.10, group = "Area")
 
 
 #---------------------------------ALL SAMPLES ALPHA and BETA DIVERSITY------------------------
+
+#Test for Shannon diversity with phyloseq package
+sd = estimate_richness(ps.no, measures = "Shannon")
+sd
+
+#Test to see if shannon diversity has an equal distribution
+shapiro.test(sd$Shannon)
+
+
+#create a dataframe with diversity metrics and groups you want to test for diversity. You will need this
+#test variance of diversity metrics between groups. 
+
+diversity = as.data.frame(sd)
+meta = meta(ps.no)
+diversity$Area = meta$Area
+diversity$bc = meta$condition_score
+diversity$sex = meta$sex
+diversity$condition = meta$body_condition
+
+ML = filter(diversity, Area == "ML")
+SF = filter(diversity, Area == "SF")
+
+hist(ML$condition)
+hist(SF$condition)
+
+
+
+
+#test for normality
+shapiro.test(diversity$condition)
+#use levene's test to test for equal variance, since data is not normal
+result = leveneTest(Shannon ~ interaction(Area), data = diversity)
+
+#Test for equal variance (2nd assumption of the wilcoxon rank sum test)
+var.test(diversity$Shannon ~ diversity$Area, alternative = "two.sided")
+
+#Remove birds that don't have bc or sex data
+diversity$Bird = meta$Bird
+diversity_zbc = diversity %>% filter(!Bird %in% c("41", "37", "2", "19", "57"))
+
+#test for equal variance between body conditions and sexes
+var.test(diversity_zbc$Shannon ~ diversity_zbc$bc, alternative = "two.sided")
+var.test(diversity_zbc$Shannon ~ diversity_zbc$sex, alternative = "two.sided")
+
+
 
 #Shannon alpha diversity for two areas
 p = plot_richness(ps.rarefied, x="Area", measures="Shannon", color = "Area") +
@@ -295,7 +317,7 @@ p = plot_richness(ps.rarefied, x="sex", measures="Shannon", color = "sex") +
   theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = -90)) +
   ggtitle("Shannon Diversity of CAGU Samples Taken in Mono Lake and San Francisco Bay") +
   ylab("Shannon Diversity")
-p + stat_compare_means(method = "wilcox.test", label.x = 1.5, label.y = 6)
+p + stat_compare_means(method = "wilcox.test", label.x = 1.5, label.y = 2)
 
 #weighted unifrac test
 wunifrac_dist = phyloseq::distance(ps.rarefied, method="unifrac", weighted=T)
@@ -504,5 +526,5 @@ vegan::adonis2(wunifrac_dist ~ sample_data(ps.rarefied.cloaca)$condition_score)
 
 
   
-  
+
 
