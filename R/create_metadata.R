@@ -1,12 +1,23 @@
+# This Rscript reads the metadata file created during the fieldwork,
+# the metadata file created duing DNA extraction in the lab, and the
+# metadata file created by the argon lab when processing the DNA samples.
+# 
+# This script then combine all these metadata files into one master 
+# metadata file that can be used by QIIME, by the R Phyloseq toolchain, and
+# by the R ANCOMB toolchain.
+#
+# This script also predicts the sex for all samples using a clustering
+# appraoch, it computes the body condition index for each sample, and it
+# removes 4 samples that did not have sufficient reads on all three of 
+# the sample sites.
+
+# Input: field_data.csv, extraction_notes.csv, argon_lab_data.csv
+# Output: metadata.csv, metadata.tsv, metadata_phyloseq.tsv, emtadata_rmsex.tsv
+
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(smatr)
-
-# This Rscript creates a PCA with 6 morphometric measurements, which I used to look for clustering 
-#and predict sex data. It also adds predicted sex, body condition index, and it removes the four birds
-#that did not have sufficient reads on all 3 of their samples. 
-
 
 field_data = read.csv("~/thesis/metadata/field_data.csv")
 extraction_notes = read.csv("~/thesis/metadata/extraction_notes.csv")
@@ -16,7 +27,7 @@ argon_lab_data = read.csv("~/thesis/metadata/argon_lab_data.csv")
 #field_data = rename(field_data, Sexing == sex)
 field_data$sex_origin = ifelse(field_data$sex == "", "", "Carly PCA")
 
-#Change column labeled "Sex" to "sexed" 
+# Change column labeled "Sex" to "sexed" 
 colnames(field_data)[colnames(field_data) == "Sex"] <- "Sexed"
 
 # Print the updated data frame
@@ -127,8 +138,9 @@ all_data = subset(all_data, Environmental_control == "false")
 #Filter out negative lab controls
 all_data2 = subset(all_data, Sample_or_control == "sample")
 
-#filter out low read birds (based on a rarefication level of 15,000)
-all_data3 = all_data2 %>% filter(!Bird %in% c("20", "60", "66", "46"))
+#filter out low read birds based on a rarefication level of 11,449
+all_data3 = all_data2 %>% filter(!Bird %in% c("66", "46"))
+
 
 # Write data back to csv and tsv file
 write.table(all_data3, file = "~/thesis/metadata/metadata.csv", sep = ",", row.names = FALSE, na = "")
@@ -146,14 +158,12 @@ phy_data = rbind(new_row, phy_data)
 write.table(phy_data, file = "~/thesis/metadata/metadata_phyloseq.tsv", sep = "\t", row.names = FALSE, na = "", quote = FALSE)
 
 #-----------------------ANCOMB metadata-----------------------
-
-#remove bird 19 and 41 because they don't have body condition data
+# remove bird 19 and 41 because they don't have body condition data
 all_data_rmbc = all_data3 %>% filter(!Bird %in% c("19", "41"))
 write.table(all_data_rmbc, file = "~/thesis/metadata/metadata_rmbc.tsv", sep = "\t", row.names = FALSE, na = "" )
 
-#remove birds 2, 37, 41, 57 because they don't have sex data
+# remove birds 2, 37, 41, 57 because they don't have sex data
 all_data_rmsex = all_data_rmbc %>% filter(!Bird %in% c("2", "37", "41", "57"))
-
 write.table(all_data_rmsex, file = "~/thesis/metadata/metadata_rmsex.tsv", sep = "\t", row.names = FALSE, na = "" )
 
 
