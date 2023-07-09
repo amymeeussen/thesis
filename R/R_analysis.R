@@ -50,6 +50,8 @@ ps.rarefied = rarefy_even_depth(ps.no, rngseed=1, replace=F)
 # Check that sample sizes are all even
 barplot(sample_sums(ps.rarefied), las =2)
 
+print(barplot)
+
 #---------------------------Shared and unique taxa between groups--------
 
 # unique and shared ASVs per area
@@ -103,17 +105,17 @@ adiv %>%
 adiv %>%
   gather(key = metric, value = value, c("Shannon")) %>%
   mutate(metric = factor(metric, levels = c("Shannon"))) %>%
-  ggplot(aes(x = Area, y = value)) +
+  ggplot(aes(x = Are, y = value)) +
   geom_boxplot(outlier.color = NA) +
   geom_jitter(aes(color = Area), height = 0, width = .2) +
-  labs(x = "Location", y = "Shannon/s diversity index") +
+  labs(x = "Location", y = "Shannon diversity index") +
   facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Foot", "M" = "Mouth"))) +
   theme(legend.position="none") +
-  theme_classic() + 
-  theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = -90))+
-  theme
-  stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) + 
-  ggtitle("Shannon Diversity Index for each body site")
+  theme_q2r() + 
+  theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = 0))+
+  theme(text = element_text(size = 20)) +
+  stat_compare_means(method = "kruskal.test", label.x = 1, label.y = 1) 
+  
  
 
 # Observed richness, by type
@@ -182,6 +184,7 @@ wunifrac_dist = phyloseq::distance(ps.rarefied.mouth, method="unifrac", weighted
 ordination = ordinate(ps.rarefied.mouth, method="PCoA", distance=wunifrac_dist)
 plot_ordination(ps.rarefied.mouth, ordination, color="Area") + theme(aspect.ratio=1) + 
   theme_classic() + 
+  theme(text = element_text(size = 20))+
   ggtitle("Weighted Unifrac: Mouth samples")
 
 # PERMANOVA test for weighted unifrac
@@ -349,22 +352,26 @@ wunifrac_dist = phyloseq::distance(ps.rarefied, method="unifrac", weighted=T)
 ordination = ordinate(ps.rarefied, method="PCoA", distance=wunifrac_dist)
 plot_ordination(ps.rarefied, ordination, color="type") + theme(aspect.ratio=1) + 
   theme_classic() + 
-  ggtitle("Weighted Unifrac: body site") +
-  stat_ellipse(type = "norm", level=0.9, linetype = 2)
+  ggtitle("Weighted Unifrac: body sites (both locations included)") +
+  scale_color_aaas() +
+  theme(text = element_text(size = 15)) +
+  stat_ellipse(type = "norm", level=0.95, linetype = 2)
 
 # weighted unifrac PCoA for mouth by area
 wunifrac_dist = phyloseq::distance(ps.rarefied.mouth, method="unifrac", weighted=T)
 ordination = ordinate(ps.rarefied.mouth, method="PCoA", distance=wunifrac_dist)
 plot_ordination(ps.rarefied.mouth, ordination, color="Area") + theme(aspect.ratio=1) + 
   theme_classic() + 
+  theme(text = element_text(size = 15)) +
   ggtitle("Weighted Unifrac for Mouth samples by Area") +
-  stat_ellipse(type = "norm", level=0.9, linetype = 2)
+  stat_ellipse(type = "norm", level=0.95, linetype = 2)
 
 # weighted unifrac PCoA for foot by area
 wunifrac_dist = phyloseq::distance(ps.rarefied.foot, method="unifrac", weighted=T)
 ordination = ordinate(ps.rarefied.foot, method="PCoA", distance=wunifrac_dist)
 plot_ordination(ps.rarefied.foot, ordination, color="Area") + theme(aspect.ratio=1) + 
   theme_classic() + 
+  theme(text = element_text(size = 15)) +
   ggtitle("Weighted Unifrac for Foot samples by Area") +
   stat_ellipse(type = "norm", level=0.9, linetype = 2)
 
@@ -373,6 +380,7 @@ wunifrac_dist = phyloseq::distance(ps.rarefied.cloaca, method="unifrac", weighte
 ordination = ordinate(ps.rarefied.cloaca, method="PCoA", distance=wunifrac_dist)
 plot_ordination(ps.rarefied.cloaca, ordination, color="Area") + theme(aspect.ratio=1) + 
   theme_classic() + 
+  theme(text = element_text(size = 15)) +
   ggtitle("Weighted Unifrac for Cloaca samples by Area") +
   stat_ellipse(type = "norm", level=0.9, linetype = 2)
 
@@ -474,10 +482,10 @@ vegan::adonis2(wunifrac_dist ~ sample_data(ps.rarefied.foot)$sex)
 
 # filter out foot
 ps.rarefied.foot = subset_samples(ps.rarefied, type %in% c("F"))
-ps.rarefied.foot.ML = subset_samples(ps.rarefied.foot, Area %in% "ML")
+ps.rarefied.no = subset_samples(ps.rarefied, Bird %in% "19")
 
 # Shannon alpha diversity for two body conditions
-p = plot_richness(ps.rarefied.foot.ML, x="condition_score", measures="Shannon", color = "condition_score") +
+p = plot_richness(ps.rarefied.no, x="condition_score", measures="Shannon", color = "condition_score") +
   geom_boxplot() +
   theme_classic() +
   theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = -90)) +
@@ -553,6 +561,8 @@ plot_ordination(ps.rarefied.new, ordination, color="sex") + theme(aspect.ratio=1
 
 # PERMANOVA test
 vegan::adonis2(wunifrac_dist ~ sample_data(ps.rarefied)$sex)
+
+
 
 
 

@@ -1,20 +1,22 @@
+# This file gives the code to decontaminate sequences using the fisher method. This method uses both 
+# frequency and prevelance to give each sequence a score. The default threshold is p = 0.01. 
+
+# Input: phylsoseq object that includes: dada2-table.qza, taxonomy.qza, metadata.tsv
+
+# Outputs: contaminants_05.csv file that lists all of the contaminants and a
+#          otu_biom.biom file of the decontaminated sOTU table. Import this file
+#          to the HPC and then use biom.slurm to convert this file to a .qza file for 
+#          downstream analysis in qiime2.
+
+
 library(phyloseq)
 library(decontam)
 library(tidyverse)
 library(DT)
 library(qiime2R)
 
-# This file gives the code to decontaminate sequences using the fisher method. This method uses both 
-# frequency and prevelance to give each sequence a score. The default threshold is p = 0.01. 
-# Input: phylsoseq object that includes: dada2-table.qza, taxonomy.qza, metadata.tsv
-# Outputs: .tsv file that lists all of the contaminants and a .biom file of the decontaminated sOTU 
-# table. Import this file to the HPC and then use biom.slurm to convert this file to a .qza file for 
-# downstream analysis in qiime2.
-
-
 # Use the line below to debug reading the metadata file
 # meta = read_q2metadata("~/thesis/metadata/metadata_phyloseq.tsv")
-
 
 # Create a phyloseq object
 ps = qza_to_phyloseq(
@@ -127,10 +129,9 @@ final_biom <- prune_taxa(!contamdf.comb.01$contaminant, ps)
 final_biom
 
 #-----------------------Phyloseq object to Qiime2---------------------------------
-
 library(biomformat);packageVersion("biomformat")
 
-#feature-table
+# feature-table
 # If taxa_are_rows=TRUE: otu = as(otu_table(globalpatterns),"matrix"))
 # If taxa_are_rows=FALSE: t(otu_table(globalpatterns),"matrix"))
 # Upload otu_biom.biom to HPC and run biom.slurm to convert into .qza file
@@ -139,19 +140,10 @@ otu = as(otu_table(final_biom),"matrix")
 otu_biom = make_biom(data=otu)
 write_biom(otu_biom,"otu_biom.biom")
 
-#Taxonomy Table
-
+# Taxonomy Table
 taxa = as(tax_table(ps), "matrix")
 #tax_cols = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus")
 taxa1 = as.data.frame(taxa)
 #taxa$taxonomy = do.call(paste, c(taxa[tax_cols]))
 #for(co in tax_cols)taxa[co] = NULL
 write.table(taxa1, "~/qiime/taxonomy/taxa.txt", quote = FALSE, col.names = FALSE, sep = "\t")
-
-
-
-
-
-
-
-
