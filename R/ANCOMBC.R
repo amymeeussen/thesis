@@ -1,3 +1,13 @@
+# Note: this code does not work yet, I ran ANCOM in QIIME instead
+
+# This Rscript runs the phyloseq and mia package find relative abundances, run ANCOMBC
+# and create a volcano plot
+
+# Input: phyloseq object: dada2-table.qza, SILVAtree.qza, taxonomy.qza, metadata_phyloseq.tsv
+
+# Output: None yet
+
+
 library(phyloseq)
 library(tidyverse)
 library(DT)
@@ -10,14 +20,6 @@ library(mia)
 library(pheatmap)
 library(ggrepel)
 library(MicEco)
-
-# This Rscript runs the phyloseq and mia package find relative abundances, run ANCOMBC
-# and create a volcano plot
-# Input: phyloseq object
-# Output: Raw count and relative abundance table of dominant taxa per sample type, stacked barplot of
-# dominant taxa, ANCOMBC results, volcano plot of differential abundances, and heatmaps
-
-
 
 # Create a phyloseq object
 ps = qza_to_phyloseq(
@@ -161,25 +163,83 @@ dominant_foot$Area <- c(rep("ML", 4), rep("SF", 4))
 ggplot(dominant_foot, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
   ggtitle("Dominant Phylum in Mono Lake and SF Bay Foot Samples")
+------------------------DESeq2-----------------------
+  
+# pairwise comparison between Areas
+ps.taxa.sub <- subset_samples(ps, Area %in% c("ML", "SF"))
+# filter sparse features, with > 90% zeros
+ps.taxa.pse.sub <- prune_taxa(rowSums(otu_table(ps.taxa.sub) == 0) < ncol(otu_table(ps.taxa.sub)) * 0.9, ps.taxa.sub)
+ps_ds = phyloseq_to_deseq2(ps.taxa.pse.sub, ~ Area)
+# use alternative estimator on a condition of "every gene contains a sample with a zero"
+ds <- estimateSizeFactors(ps_ds, type="poscounts")
+ds = DESeq(ds, test="Wald", fitType="parametric")
+alpha = 0.05 
+res = results(ds, alpha=alpha)
+res = res[order(res$padj, na.last=NA), ]
+taxa_sig = rownames(res[1:20, ]) # select bottom 20 with lowest p.adj values
+ps.taxa.rel <- transform_sample_counts(ps, function(x) x/sum(x)*100)
+ps.taxa.rel.sig <- prune_taxa(taxa_sig, ps.taxa.rel)
+# Only keep gut and tongue samples
+ps.taxa.rel.sig <- prune_samples(colnames(otu_table(ps.taxa.pse.sub)), ps.taxa.rel.sig)
 
 
+matrix <- as.matrix(data.frame(otu_table(ps.taxa.rel.sig)))
+rownames(matrix) <- as.character(tax_table(ps.taxa.rel.sig)[, "Species"])
+metadata_sub <- data.frame(sample_data(ps.taxa.rel.sig))
+# Define the annotation color for columns and rows
+rownames(annotation_col) = rownames(metadata_sub)
 
-
-#-----------------------------ANCOMB------------------------------
-
-out <- ancombc(
-  phyloseq = ps.no,
-  formula = "Area", 
-  p_adj_method = "fdr", 
-  lib_cut = 0, 
-  group = "Area", 
-  struc_zero = TRUE, 
-  neg_lb = TRUE,
-  alpha = 0.05, 
-  global = TRUE # multi group comparison will be deactivated automatically 
+annotation_row = data.frame(
+  Phylum = as.factor(tax_table(ps.taxa.rel.sig)[, "Phylum"])
 )
+rownames(annotation_row) = rownames(matrix)
+
+# ann_color should be named vectors
+phylum_col = RColorBrewer::brewer.pal(length(levels(annotation_row$Phylum)), "Paired")
+names(phylum_col) = levels(annotation_row$Phylum)
+ann_colors = list(
+  `Body site` = c(gut = "purple", tongue = "yellow"),
+  Phylum = phylum_col
+)
+
+ComplexHeatmap::pheatmap(matrix, scale= "row", 
+                         annotation_col = annotation_col, 
+                         annotation_row = annotation_row, 
+                         annotation_colors = ann_colors)
+  
+  
+
+
+
+#-----------------------------ANCOMBC------------------------------
+out <- ancombc(phyloseq = ps.no, formula = "Area", 
+               p_adj_method = "holm", lib_cut = 1000, 
+               group = "Area", struc_zero = TRUE, neg_lb = TRUE, tol = 1e-5, 
+               max_iter = 100, conserve = TRUE, alpha = 0.05, global = TRUE)
+#out <- ancombc(
+#  phyloseq = ps,
+ # p_adj_method = "fdr",
+  #formula = "group",
+  #lib_cut = 0, 
+  #group = "Area", 
+  #struc_zero = TRUE, 
+  #neg_lb = TRUE,
+  #alpha = 0.05, 
+  #global = TRUE # multi group comparison will be deactivated automatically 
+#)
 res = out$res
 
+res.or_p <- rownames(res$q_val["AreaSF"])[base::order(res$q_val[,"AreaSF"])]
+taxa_sig <- res.or_p[1:20]
+ps.taxa.rel.sig <- prune_taxa(taxa_sig, ps.taxa.rel)
+# Only keep gut and tongue samples 
+ps.taxa.rel.sig <- prune_samples(colnames(otu_table(ps.taxa.sub)), ps.taxa.rel.sig)
+
+
+
+
+
+---------------
 tab_lfc = res$lfc
 
 tab_lfc %>% 
@@ -218,24 +278,48 @@ log_corr_abn = t(t(log_obs_abn) - samp_frac)
 round(log_corr_abn[, 1:6], 2) %>% 
   datatable(caption = "Bias-corrected log observed abundances")
 
+res = as.data.frame(res)
+
+a = ggplot(res, aes(tab_lfc, color = Area ))+
+  geom_point() +theme_bw() +
+  geom_segment(aes(x=0, xend=lfc, y=name, yend=name, color = Area)) +
+  geom_vline(xintercept = 0, size=0.3) +xlab("log2FoldChange") +ylab(NULL)
+
+
+
+
+
+
+
+
+
+
+
 #Graph not working....
 
-df_age =  res %>%
-  dplyr::select(taxon)
-df_fig_age = df_age %>%
-  filter(diff_age == 1) %>% 
-  arrange(desc(lfc_age)) %>%
-  mutate(direct = ifelse(lfc_age > 0, "Positive LFC", "Negative LFC"))
-df_fig_age$taxon = factor(df_fig_age$taxon, levels = df_fig_age$taxon)
-df_fig_age$direct = factor(df_fig_age$direct, 
-                           levels = c("Positive LFC", "Negative LFC"))
+df_lfc = data.frame(res$lfc[, -1] * res$diff_abn[, -1], check.names = FALSE) %>%
+  mutate(taxon_id = res$diff_abn$taxon) %>%
+  dplyr::select(taxon_id, everything())
+df_se = data.frame(res$se[, -1] * res$diff_abn[, -1], check.names = FALSE) %>% 
+  mutate(taxon_id = res$diff_abn$taxon) %>%
+  dplyr::select(taxon_id, everything())
+colnames(df_se)[-1] = paste0(colnames(df_se)[-1], "SE")
 
-fig_age = df_fig_age %>%
-  ggplot(aes(x = taxon, y = lfc_age, fill = direct)) + 
-  geom_bar(stat = "identity", width = 0.7, color = "black", 
+df_fig_area = df_lfc %>% 
+  dplyr::left_join(df_se, by = "taxon_id") %>%
+  dplyr::transmute(taxon_id, AreaSF, SE) %>%
+  dplyr::arrange(desc(AreaSF)) %>%
+  dplyr::mutate(direct = ifelse(Area == "ML", "ML", "SF"))
+df_fig_area$taxon_id = factor(df_fig_area$taxon_id, levels = df_fig_area$taxon_id)
+df_fig_area$direct = factor(df_fig_area$direct, 
+                           levels = c("ML", "SF"))
+
+p_age = ggplot(data = df_fig_age, 
+               aes(x = taxon_id, y = age, fill = direct, color = direct)) + 
+  geom_bar(stat = "identity", width = 0.7, 
            position = position_dodge(width = 0.4)) +
-  geom_errorbar(aes(ymin = lfc_age - se_age, ymax = lfc_age + se_age), 
-                width = 0.2, position = position_dodge(0.05), color = "black") + 
+  geom_errorbar(aes(ymin = age - ageSE, ymax = age + ageSE), width = 0.2,
+                position = position_dodge(0.05), color = "black") + 
   labs(x = NULL, y = "Log fold change", 
        title = "Log fold changes as one unit increase of age") + 
   scale_fill_discrete(name = NULL) +
@@ -244,13 +328,7 @@ fig_age = df_fig_age %>%
   theme(plot.title = element_text(hjust = 0.5),
         panel.grid.minor.y = element_blank(),
         axis.text.x = element_text(angle = 60, hjust = 1))
-fig_age
-
-
-
-
-
-
+p_age
 
 #-------------------------Heatmap of counts (not differential abundance)---------------------------------
 # Agglomerate tse by phylum
@@ -473,8 +551,7 @@ tse_family <- agglomerateByRank(tse,
 tse_family <- transformCounts(tse_family, method = "clr", assay_name = "counts", pseudocount=1)
 
 # Add z-transformation on features (taxa)
-tse_family <- transformCounts(tse_family, MARGIN = "features", assay.type = "clr", 
-                              method = "z", name = "clr_z")
+tse_family <- transformCounts(tse_family, method = "z", MARGIN = "features", assay.type = "clr",  name = "clr_z")
 
 # Take subset: only samples from foot
 tse_family_subset <- tse_family[ , tse_family$type %in% c("F") ]
@@ -489,7 +566,7 @@ tse_family_subset <- transformCounts(tse_family_subset, assay_name = "clr",
                                      method = "z", name = "clr_z")
 
 # Get n most abundant taxa, and subsets the data by them
-top_taxa <- getTopTaxa(tse_family_subset, top = 20)
+top_taxa <- getTopTaxa(tse_family_subset, top = 7)
 tse_family <- tse_family_subset[top_taxa, ]
 
 
@@ -640,6 +717,9 @@ data$area[data$clr > 0 & data$sig.w == "TRUE" ] <- "SF Bay"
 data$area[data$clr < 0 & data$sig.w == "TRUE" ] <- "Mono Lake"
 
 
+
+-----------------
+  
 
 
 
