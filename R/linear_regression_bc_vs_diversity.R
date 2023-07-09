@@ -1,3 +1,12 @@
+# This Rscript uses the phyloseq packages to create relative abundance tables per sample; it rarefies
+# the samples, and it creates shannon alpha diversity plots + weighted unifrac ordination plots along
+# with a PERMANOVA test. 
+
+# Input: phyloseq object
+
+# Output: Relative abundance bar chart, rarification plot, shannon diversity plots by sample type, 
+#         and weighted unifrac ordination plot + PERMANOVA results
+
 library(phyloseq)
 library(tidyverse)
 library(DT)
@@ -13,15 +22,6 @@ library(MicEco)
 library(breakaway)
 library(microbiome)
 
-
-# This Rscript uses the phyloseq packages to create relative abundance tables per sample; it rarefies
-# the samples, and it creates shannon alpha diversity plots + weighted unifrac ordination plots along
-# with a PERMANOVA test. 
-# Input: phyloseq object
-# Output: Relative abundance bar chart, rarification plot, shannon diversity plots by sample type, 
-# and weighted unifrac ordination plot + PERMANOVA results
-
-
 # Create a phyloseq object
 ps = qza_to_phyloseq(
   features = "~/qiime/denoising_ss/dada2-table.qza",
@@ -32,7 +32,7 @@ ps = qza_to_phyloseq(
 ps_ML = subset_samples(ps, Area %in% "ML")
 ps_SF = subset_samples(ps, Area %in% "SF")
 
-#Test for Shannon diversity with phyloseq package
+# Test for Shannon diversity with phyloseq package
 sd = estimate_richness(ps_ML, measures = "Shannon")
 sd
 
@@ -40,10 +40,10 @@ Ch = estimate_richness(ps_ML, measures = "Chao1")
 Ch
 Chao.df = as.data.frame(Ch)
 
-#FPD = picante::pd(samp, tree, include.root=TRUE)
+# FPD = picante::pd(samp, tree, include.root=TRUE)
 
-#create a dataframe with diversity metrics and groups you want to test for diversity. You will need this
-#test variance of diversity metrics between groups. 
+# create a dataframe with diversity metrics and groups you want to test for diversity. You will need this
+# test variance of diversity metrics between groups. 
 
 diversity = as.data.frame(sd)
 meta = meta(ps_ML)
@@ -54,7 +54,6 @@ diversity$Choa1 = Chao.df$Chao1
 
 diversity = na.omit(diversity)
 hist(diversity$condition)
-hist(SF$condition)
 
 
 
