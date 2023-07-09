@@ -5,8 +5,8 @@
 #SBATCH --time=48:00:00
 #SBATCH --partition=nodes
 #SBATCH --job-name=dem_den_tax
-#SBATCH --error=/home/aparsons/qiime/log/whole3.log
-#SBATCH --output=/home/aparsons/qiime/log/whole3.log
+#SBATCH --error=/home/aparsons/qiime/log/whole3_final.log
+#SBATCH --output=/home/aparsons/qiime/log/whole3_final.log
 
 echo "Activating qiime environemnt"
 source activate qiime2-2022.8
@@ -16,7 +16,7 @@ source activate qiime2-2022.8
 #rm -rf ~/qiime/demux/ && \
 #mkdir -p ~/qiime/demux && \
 #date && \
-# negative controls and birds 20, 60, 66 and 46 are filtered out of the metadata
+## negative controls and birds 46 and 66 are filtered out of the metadata
 #qiime demux emp-paired --m-barcodes-file ~/thesis/metadata/metadata.tsv --m-barcodes-column barcodes --i-seqs ~/qiime/lab_data/emp-paired-end-sequences.qza --o-per-sample-sequences ~/qiime/demux/demux.qza --o-error-correction-details ~/qiime/demux/demux-details.qza --p-no-golay-error-correction && \
 #qiime demux summarize --i-data ~/qiime/demux/demux.qza --o-visualization ~/qiime/demux/demux.qzv && \
 #echo "finished demultiplexing" && \
@@ -45,13 +45,13 @@ source activate qiime2-2022.8
 #echo "finished visualization" && \
 #date && \
 #echo "start filter seq-rep" && \
-# seq=reps: filter out Mitochondria, Chloroplast, Eukaryota/ include all taxa with phylum labels/ decontam table not used
+## seq=reps: filter out Mitochondria, Chloroplast, Eukaryota/ include all taxa with phylum labels/ decontam table not used
 #qiime taxa filter-seqs --i-sequences ~/qiime/denoising/rep-seqs-dada2.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-include p__  --p-exclude Mitochondria,Chloroplast --o-filtered-sequences ~/qiime/denoising/sequences-filtered-noM-noC.qza && \
 #qiime taxa filter-seqs --i-sequences ~/qiime/denoising/sequences-filtered-noM-noC.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-include p__  --p-exclude "d_Eukaryota" --o-filtered-sequences ~/qiime/denoising/sequences-filtered.qza && \
 #echo "finish filter seq-rep" && \
 #\
 #echo "start filter taxa table" && \
-# taxa table: filter out Mitochondria, Chloroplast, Eukaryota/ include all taxa with phylum labels/ decontam table not used
+## taxa table: filter out Mitochondria, Chloroplast, Eukaryota/ include all taxa with phylum labels/ decontam table not used
 #qiime taxa filter-table --i-table ~/qiime/denoising/dada2-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-include p__ --p-exclude Mitochondria,Chloroplast --o-filtered-table ~/qiime/denoising/taxa-table-filtered-noM-noC.qza && \
 #qiime taxa filter-table --i-table ~/qiime/denoising/taxa-table-filtered-noM-noC.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-exclude "d_Eukaryota" --o-filtered-table ~/qiime/denoising/feature-table-filtered.qza && \
 #echo "finish filter taxa table" && \
@@ -71,55 +71,59 @@ source activate qiime2-2022.8
 #mkdir -p ~/qiime/diversity/ && \
 #qiime diversity alpha-rarefaction --i-table ~/qiime/denoising/feature-table-filtered.qza --i-phylogeny ~/qiime/PhylogeneticTree/SILVAtree.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-max-depth 60000 --p-steps 30 --p-iterations 20 --o-visualization ~/qiime/diversity/alpha-rarefaction-rooted.qzv && \
 #\
-echo "Starting alpha diversity" && \
-rm -rf ~/qiime/core-metric-results/ && \
-qiime diversity core-metrics-phylogenetic --i-phylogeny ~/qiime/PhylogeneticTree/SILVAtree.qza --i-table ~/qiime/denoising/feature-table-filtered.qza --p-sampling-depth 15000 --m-metadata-file ~/thesis/metadata/metadata.tsv --output-dir ~/qiime/core-metric-results/ && \ 
-qiime diversity alpha-group-significance --i-alpha-diversity ~/qiime/core-metric-results/faith_pd_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/faith-pd-group-significance.qzv && \
-qiime diversity alpha-group-significance --i-alpha-diversity ~/qiime/core-metric-results/evenness_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/evenness-group-significance.qzv && \
-qiime diversity alpha-correlation --i-alpha-diversity ~/qiime/core-metric-results/faith_pd_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/alpha-correlation-test.qzv && \
-\
-echo "start beta diversity" && \
-qiime diversity beta-group-significance --i-distance-matrix ~/qiime/core-metric-results/unweighted_unifrac_distance_matrix.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-Area-group-significance.qzv && \
-qiime diversity beta-group-significance --i-distance-matrix ~/qiime/core-metric-results/unweighted_unifrac_distance_matrix.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column type --p-pairwise --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-sampletype-group-significance.qzv && \
-\
-qiime emperor plot --i-pcoa ~/qiime/core-metric-results/unweighted_unifrac_pcoa_results.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-emperor.qzv && \
-qiime emperor plot --i-pcoa ~/qiime/core-metric-results/bray_curtis_pcoa_results.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/bray-curtis-emperor.qzv && \
-\
+#echo "Starting alpha diversity" && \
+#rm -rf ~/qiime/core-metric-results/ && \
+#qiime diversity core-metrics-phylogenetic --i-phylogeny ~/qiime/PhylogeneticTree/SILVAtree.qza --i-table ~/qiime/denoising/feature-table-filtered.qza --p-sampling-depth 11449 --m-metadata-file ~/thesis/metadata/metadata.tsv --output-dir ~/qiime/core-metric-results/ && \ 
+#qiime diversity alpha-group-significance --i-alpha-diversity ~/qiime/core-metric-results/faith_pd_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/faith-pd-group-significance.qzv && \
+#qiime diversity alpha-group-significance --i-alpha-diversity ~/qiime/core-metric-results/evenness_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/evenness-group-significance.qzv && \
+#qiime diversity alpha-correlation --i-alpha-diversity ~/qiime/core-metric-results/faith_pd_vector.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/alpha-correlation-test.qzv && \
+#\
+#echo "start beta diversity" && \
+#qiime diversity beta-group-significance --i-distance-matrix ~/qiime/core-metric-results/unweighted_unifrac_distance_matrix.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-Area-group-significance.qzv && \
+#qiime diversity beta-group-significance --i-distance-matrix ~/qiime/core-metric-results/unweighted_unifrac_distance_matrix.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column type --p-pairwise --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-sampletype-group-significance.qzv && \
+#\
+#qiime emperor plot --i-pcoa ~/qiime/core-metric-results/unweighted_unifrac_pcoa_results.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/unweighted-unifrac-emperor.qzv && \
+#qiime emperor plot --i-pcoa ~/qiime/core-metric-results/bray_curtis_pcoa_results.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --o-visualization ~/qiime/core-metric-results/bray-curtis-emperor.qzv && \
+#\
 echo "start mouth differential abundance" && \
 rm -rf ~/qiime/ANCOM/ && \
 mkdir -p ~/qiime/ANCOM && \
-qiime feature-table filter-samples --i-table ~/qiime/denoising/feature-table-filtered.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-where '[type]='"'"'M'"'"'' --o-filtered-table ~/qiime/ANCOM/mouth-table.qza && \
-qiime composition add-pseudocount --i-table ~/qiime/ANCOM/mouth-table.qza --o-composition-table ~/qiime/ANCOM/comp-mouth-table.qza && \
-qiime composition ancom --i-table ~/qiime/ANCOM/comp-mouth-table.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/ancom-mouth-Area.qzv && \
-\
-echo "start foot differential abundance" && \
-qiime feature-table filter-samples --i-table ~/qiime/denoising/feature-table-filtered.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-where '[type]='"'"'F'"'"'' --o-filtered-table ~/qiime/ANCOM/foot-table.qza && \
-qiime composition add-pseudocount --i-table ~/qiime/ANCOM/foot-table.qza --o-composition-table ~/qiime/ANCOM/comp-foot-table.qza && \
-qiime composition ancom --i-table ~/qiime/ANCOM/comp-foot-table.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/ancom-foot-Area.qzv && \
-\
-echo "start cloaca differential abundance" && \
-qiime feature-table filter-samples --i-table ~/qiime/denoising/feature-table-filtered.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-where '[type]='"'"'C'"'"'' --o-filtered-table ~/qiime/ANCOM/cloaca-table.qza && \
-qiime composition add-pseudocount --i-table ~/qiime/ANCOM/cloaca-table.qza --o-composition-table ~/qiime/ANCOM/comp-cloaca-table.qza && \
-qiime composition ancom --i-table ~/qiime/ANCOM/comp-cloaca-table.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/ancom-cloaca-Area.qzv && \
-\
-echo "start mouth differential abundance at genus level" && \
-qiime taxa collapse --i-table ~/qiime/ANCOM/mouth-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-level 6 --o-collapsed-table ~/qiime/ANCOM/mouth-table-l6.qza && \
-qiime composition add-pseudocount --i-table ~/qiime/ANCOM/mouth-table-l6.qza --o-composition-table ~/qiime/ANCOM/comp-mouth-table-l6.qza && \
-qiime composition ancom --i-table ~/qiime/ANCOM/comp-mouth-table-l6.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/l6-ancom-mouth-Area.qzv && \
-\
-echo "start foot differential abundance at genus level" && \
-qiime taxa collapse --i-table ~/qiime/ANCOM/foot-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-level 6 --o-collapsed-table ~/qiime/ANCOM/foot-table-l6.qza && \
-qiime composition add-pseudocount --i-table ~/qiime/ANCOM/foot-table-l6.qza --o-composition-table ~/qiime/ANCOM/comp-foot-table-l6.qza && \
-qiime composition ancom --i-table ~/qiime/ANCOM/comp-foot-table-l6.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/l6-ancom-foot-Area.qzv && \
-\
-echo "start cloaca differential abundance at genus level" && \
-qiime taxa collapse --i-table ~/qiime/ANCOM/cloaca-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-level 6 --o-collapsed-table ~/qiime/ANCOM/cloaca-table-l6.qza && \
-qiime composition add-pseudocount --i-table ~/qiime/ANCOM/cloaca-table-l6.qza --o-composition-table ~/qiime/ANCOM/comp-cloaca-table-l6.qza && \
-qiime composition ancom --i-table ~/qiime/ANCOM/comp-cloaca-table-l6.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/l6-ancom-cloaca-Area.qzv && \
-\
-echo "Start identifying core microbiome" && \
-rm -rf ~/qiime/core/ && \
-mkdir -p ~/qiime/core && \
-date && \
-qiime feature-table core-features --i-table ~/qiime/denoising/feature-table-filtered.qza --o-visualization ~/qiime/core/core.qzv && \
-date
+qiime feature-table filter-samples --i-table ~/qiime/denoising/feature-table-filtered.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-where '[Area]='"'"'SF'"'"'' --o-filtered-table ~/qiime/ANCOM/mouth-table-SF.qza && \
+qiime feature-table filter-samples --i-table ~/qiime/ANCOM/mouth-table-SF.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-where '[type]='"'"'M'"'"'' --o-filtered-table ~/qiime/ANCOM/mouth-table-SF.qza && \
+qiime composition add-pseudocount --i-table ~/qiime/ANCOM/mouth-table-SF.qza --o-composition-table ~/qiime/ANCOM/comp-mouth-table-SF.qza && \
+qiime composition ancom --i-table ~/qiime/ANCOM/comp-mouth-table-SF.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column condition_score --o-visualization ~/qiime/ANCOM/ancom-mouth-bc-SF.qzv && \
+#\
+#echo "start foot differential abundance" && \
+#qiime feature-table filter-samples --i-table ~/qiime/denoising/feature-table-filtered.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-where '[type]='"'"'F'"'"'' --o-filtered-table ~/qiime/ANCOM/foot-table.qza && \
+#qiime composition add-pseudocount --i-table ~/qiime/ANCOM/foot-table.qza --o-composition-table ~/qiime/ANCOM/comp-foot-table.qza && \
+#qiime composition ancom --i-table ~/qiime/ANCOM/comp-foot-table.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/ancom-foot-Area.qzv && \
+#\
+#echo "start cloaca differential abundance" && \
+#qiime feature-table filter-samples --i-table ~/qiime/denoising/feature-table-filtered.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --p-where '[type]='"'"'C'"'"'' --o-filtered-table ~/qiime/ANCOM/cloaca-table.qza && \
+#qiime composition add-pseudocount --i-table ~/qiime/ANCOM/cloaca-table.qza --o-composition-table ~/qiime/ANCOM/comp-cloaca-table.qza && \
+#qiime composition ancom --i-table ~/qiime/ANCOM/comp-cloaca-table.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/ancom-cloaca-Area.qzv && \
+#\
+#echo "start mouth differential abundance at genus level" && \
+#qiime taxa collapse --i-table ~/qiime/ANCOM/mouth-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-level 6 --o-collapsed-table ~/qiime/ANCOM/mouth-table-l6.qza && \
+#qiime composition add-pseudocount --i-table ~/qiime/ANCOM/mouth-table-l6.qza --o-composition-table ~/qiime/ANCOM/comp-mouth-table-l6.qza && \
+#qiime composition ancom --i-table ~/qiime/ANCOM/comp-mouth-table-l6.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/l6-ancom-mouth-Area.qzv && \
+#\
+#echo "start foot differential abundance at genus level" && \
+#qiime taxa collapse --i-table ~/qiime/ANCOM/foot-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-level 6 --o-collapsed-table ~/qiime/ANCOM/foot-table-l6.qza && \
+#qiime composition add-pseudocount --i-table ~/qiime/ANCOM/foot-table-l6.qza --o-composition-table ~/qiime/ANCOM/comp-foot-table-l6.qza && \
+#qiime composition ancom --i-table ~/qiime/ANCOM/comp-foot-table-l6.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/l6-ancom-foot-Area.qzv && \
+#\
+#echo "start cloaca differential abundance at genus level" && \
+#qiime taxa collapse --i-table ~/qiime/ANCOM/cloaca-table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-level 6 --o-collapsed-table ~/qiime/ANCOM/cloaca-table-l6.qza && \
+#qiime composition add-pseudocount --i-table ~/qiime/ANCOM/cloaca-table-l6.qza --o-composition-table ~/qiime/ANCOM/comp-cloaca-table-l6.qza && \
+#qiime composition ancom --i-table ~/qiime/ANCOM/comp-cloaca-table-l6.qza --m-metadata-file ~/thesis/metadata/metadata.tsv --m-metadata-column Area --o-visualization ~/qiime/ANCOM/l6-ancom-cloaca-Area.qzv && \
+#\
+#echo "Start identifying core microbiome" && \
+#rm -rf ~/qiime/core/ && \
+#mkdir -p ~/qiime/core && \
+#date && \
+#qiime feature-table core-features --i-table ~/qiime/ANCOM/mouth-table.qza --o-visualization ~/qiime/core/mouth_core.qzv && \
+#qiime feature-table core-features --i-table ~/qiime/ANCOM/foot-table.qza --o-visualization ~/qiime/core/foot_core.qzv && \
+#qiime feature-table core-features --i-table ~/qiime/ANCOM/cloaca-table.qza --o-visualization ~/qiime/core/cloaca_core.qzv && \
+date \
+
