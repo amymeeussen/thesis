@@ -1,3 +1,9 @@
+# This Rscript uses the package physloseq to plot raw count data of top 9 Phyla in each colony
+
+# Input: phyloseq object
+
+# Output: Nine barplots with raw count data of top 9 Phyla in each colony
+
 library(phyloseq)
 library(tidyverse)
 library(DT)
@@ -8,11 +14,6 @@ library(ggforce)
 library(ANCOMBC)
 library(mia)
 
-#This Rscript uses the package physloseq to plot raw count data of top 9 Phyla in each colony
-#Input: phyloseq object
-#Output: Nine barplots with raw count data of top 9 Phyla in each colony
-
-
 # Create a phyloseq object
 ps = qza_to_phyloseq(
   features = "~/qiime/denoising/dada2-table.qza",
@@ -20,25 +21,20 @@ ps = qza_to_phyloseq(
   taxonomy = "~/qiime/taxonomy/taxonomy.qza",
   metadata = "~/thesis/metadata/metadata_phyloseq.tsv")
 
-#filter out negative controls
+# filter out negative controls
 ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
 
-
-#Get count of phyla
+# Get count of phyla
 table(phyloseq::tax_table(ps.no)[, "Phylum"])
-
 
 ps_phylum <- phyloseq::tax_glom(ps.no, "Phylum")
 phyloseq::taxa_names(ps_phylum) = phyloseq::tax_table(ps_phylum)[, "Phylum"]
-
-
 
 filter = phyloseq::genefilter_sample(ps_phylum, filterfun_sample(function(x) x >= 250), 
                                       A = 0.2*nsamples(ps_phylum))
 ps_filtered <- prune_taxa(filter, ps_phylum)
 
 phyloseq::otu_table(ps_filtered)[1:9, 1:9]
-
 
 phyloseq::psmelt(ps_filtered) %>%
   ggplot(data = ., aes(x = Area, y = Abundance)) +
