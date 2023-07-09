@@ -1,3 +1,11 @@
+# This Rscript runs 3 methods for decontaminating samples (prevelance, frequency, and combined)
+
+# Input: phyloseq object, DNA concentration list from Argonne labs, and a list of negative
+#        lab controls
+
+# Output: list of contaminants for each method with .01 and .05 threshold, a new feature table to be
+#         reread back into QIIME2
+
 library(phyloseq)
 library(decontam)
 library(tidyverse)
@@ -6,12 +14,6 @@ library(qiime2R)
 
 # Use the line below to debug reading the metadata file
 # meta = read_q2metadata("~/thesis/metadata/metadata_phyloseq.tsv")
-
-#This Rscript runs 3 methods for decontaminating samples (prevelance, frequency, and combined)
-#Input: phyloseq object, DNA concentration list from Argonne labs, and a list of negative
-#lab controls
-#Output: list of contaminants for each method with .01 and .05 threshold, a new feature table to be
-#reread back into QIIME2
 
 
 ps = qza_to_phyloseq(
