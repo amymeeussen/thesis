@@ -1,7 +1,10 @@
+# This Rscript gives a list of 102 contaminents, but I still need to figure out how to convert that data into a 
+# file that I can use in QIIME to clean out my otu table. 
+
 # This Rscript runs 3 methods for decontaminating samples (prevelance, frequency, and combined)
 
 # Input: phyloseq object, DNA concentration list from Argonne labs, and a list of negative
-#        lab controls
+#        lab controls (make sure to use metadata_phyloseq.tsv that includes negative controls!)
 
 # Output: list of contaminants for each method with .01 and .05 threshold, a new feature table to be
 #         reread back into QIIME2

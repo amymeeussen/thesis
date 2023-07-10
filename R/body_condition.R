@@ -1,5 +1,5 @@
 # This RScript reads the metadata file and generates a histogram plot of the body conditions
-# in the San Francisco and Mono lake locations. Also tests significance of difference betwee
+# in the San Francisco and Mono lake locations. Also tests significance of difference between
 # body condition in the two locations.
 
 # Input: ~/thesis/metadata/metadata.csv file on disk
@@ -43,5 +43,7 @@ barplot(
   legend.text = c("Mono Lake", "San Francisco"),
   col = c(blue, green),
   xlab = "Body Condition(scaled mass index)",
-  ylab = "Number of birds"
-)
+  ylab = "Number of birds", 
+  cex.axis = 1.5,
+  cex.names = 1.5, 
+  cex.lab = 1.5) 

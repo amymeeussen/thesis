@@ -57,9 +57,6 @@ hist(diversity$condition)
 
 
 
-
-
-
 #test for normality
 shapiro.test(diversity$condition)
 #use levene's test to test for equal variance, since data is not normal
