@@ -8,6 +8,8 @@
 #SBATCH --error=/home/aparsons/qiime/log/biom.log
 #SBATCH --output=/home/aparsons/qiime/log/biom.log
 
+# This file was used to convert the .biom file from Decontam into a .qza file for use in QIIME.
+
 echo "Activating qiime environemnt"
 source activate qiime2-2022.8
 
