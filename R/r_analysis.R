@@ -44,8 +44,9 @@ ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
 # rarefy samples without controls
 
 set.seed(999) # keep result reproductive
-ps.rarefied = rarefy_even_depth(ps.no, rngseed=1, replace=F)
+ps.rarefied = rarefy_even_depth(ps.no, rngseed=1, sample.size = min(sample_sums(ps)), replace=F)
 
+print(ps.rarefied)
 
 # Check that sample sizes are all even
 barplot(sample_sums(ps.rarefied), las =2)
@@ -98,24 +99,47 @@ adiv %>%
   theme_classic() +
   stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) + 
   ggtitle("Faith\'s Phylogenetic Diversity Index of CAGU samples in SF and ML, by type") 
-  
 
-# Shannon's by type
+# Shannon's (both areas combined)
 
 adiv %>%
   gather(key = metric, value = value, c("Shannon")) %>%
   mutate(metric = factor(metric, levels = c("Shannon"))) %>%
-  ggplot(aes(x = Are, y = value)) +
+  ggplot(aes(x = Area, y = value)) +
   geom_boxplot(outlier.color = NA) +
   geom_jitter(aes(color = Area), height = 0, width = .2) +
   labs(x = "Location", y = "Shannon diversity index") +
   facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Foot", "M" = "Mouth"))) +
   theme(legend.position="none") +
-  theme_q2r() + 
+  theme_bw() + 
   theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = 0))+
-  theme(text = element_text(size = 20)) +
-  stat_compare_means(method = "kruskal.test", label.x = 1, label.y = 1) 
+  theme(text = element_text(size = 25)) +
+  stat_compare_means(method = "kruskal.test", label.x = 0.85, label.y = 1, size = 7) + 
+  ggtitle("Shannon Diversity Index for each body site")
+
+
+
+
+
+
   
+
+#Shannon's by type
+
+adiv %>%
+  gather(key = metric, value = value, c("Shannon")) %>%
+  mutate(metric = factor(metric, levels = c("Shannon"))) %>%
+  ggplot(aes(x = Area, y = value)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter(aes(color = Area), height = 0, width = .2) +
+  labs(x = "Location", y = "Shannon diversity index") +
+ facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Foot", "M" = "Mouth"))) +
+  theme(legend.position="none") +
+  theme_bw() + 
+  theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = -90))+
+  theme(text = element_text(size = 25)) +
+  stat_compare_means(method = "wilcox.test", label.x = 0.85, label.y = 1, size = 5) + 
+  ggtitle("Shannon Diversity Index for each body site")
  
 
 # Observed richness, by type
@@ -146,6 +170,7 @@ adiv %>%
   geom_jitter(aes(color = Area), height = 0, width = .2) +
   labs(x = "Location", y = "Pielou/'s evenness index") +
   facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Foot", "M" = "Mouth"))) +
+  theme_classic() +
   theme(legend.position="none") +
   stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) + 
   ggtitle("Pielou/'s evenness index for each body site")
