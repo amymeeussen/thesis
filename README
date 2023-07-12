@@ -1,1 +1,1 @@
-# thesis
+# This project holds all of the code used to analyze our microbiome data. The analysis was first carried out in QIIME2 and then in R. The dem_den_tax.slurm file in the qiime folder contains the entire run of code for the QIIME2 portion of the analysis. Various other explorations and analyses were then carried out with the code in the R folder. 

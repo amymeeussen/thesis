@@ -1,4 +1,6 @@
-# How to install R on the Linux Chromebook
+# R was used to explore data and analyze diversity, after microbiome sequences were demultiplexed, denoising, classified, and fit into a Phylogenetic tree in QIIME2. 
+
+#How to install R on the Linux Chromebook
 # ----------------------------------------
 
 # Allow for a newer version of R

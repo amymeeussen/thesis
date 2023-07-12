@@ -1,3 +1,6 @@
+# The entire QIIME2 code for this analysis is located in the dem_den_tax.slurm file. 
+
+
 https://docs.qiime2.org/2023.5/install/native/#install-qiime-2-within-a-conda-environment
 
 wget https://data.qiime2.org/distro/core/qiime2-2023.5-py38-linux-conda.yml

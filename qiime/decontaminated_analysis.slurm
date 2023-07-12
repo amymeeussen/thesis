@@ -8,7 +8,11 @@
 #SBATCH --error=/home/aparsons/qiime/log/decontam.log
 #SBATCH --output=/home/aparsons/qiime/log/decontam.log
 
-echo "Activating qiime environemnt"
+# This file was used to incorporate the cleaned-out feature table from decontam, back into my analysis. I forgot that it existed! It may or may not 
+# work. I will test again soon.
+
+
+echo "Activating qiime environment"
 source activate qiime2-2022.8
 #echo "starting clean" && \
 #qiime taxa filter-table --i-table ~/qiime/denoising/decontam_table.qza --i-taxonomy ~/qiime/taxonomy/taxonomy.qza --p-exclude 'p_; ,Mitochondria,Chloroplast,Eukaryota' --o-filtered-table ~/qiime/denoising/decontam_table_filtered.qza && \
