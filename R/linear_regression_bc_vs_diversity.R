@@ -1,11 +1,8 @@
-# This Rscript uses the phyloseq packages to create relative abundance tables per sample; it rarefies
-# the samples, and it creates shannon alpha diversity plots + weighted unifrac ordination plots along
-# with a PERMANOVA test. 
+# This Rscript makes a linear regression of body condition and diversity. 
 
 # Input: phyloseq object
 
-# Output: Relative abundance bar chart, rarification plot, shannon diversity plots by sample type, 
-#         and weighted unifrac ordination plot + PERMANOVA results
+# Output: Linear regression test
 
 library(phyloseq)
 library(tidyverse)
@@ -29,16 +26,20 @@ ps = qza_to_phyloseq(
   taxonomy = "~/qiime/taxonomy_ss/taxonomy.qza",
   metadata = "~/thesis/metadata/metadata_phyloseq.tsv")
 
+# filter out negative controls
+ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
+
+# subset individual areas
 ps_ML = subset_samples(ps, Area %in% "ML")
 ps_SF = subset_samples(ps, Area %in% "SF")
 
 # Test for Shannon diversity with phyloseq package
-sd = estimate_richness(ps_ML, measures = "Shannon")
+sd = estimate_richness(ps.no, measures = "Shannon")
 sd
 
-Ch = estimate_richness(ps_ML, measures = "Chao1")
-Ch
-Chao.df = as.data.frame(Ch)
+Ob = estimate_richness(ps.no, measures = "Observed")
+Ob
+Ob.df = as.data.frame(Ch)
 
 # FPD = picante::pd(samp, tree, include.root=TRUE)
 
@@ -46,30 +47,41 @@ Chao.df = as.data.frame(Ch)
 # test variance of diversity metrics between groups. 
 
 diversity = as.data.frame(sd)
-meta = meta(ps_ML)
+meta = meta(ps.no)
 diversity$Area = meta$Area
 diversity$sex = meta$sex
 diversity$condition = meta$body_condition
 diversity$Choa1 = Chao.df$Chao1
+diversity$type = meta$type
 
-diversity = na.omit(diversity)
-hist(diversity$condition)
+#----------------------------------------Linear Regression--------------------------------
 
+#Assumptions of the linear regression test
+
+# 1. Linear relationship
+# 2. Normality
+# 3. No multicolinearity
+# 4. Equal variances
 
 
 #test for normality
 shapiro.test(diversity$condition)
+
+diversity = na.omit(diversity)
+hist(diversity$condition)
+
 #use levene's test to test for equal variance, since data is not normal
-result = leveneTest(Shannon ~ interaction(Area), data = diversity)
+leveneTest(Shannon ~ interaction(Area), data = diversity)
 
 #Test for equal variance (2nd assumption of the wilcoxon rank sum test)
 var.test(diversity$Shannon ~ diversity$Area, alternative = "two.sided")
 
 # Remove birds that don't have bc or sex data
-#diversity$Bird = meta$Bird
-#diversity_zbc = diversity %>% filter(!Bird %in% c("41", "37", "2", "19", "57"))
+diversity$Bird = meta$Bird
+diversity_zbc = diversity %>% filter(!Bird %in% c("41", "37", "2", "19", "57"))
 
 #test for equal variance between body conditions and sexes
+
 #var.test(diversity_zbc$Shannon ~ diversity_zbc$bc, alternative = "two.sided")
 #var.test(diversity_zbc$Shannon ~ diversity_zbc$sex, alternative = "two.sided")
  
@@ -103,6 +115,15 @@ summary(L_model)
 
 result <- t.test(sample1, sample2, alternative = "two.sided", var.equal = TRUE)
 
+#-------------------------------Equal variance in Mouth samples------------------------
 
+# Assumptions of levenes test: 
+# 1. independent observations
+# 2. variables are quantitative
+
+
+diversity_M= filter(diversity, type == "M")
+
+leveneTest(Shannon ~ interaction(Area), data = diversity_M)
 
 

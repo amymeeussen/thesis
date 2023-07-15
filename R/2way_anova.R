@@ -18,6 +18,7 @@ library(dplyr)
 library(MicEco)
 library(breakaway)
 library(microbiome)
+library(car)
 
 ps = qza_to_phyloseq(
   features = "~/qiime/denoising_ss/dada2-table.qza",
@@ -39,14 +40,14 @@ ps_ML = subset_samples(ps, Area %in% c("ML"))
 
 
 #Test for Shannon diversity with phyloseq package 
-sd = estimate_richness(ps.no_ss, measures = c("Shannon"))
+sd = estimate_richness(ps.no, measures = c("Shannon"))
 sd
 
 
 #Make a dataframe with variables you'll use in 2 way ANOVA
 
 diversity = as.data.frame(sd)
-meta = meta(ps_ML)
+meta = meta(ps.no)
 diversity$Area = meta$Area
 diversity$bc = meta$condition_score
 diversity$sex = meta$sex
@@ -59,8 +60,25 @@ diversity[diversity == ""] = NA
 #Remove all rows with NA in the bc column
 diversity = diversity[complete.cases(diversity$bc), ]
 
+# Create a seperate dataframe for each individual variable
+
+diversity_low = filter(diversity, bc == "low")
+diversity_high = filter(diversity, bc == "high")
+
+diversity_ML = filter(diversity, Area == "ML")
+diversity_SF = filter(diversity, Area == "SF")
+
+# Check for normality in diversity within Area and diversity within body_condition
+
+shapiro.test(diversity_low$Shannon)
+shapiro.test(diversity_high$Shannon)
+
+shapiro.test(diversity_ML$Shannon)
+shapiro.test(diversity_SF$Shannon)
+
 #Check for equal means in 
 
+leveneTest(Shannon ~ interaction(condition), data = diversity)
 
 #Check structure of the dataframe
 str(diversity)
@@ -69,7 +87,7 @@ str(diversity)
 table(diversity$bc, diversity$Area)
 
 library(car)
-my_anova <- aov(Shannon ~  bc + , data = diversity)
+my_anova <- aov(Shannon ~ Area * bc, data = diversity)
 Anova(my_anova, type = "III")
 
 
