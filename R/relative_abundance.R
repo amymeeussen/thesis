@@ -26,7 +26,7 @@ ps = qza_to_phyloseq(
 ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
 
 #----------------------------Explore Data-------------------------------
-#Get raw count and the relative frequency of 6 dominant Families in ML and SF
+# Get raw count and the relative frequency of 6 dominant Families in ML and SF
 
 # Mouth: dominant bacteria
 
@@ -37,13 +37,13 @@ tse_subset <- tse[ , tse$type %in% c("M")]
 tse_ML_M = tse_subset[, tse_subset$Area %in% "ML"]
 
 dominant_taxa_ML_M = countDominantTaxa(tse_ML_M,rank = "Family")
-
+dominant_taxa_ML_M$Area = "ML"
 
 tse_subset <- tse[ , tse$type %in% c("M")]
 tse_SF_M = tse_subset[, tse_subset$Area %in% "SF"]
 
 dominant_taxa_SF_M = countDominantTaxa(tse_SF_M,rank = "Family")
-dominant_taxa_SF_M
+dominant_taxa_SF_M$Area = "SF"
 
 # Cloaca: dominant bacteria
 
@@ -51,11 +51,12 @@ tse_subset <- tse[ , tse$type %in% c("C")]
 tse_ML_C = tse_subset[, tse_subset$Area %in% "ML"]
 
 dominant_taxa_ML_C = countDominantTaxa(tse_ML_C,rank = "Family")
+dominant_taxa_ML_C$Area = "ML"
 
 tse_SF_C = tse_subset[, tse_subset$Area %in% "SF"]
 
 dominant_taxa_SF_C = countDominantTaxa(tse_SF_C,rank = "Family")
-
+dominant_taxa_SF_C$Area = "SF"
 
 # Foot: dominant bacteria
 
@@ -63,16 +64,16 @@ tse_subset <- tse[ , tse$type %in% c("F")]
 tse_ML_F = tse_subset[, tse_subset$Area %in% "ML"]
 
 dominant_taxa_ML_F = countDominantTaxa(tse_ML_F,rank = "Family")
+dominant_taxa_ML_F$Area = "ML"
 
 tse_SF_F = tse_subset[, tse_subset$Area %in% "SF"]
 
 dominant_taxa_SF_F = countDominantTaxa(tse_SF_F,rank = "Family")
+dominant_taxa_SF_F$Area = "SF"
 
 # Stacked barplot mouth
 
 dominant_mouth = rbind(dominant_taxa_ML_M, dominant_taxa_SF_M)
-
-dominant_mouth$Area <- c(rep("ML", 6), rep("SF", 6))
 
 ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
@@ -82,8 +83,6 @@ ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) +
 
 dominant_foot = rbind(dominant_taxa_ML_F, dominant_taxa_SF_F)
 
-dominant_foot$Area <- c(rep("ML", 10), rep("SF", 18))
-
 ggplot(dominant_foot, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
   ggtitle("Dominant Families in Mono Lake and SF Bay Foot Samples")
@@ -92,28 +91,26 @@ ggplot(dominant_foot, aes(x = Area, y = rel.freq, fill = dominant_taxa)) +
 
 dominant_cloaca = rbind(dominant_taxa_ML_C, dominant_taxa_SF_C)
 
-dominant_cloaca$Area <- c(rep("ML", 10), rep("SF", 12))
-
 ggplot(dominant_cloaca, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
   ggtitle("Dominant Families in Mono Lake and SF Bay Cloaca Samples")
 
 
-#Mouth: Barplot level phylum
+# Mouth: Barplot level phylum
 
 tse_subset <- tse[ , tse$type %in% c("M")]
 tse_ML_M = tse_subset[, tse_subset$Area %in% "ML"]
 
 dominant_taxa_ML_M = countDominantTaxa(tse_ML_M,rank = "Phylum")
+dominant_taxa_ML_M$Area = "ML"
 
 tse_subset <- tse[ , tse$type %in% c("M")]
 tse_SF_M = tse_subset[, tse_subset$Area %in% "SF"]
 
 dominant_taxa_SF_M = countDominantTaxa(tse_SF_M,rank = "Phylum")
+dominant_taxa_SF_M$Area = "SF"
 
 dominant_mouth = rbind(dominant_taxa_ML_M, dominant_taxa_SF_M)
-
-dominant_mouth$Area <- c(rep("ML", 3), rep("SF", 3))
 
 ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
@@ -125,15 +122,15 @@ tse_subset <- tse[ , tse$type %in% c("C")]
 tse_ML_C = tse_subset[, tse_subset$Area %in% "ML"]
 
 dominant_taxa_ML_C = countDominantTaxa(tse_ML_C,rank = "Phylum")
+dominant_taxa_ML_C$Area = "ML"
 
 tse_subset <- tse[ , tse$type %in% c("C")]
 tse_SF_C = tse_subset[, tse_subset$Area %in% "SF"]
 
 dominant_taxa_SF_C = countDominantTaxa(tse_SF_C,rank = "Phylum")
+dominant_taxa_SF_C$Area = "SF"
 
 dominant_cloaca = rbind(dominant_taxa_ML_C, dominant_taxa_SF_C)
-
-dominant_mouth$Area <- c(rep("ML", 5), rep("SF", 5))
 
 ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
@@ -146,15 +143,15 @@ tse_subset <- tse[ , tse$type %in% c("F")]
 tse_ML_F = tse_subset[, tse_subset$Area %in% "ML"]
 
 dominant_taxa_ML_F = countDominantTaxa(tse_ML_F,rank = "Phylum")
+dominant_taxa_ML_F$Area = "ML"
 
 tse_subset <- tse[ , tse$type %in% c("F")]
 tse_SF_F = tse_subset[, tse_subset$Area %in% "SF"]
 
 dominant_taxa_SF_F = countDominantTaxa(tse_SF_F,rank = "Phylum")
+dominant_taxa_SF_F$Area = "SF"
 
 dominant_foot = rbind(dominant_taxa_ML_F, dominant_taxa_SF_F)
-
-dominant_foot$Area <- c(rep("ML", 5), rep("SF", 4))
 
 ggplot(dominant_foot, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
