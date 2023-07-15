@@ -44,9 +44,8 @@ ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
 # rarefy samples without controls
 
 set.seed(999) # keep result reproductive
-ps.rarefied = rarefy_even_depth(ps.no, rngseed=1, sample.size = min(sample_sums(ps)), replace=F)
+ps.rarefied = rarefy_even_depth(ps.no, rngseed=1, replace=F)
 
-print(ps.rarefied)
 
 # Check that sample sizes are all even
 barplot(sample_sums(ps.rarefied), las =2)
@@ -82,7 +81,8 @@ adiv <- data.frame(
     "PD" = picante::pd(samp = data.frame(t(data.frame(otu_table(ps.rarefied)))), tree = phyloseq::phy_tree(ps.rarefied))[, 1],
     "Pielou" = microbiome::evenness(ps.rarefied, index = "pielou", zeroes = TRUE, detection = 0),
     "Area" = sample_data(ps.rarefied)$Area, 
-    "type" = sample_data(ps.rarefied)$type)
+    "type" = sample_data(ps.rarefied)$type, 
+    "condition" = sample_data(ps.rarefied)$body_condition)
 head(adiv)
 
 # Faith's PD, by type
@@ -99,8 +99,9 @@ adiv %>%
   theme_classic() +
   stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) + 
   ggtitle("Faith\'s Phylogenetic Diversity Index of CAGU samples in SF and ML, by type") 
+  
 
-# Shannon's (both areas combined)
+# Shannon's by type
 
 adiv %>%
   gather(key = metric, value = value, c("Shannon")) %>%
@@ -111,35 +112,11 @@ adiv %>%
   labs(x = "Location", y = "Shannon diversity index") +
   facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Foot", "M" = "Mouth"))) +
   theme(legend.position="none") +
-  theme_bw() + 
+  theme_q2r() + 
   theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = 0))+
-  theme(text = element_text(size = 25)) +
-  stat_compare_means(method = "kruskal.test", label.x = 0.85, label.y = 1, size = 7) + 
-  ggtitle("Shannon Diversity Index for each body site")
-
-
-
-
-
-
+  theme(text = element_text(size = 20)) +
+  stat_compare_means(method = "kruskal.test", label.x = 1, label.y = 1) 
   
-
-#Shannon's by type
-
-adiv %>%
-  gather(key = metric, value = value, c("Shannon")) %>%
-  mutate(metric = factor(metric, levels = c("Shannon"))) %>%
-  ggplot(aes(x = Area, y = value)) +
-  geom_boxplot(outlier.color = NA) +
-  geom_jitter(aes(color = Area), height = 0, width = .2) +
-  labs(x = "Location", y = "Shannon diversity index") +
- facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Foot", "M" = "Mouth"))) +
-  theme(legend.position="none") +
-  theme_bw() + 
-  theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = -90))+
-  theme(text = element_text(size = 25)) +
-  stat_compare_means(method = "wilcox.test", label.x = 0.85, label.y = 1, size = 5) + 
-  ggtitle("Shannon Diversity Index for each body site")
  
 
 # Observed richness, by type
@@ -170,7 +147,6 @@ adiv %>%
   geom_jitter(aes(color = Area), height = 0, width = .2) +
   labs(x = "Location", y = "Pielou/'s evenness index") +
   facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Foot", "M" = "Mouth"))) +
-  theme_classic() +
   theme(legend.position="none") +
   stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) + 
   ggtitle("Pielou/'s evenness index for each body site")
@@ -410,7 +386,7 @@ plot_ordination(ps.rarefied.cloaca, ordination, color="Area") + theme(aspect.rat
   stat_ellipse(type = "norm", level=0.9, linetype = 2)
 
 # PERMANOVA test for weighted unifrac
-vegan::adonis2(wunifrac_dist ~ sample_data(ps.rarefied.mouth)$type)
+vegan::adonis2(wunifrac_dist ~ sample_data(ps.rarefied.cloaca)$Area)
 
 # Bray curtis PCoA
 bray_curtis = phyloseq::distance(ps.rarefied, method = "bray")
@@ -507,10 +483,10 @@ vegan::adonis2(wunifrac_dist ~ sample_data(ps.rarefied.foot)$sex)
 
 # filter out foot
 ps.rarefied.foot = subset_samples(ps.rarefied, type %in% c("F"))
-ps.rarefied.no = subset_samples(ps.rarefied, Bird %in% "19")
+ps.rarefied.F.no = subset_samples(ps.rarefied.foot, !Bird %in% c("19", "41"))
 
 # Shannon alpha diversity for two body conditions
-p = plot_richness(ps.rarefied.no, x="condition_score", measures="Shannon", color = "condition_score") +
+p = plot_richness(ps.rarefied.F.no, x="condition_score", measures="Shannon", color = "condition_score") +
   geom_boxplot() +
   theme_classic() +
   theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = -90)) +
@@ -519,18 +495,19 @@ p = plot_richness(ps.rarefied.no, x="condition_score", measures="Shannon", color
 p + stat_compare_means(method = "wilcox.test", label.x = 1.5, label.y = 6)
 
 # weighted unifrac test
-wunifrac_dist = phyloseq::distance(ps.rarefied.foot.SF, method="unifrac", weighted=T)
+wunifrac_dist = phyloseq::distance(ps.rarefied.F.no, method="unifrac", weighted=T)
 ordination = ordinate(ps.rarefied.foot, method="PCoA", distance=wunifrac_dist)
 plot_ordination(ps.rarefied.foot, ordination, color="condition_score") + theme(aspect.ratio=1) 
 
 # PERMANOVA test
-vegan::adonis2(wunifrac_dist ~ sample_data(ps.rarefied.foot.SF)$condition_score)
+vegan::adonis2(wunifrac_dist ~ sample_data(ps.rarefied.F.no)$condition_score)
 
 # filter out mouth
 ps.rarefied.mouth = subset_samples(ps.rarefied, type %in% c("M"))
+ps.rarefied.M.no = subset_samples(ps.rarefied.mouth, !Bird %in% c("19", "41"))
 
 # Shannon alpha diversity for two body conditions
-p = plot_richness(ps.rarefied.mouth, x="condition_score", measures="Shannon", color = "condition_score") +
+p = plot_richness(ps.rarefied.M.no, x="condition_score", measures="Shannon", color = "condition_score") +
   geom_boxplot() +
   theme_classic() +
   theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = -90)) +
