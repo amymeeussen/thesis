@@ -22,8 +22,13 @@ ps = qza_to_phyloseq(
   taxonomy = "~/qiime/taxonomy/taxonomy.qza",
   metadata = "~/thesis/metadata/metadata_phyloseq.tsv")
 
-#filter out negative controls
+# filter out negative controls
 ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
+
+
+# Define ordering of labels in plots
+custom_order_type <- c("M", "C", "F")
+custom_order_area <- c("SF", "ML")
 
 #----------------------------Explore Data-------------------------------
 # Get raw count and the relative frequency of 6 dominant Families in ML and SF
@@ -74,6 +79,7 @@ dominant_taxa_SF_F$Area = "SF"
 # Stacked barplot mouth
 
 dominant_mouth = rbind(dominant_taxa_ML_M, dominant_taxa_SF_M)
+dominant_mouth$Area <- factor(dominant_mouth$Area, levels = custom_order_area)
 
 ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
@@ -90,6 +96,7 @@ ggplot(dominant_foot, aes(x = Area, y = rel.freq, fill = dominant_taxa)) +
 # Stacked barplot cloaca
 
 dominant_cloaca = rbind(dominant_taxa_ML_C, dominant_taxa_SF_C)
+dominant_cloaca$Area <- factor(dominant_cloaca$Area, levels = custom_order_area)
 
 ggplot(dominant_cloaca, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
@@ -111,6 +118,7 @@ dominant_taxa_SF_M = countDominantTaxa(tse_SF_M,rank = "Phylum")
 dominant_taxa_SF_M$Area = "SF"
 
 dominant_mouth = rbind(dominant_taxa_ML_M, dominant_taxa_SF_M)
+dominant_mouth$Area <- factor(dominant_mouth$Area, levels = custom_order_area)
 
 ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
@@ -131,6 +139,7 @@ dominant_taxa_SF_C = countDominantTaxa(tse_SF_C,rank = "Phylum")
 dominant_taxa_SF_C$Area = "SF"
 
 dominant_cloaca = rbind(dominant_taxa_ML_C, dominant_taxa_SF_C)
+dominant_cloaca$Area <- factor(dominant_cloaca$Area, levels = custom_order_area)
 
 ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
@@ -152,8 +161,47 @@ dominant_taxa_SF_F = countDominantTaxa(tse_SF_F,rank = "Phylum")
 dominant_taxa_SF_F$Area = "SF"
 
 dominant_foot = rbind(dominant_taxa_ML_F, dominant_taxa_SF_F)
+dominant_foot$Area <- factor(dominant_foot$Area, levels = custom_order_area)
 
 ggplot(dominant_foot, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
   geom_col(aes(fill = dominant_taxa)) +
   ggtitle("Dominant Phylum in Mono Lake and SF Bay Foot Samples")
+
+
+# Cloaca, Mouth and Foot combined
+tse_ML = tse[, tse$Area %in% "ML"]
+dominant_taxa_ML = countDominantTaxa(tse_ML,rank = "Phylum")
+dominant_taxa_ML$Area = "ML"
+
+tse_SF = tse[, tse$Area %in% "SF"]
+dominant_taxa_SF = countDominantTaxa(tse_SF,rank = "Phylum")
+dominant_taxa_SF$Area = "SF"
+
+dominant_all = rbind(dominant_taxa_ML, dominant_taxa_SF)
+dominant_all$Area <- factor(dominant_all$Area, levels = custom_order_area)
+
+ggplot(dominant_all, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
+  geom_col(aes(fill = dominant_taxa)) +
+  ggtitle("Dominant Phylum in Mono Lake and SF Bay")
+
+
+# Cloaca, Mouth and Foot separate
+tse_ML = tse[, tse$Area %in% "ML"]
+dominant_taxa_ML = countDominantTaxa(tse_ML, group = "type", rank = "Phylum")
+dominant_taxa_ML$Area = "ML"
+
+tse_SF = tse[, tse$Area %in% "SF"]
+dominant_taxa_SF = countDominantTaxa(tse_SF, group = "type", rank = "Phylum")
+dominant_taxa_SF$Area = "SF"
+
+dominant_all = rbind(dominant_taxa_ML, dominant_taxa_SF)
+dominant_all$type <- factor(dominant_all$type, levels = custom_order_type)
+dominant_all$Area <- factor(dominant_all$Area, levels = custom_order_area)
+
+ggplot(dominant_all, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
+  facet_wrap(~ type, labeller = labeller(type = c("M" = "Mouth", "C" = "Cloaca","F" = "Foot"))) +
+  geom_col(aes(fill = dominant_taxa)) +
+  ggtitle("Dominant Phylum in Mono Lake and SF Bay")
+
+
 
