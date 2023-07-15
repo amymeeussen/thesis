@@ -9,8 +9,8 @@
 library(dplyr)
 metadata = read.csv("~/thesis/metadata/metadata.csv")
 
-blue = rgb(83/255,28/255,136/255)
-green = rgb(148/255,209/255,35/255)
+blue = rgb(60/255,191/255,196/255)
+red = rgb(247/255,123/255,114/255)
 
 ml_body_condition = metadata %>%
   filter(Area == "ML") %>%
@@ -35,14 +35,14 @@ sf_df <- data.frame(
   breaks = sf_hist$breaks[-length(sf_hist$breaks)],
   counts = sf_hist$counts
 )
-df = merge(ml_df, sf_df, by="breaks")
+df = merge(sf_df, ml_df, by="breaks")
 barplot(
   rbind(df$counts.x, df$counts.y),
   beside = TRUE,
   names.arg = df$breaks,
-  legend.text = c("Mono Lake", "San Francisco"),
-  col = c(blue, green),
-  xlab = "Body Condition(scaled mass index)",
+  legend.text = c("San Francisco", "Mono Lake"),
+  col = c(blue, red),
+  xlab = "Body Condition (scaled mass index)",
   ylab = "Number of birds", 
   cex.axis = 1.5,
   cex.names = 1.5, 

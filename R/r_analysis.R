@@ -24,8 +24,9 @@ library(ggplot2)
 library(vegan)
 library(ggsci)
 
-blue = rgb(83/255,28/255,136/255)
-green = rgb(148/255,209/255,35/255)
+blue = rgb(60/255,191/255,196/255)
+red = rgb(247/255,123/255,114/255)
+green = rgb(100/255,180/255,136/255)
 custom_order_type <- c("M", "C", "F")
 custom_order_area <- c("SF", "ML")
 
@@ -354,12 +355,12 @@ vegan::adonis2(unifrac_dist ~ sample_data(ps.rarefied)$type)
 wunifrac_dist = phyloseq::distance(ps.rarefied, method="unifrac", weighted=T)
 ordination = ordinate(ps.rarefied, method="PCoA", distance=wunifrac_dist)
 plot_ordination(ps.rarefied, ordination, color="type") + theme(aspect.ratio=1) + 
-  theme_classic() + 
   ggtitle("Weighted Unifrac: body sites (both region included)") +
   scale_color_aaas() +
   theme(text = element_text(size = 15)) +
+  theme_classic() + 
   labs(color = "Body Site") +
-  stat_ellipse(type = "norm", level=0.95, linetype = 2)
+  stat_ellipse(type = "norm", level=0.90, linetype = 2)
 
 # weighted unifrac PCoA for mouth by area
 wunifrac_dist = phyloseq::distance(ps.rarefied.mouth, method="unifrac", weighted=T)
@@ -369,7 +370,7 @@ plot_ordination(ps.rarefied.mouth, ordination, color="Area") + theme(aspect.rati
   theme(text = element_text(size = 15)) +
   ggtitle("Weighted Unifrac for Mouth samples by Area") +
   labs(color = "Region") +
-  stat_ellipse(type = "norm", level=0.95, linetype = 2)
+  stat_ellipse(type = "norm", level=0.90, linetype = 2)
 
 # weighted unifrac PCoA for foot by area
 wunifrac_dist = phyloseq::distance(ps.rarefied.foot, method="unifrac", weighted=T)
