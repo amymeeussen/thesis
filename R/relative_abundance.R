@@ -3,7 +3,7 @@
 
 # Input: phyloseq object
 
-# Output: Barplots of dominant phyla in three different sample types/table with raw count and
+# Output: Barplots of dominant phyla in three different sample types/table with
 #         relative frequency of top 6 Families/Phyla
 
 
@@ -14,8 +14,6 @@ library(qiime2R)
 library(ggplot2)
 library(ggpubr)
 library(ggforce)
-library(ANCOMBC)
-library(mia)
 library(pheatmap)
 
 
@@ -26,6 +24,7 @@ ps = qza_to_phyloseq(
   taxonomy = "~/qiime/taxonomy/taxonomy.qza",
   metadata = "~/thesis/metadata/metadata_phyloseq.tsv")
 
+
 # filter out negative controls
 ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
 tse = mia::makeTreeSummarizedExperimentFromPhyloseq(ps.no)
@@ -34,163 +33,31 @@ tse = mia::makeTreeSummarizedExperimentFromPhyloseq(ps.no)
 custom_order_type <- c("M", "C", "F")
 custom_order_area <- c("SF", "ML")
 
-#----------------------------Explore Data-------------------------------
-# Get raw count and the relative frequency of 6 dominant Families in ML and SF
+# Cloaca, Mouth and Foot separate - other code path
+# Code from: https://www.yanh.org/2021/01/01/microbiome-r/#abundance-bar-plot
+ps.rel = transform_sample_counts(ps.no, function(x) x/sum(x)*100)
+glom = tax_glom(ps.rel, taxrank = "Phylum", NArm = FALSE)
+ps.melt = psmelt(glom)
+ps.melt$Phylum = as.character(ps.melt$Phylum)
+ps.melt = ps.melt %>% group_by(type, Phylum) %>% mutate(median=median(Abundance))
+keep = unique(ps.melt$Phylum[ps.melt$median > 1])
+ps.melt$Phylum[! (ps.melt$Phylum %in% keep)] <- "< 1 %"
 
-# Mouth: dominant bacteria
-tse_subset <- tse[ , tse$type %in% c("M")]
-tse_ML_M = tse_subset[, tse_subset$Area %in% "ML"]
+ps.melt_sum = ps.melt %>% group_by(Area, type, Phylum) %>% summarise(Abundance=sum(Abundance))
+sum_by_category <- ps.melt_sum %>%
+  group_by(type, Area) %>%
+  summarise(sum_abundance = sum(Abundance))
+ps.melt_sum = merge(ps.melt_sum, sum_by_category, by=c("Area", "type"))
+ps.melt_sum$Abundance = ps.melt_sum$Abundance * 100 / ps.melt_sum$sum_abundance
 
-dominant_taxa_ML_M = countDominantTaxa(tse_ML_M,rank = "Family")
-dominant_taxa_ML_M$Area = "ML"
+ps.melt_sum$type <- factor(ps.melt_sum$type, levels = custom_order_type)
+ps.melt_sum$Area <- factor(ps.melt_sum$Area, levels = custom_order_area)
 
-tse_subset <- tse[ , tse$type %in% c("M")]
-tse_SF_M = tse_subset[, tse_subset$Area %in% "SF"]
-
-dominant_taxa_SF_M = countDominantTaxa(tse_SF_M,rank = "Family")
-dominant_taxa_SF_M$Area = "SF"
-
-dominant_mouth = rbind(dominant_taxa_ML_M, dominant_taxa_SF_M)
-dominant_mouth$Area <- factor(dominant_mouth$Area, levels = custom_order_area)
-
-ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
-  geom_col(aes(fill = dominant_taxa)) +
-  ggtitle("Dominant Families in Mono Lake and SF Bay Mouth Samples")
-
-# Cloaca: dominant bacteria
-tse_subset <- tse[ , tse$type %in% c("C")]
-tse_ML_C = tse_subset[, tse_subset$Area %in% "ML"]
-
-dominant_taxa_ML_C = countDominantTaxa(tse_ML_C,rank = "Family")
-dominant_taxa_ML_C$Area = "ML"
-
-tse_SF_C = tse_subset[, tse_subset$Area %in% "SF"]
-
-dominant_taxa_SF_C = countDominantTaxa(tse_SF_C,rank = "Family")
-dominant_taxa_SF_C$Area = "SF"
-
-dominant_foot = rbind(dominant_taxa_ML_F, dominant_taxa_SF_F)
-
-ggplot(dominant_foot, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
-  geom_col(aes(fill = dominant_taxa)) +
-  ggtitle("Dominant Families in Mono Lake and SF Bay Foot Samples")
-
-# Foot: dominant bacteria
-tse_subset <- tse[ , tse$type %in% c("F")]
-tse_ML_F = tse_subset[, tse_subset$Area %in% "ML"]
-
-dominant_taxa_ML_F = countDominantTaxa(tse_ML_F,rank = "Family")
-dominant_taxa_ML_F$Area = "ML"
-
-tse_SF_F = tse_subset[, tse_subset$Area %in% "SF"]
-
-dominant_taxa_SF_F = countDominantTaxa(tse_SF_F,rank = "Family")
-dominant_taxa_SF_F$Area = "SF"
-
-dominant_cloaca = rbind(dominant_taxa_ML_C, dominant_taxa_SF_C)
-dominant_cloaca$Area <- factor(dominant_cloaca$Area, levels = custom_order_area)
-
-ggplot(dominant_cloaca, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
-  geom_col(aes(fill = dominant_taxa)) +
-  ggtitle("Dominant Families in Mono Lake and SF Bay Cloaca Samples")
-
-
-# Mouth: Barplot level phylum
-tse_subset <- tse[ , tse$type %in% c("M")]
-tse_ML_M = tse_subset[, tse_subset$Area %in% "ML"]
-
-dominant_taxa_ML_M = countDominantTaxa(tse_ML_M,rank = "Phylum")
-dominant_taxa_ML_M$Area = "ML"
-
-tse_subset <- tse[ , tse$type %in% c("M")]
-tse_SF_M = tse_subset[, tse_subset$Area %in% "SF"]
-
-dominant_taxa_SF_M = countDominantTaxa(tse_SF_M,rank = "Phylum")
-dominant_taxa_SF_M$Area = "SF"
-
-dominant_mouth = rbind(dominant_taxa_ML_M, dominant_taxa_SF_M)
-dominant_mouth$Area <- factor(dominant_mouth$Area, levels = custom_order_area)
-
-ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
-  geom_col(aes(fill = dominant_taxa)) +
-  ggtitle("Dominant Phylum in Mono Lake and SF Bay Mouth Samples")
-
-# Cloaca: rel.abundance (phylum)
-tse_subset <- tse[ , tse$type %in% c("C")]
-tse_ML_C = tse_subset[, tse_subset$Area %in% "ML"]
-
-dominant_taxa_ML_C = countDominantTaxa(tse_ML_C,rank = "Phylum")
-dominant_taxa_ML_C$Area = "ML"
-
-tse_subset <- tse[ , tse$type %in% c("C")]
-tse_SF_C = tse_subset[, tse_subset$Area %in% "SF"]
-
-dominant_taxa_SF_C = countDominantTaxa(tse_SF_C,rank = "Phylum")
-dominant_taxa_SF_C$Area = "SF"
-
-dominant_cloaca = rbind(dominant_taxa_ML_C, dominant_taxa_SF_C)
-dominant_cloaca$Area <- factor(dominant_cloaca$Area, levels = custom_order_area)
-
-ggplot(dominant_mouth, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
-  geom_col(aes(fill = dominant_taxa)) +
-  ggtitle("Dominant Phylum in Mono Lake and SF Bay Cloacal Samples")
-
-
-# Foot: rel.abundance (phylum)
-tse_subset <- tse[ , tse$type %in% c("F")]
-tse_ML_F = tse_subset[, tse_subset$Area %in% "ML"]
-
-dominant_taxa_ML_F = countDominantTaxa(tse_ML_F,rank = "Phylum")
-dominant_taxa_ML_F$Area = "ML"
-
-tse_subset <- tse[ , tse$type %in% c("F")]
-tse_SF_F = tse_subset[, tse_subset$Area %in% "SF"]
-
-dominant_taxa_SF_F = countDominantTaxa(tse_SF_F,rank = "Phylum")
-dominant_taxa_SF_F$Area = "SF"
-
-dominant_foot = rbind(dominant_taxa_ML_F, dominant_taxa_SF_F)
-dominant_foot$Area <- factor(dominant_foot$Area, levels = custom_order_area)
-
-ggplot(dominant_foot, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
-  geom_col(aes(fill = dominant_taxa)) +
-  ggtitle("Dominant Phylum in Mono Lake and SF Bay Foot Samples")
-
-
-# Cloaca, Mouth and Foot combined
-tse_ML = tse[, tse$Area %in% "ML"]
-dominant_taxa_ML = countDominantTaxa(tse_ML,rank = "Phylum")
-dominant_taxa_ML$Area = "ML"
-
-tse_SF = tse[, tse$Area %in% "SF"]
-dominant_taxa_SF = countDominantTaxa(tse_SF,rank = "Phylum")
-dominant_taxa_SF$Area = "SF"
-
-dominant_all = rbind(dominant_taxa_ML, dominant_taxa_SF)
-dominant_all$Area <- factor(dominant_all$Area, levels = custom_order_area)
-
-ggplot(dominant_all, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
-  geom_col(aes(fill = dominant_taxa)) +
-  ggtitle("Dominant Phylum in SF Bay and Mono Lake")
-
-
-# Cloaca, Mouth and Foot separate
-tse_ML = tse[, tse$Area %in% "ML"]
-dominant_taxa_ML = countDominantTaxa(tse_ML, group = "type", rank = "Phylum")
-dominant_taxa_ML$Area = "ML"
-
-tse_SF = tse[, tse$Area %in% "SF"]
-dominant_taxa_SF = countDominantTaxa(tse_SF, group = "type", rank = "Phylum")
-dominant_taxa_SF$Area = "SF"
-
-dominant_all = rbind(dominant_taxa_ML, dominant_taxa_SF)
-dominant_all$type <- factor(dominant_all$type, levels = custom_order_type)
-dominant_all$Area <- factor(dominant_all$Area, levels = custom_order_area)
-
-ggplot(dominant_all, aes(x = Area, y = rel.freq, fill = dominant_taxa)) + 
-  facet_wrap(~ type, labeller = labeller(type = c("M" = "Mouth", "C" = "Cloaca","F" = "Foot"))) +
-  geom_col(aes(fill = dominant_taxa)) +
-  ggtitle("Dominant Phylum in SF Bay and Mono Lake")
-
-
+ggplot(ps.melt_sum, aes(x=Area, y=Abundance, fill=Phylum)) +
+  geom_bar(stat="identity", aes(fill=Phylum)) +
+  labs(x="Region", y="Relative Abundance") +
+  facet_wrap(~type, scales="free_x", nrow=1, labeller = labeller(type = c("M" = "Mouth", "C" = "Cloaca","F" = "Foot"))) +
+  theme_classic() +
+  theme(strip.background = element_blank()) +
+  theme(text=element_text(size=15))
 
