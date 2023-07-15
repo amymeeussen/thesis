@@ -41,8 +41,9 @@ ps.melt = psmelt(glom)
 ps.melt$Phylum = as.character(ps.melt$Phylum)
 ps.melt = ps.melt %>% group_by(type, Phylum) %>% mutate(median=median(Abundance))
 keep = unique(ps.melt$Phylum[ps.melt$median > 1])
-ps.melt$Phylum[! (ps.melt$Phylum %in% keep)] <- "< 1 %"
+ps.melt$Phylum[! (ps.melt$Phylum %in% keep)] <- "< 1%"
 
+# Make sure sum adds up to 100 for each category
 ps.melt_sum = ps.melt %>% group_by(Area, type, Phylum) %>% summarise(Abundance=sum(Abundance))
 sum_by_category <- ps.melt_sum %>%
   group_by(type, Area) %>%
@@ -50,13 +51,24 @@ sum_by_category <- ps.melt_sum %>%
 ps.melt_sum = merge(ps.melt_sum, sum_by_category, by=c("Area", "type"))
 ps.melt_sum$Abundance = ps.melt_sum$Abundance * 100 / ps.melt_sum$sum_abundance
 
+
+# Order the phylums by size
+sum_phylum <- ps.melt_sum %>%
+  group_by(Phylum) %>%
+  summarise(sum_abundance = sum(Abundance))
+sum_phylum$sum_abundance[sum_phylum$Phylum == "< 1%"] = 0
+sum_phylum = sum_phylum[order(sum_phylum$sum_abundance, decreasing=TRUE), ]
+custom_order_phylum = as.list(sum_phylum$Phylum)
+
+# Set custom order for plot
 ps.melt_sum$type <- factor(ps.melt_sum$type, levels = custom_order_type)
 ps.melt_sum$Area <- factor(ps.melt_sum$Area, levels = custom_order_area)
+ps.melt_sum$Phylum <- factor(ps.melt_sum$Phylum, levels = custom_order_phylum)
 
 ggplot(ps.melt_sum, aes(x=Area, y=Abundance, fill=Phylum)) +
   geom_bar(stat="identity", aes(fill=Phylum)) +
   labs(x="Region", y="Relative Abundance") +
-  facet_wrap(~type, scales="free_x", nrow=1, labeller = labeller(type = c("M" = "Mouth", "C" = "Cloaca","F" = "Foot"))) +
+  facet_wrap(~type, scales="free_x", nrow=1, labeller = labeller(type = c("M" = "Mouth", "C" = "Cloaca","F" = "Feet"))) +
   theme_classic() +
   theme(strip.background = element_blank()) +
   theme(text=element_text(size=15))
