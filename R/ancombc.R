@@ -28,77 +28,52 @@ ps = qza_to_phyloseq(
   taxonomy = "~/qiime/taxonomy/taxonomy.qza",
   metadata = "~/thesis/metadata/metadata_phyloseq.tsv")
 
-#filter out negative controls
+# filter out negative controls
 ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
-tse = mia::makeTreeSummarizedExperimentFromPhyloseq(ps.no)
-
-------------------------DESeq2-----------------------
-  
-# pairwise comparison between Areas
-ps.taxa.sub <- subset_samples(ps, Area %in% c("ML", "SF"))
-# filter sparse features, with > 90% zeros
-ps.taxa.pse.sub <- prune_taxa(rowSums(otu_table(ps.taxa.sub) == 0) < ncol(otu_table(ps.taxa.sub)) * 0.9, ps.taxa.sub)
-ps_ds = phyloseq_to_deseq2(ps.taxa.pse.sub, ~ Area)
-# use alternative estimator on a condition of "every gene contains a sample with a zero"
-ds <- estimateSizeFactors(ps_ds, type="poscounts")
-ds = DESeq(ds, test="Wald", fitType="parametric")
-alpha = 0.05 
-res = results(ds, alpha=alpha)
-res = res[order(res$padj, na.last=NA), ]
-taxa_sig = rownames(res[1:20, ]) # select bottom 20 with lowest p.adj values
-ps.taxa.rel <- transform_sample_counts(ps, function(x) x/sum(x)*100)
-ps.taxa.rel.sig <- prune_taxa(taxa_sig, ps.taxa.rel)
-# Only keep gut and tongue samples
-ps.taxa.rel.sig <- prune_samples(colnames(otu_table(ps.taxa.pse.sub)), ps.taxa.rel.sig)
-
-
-matrix <- as.matrix(data.frame(otu_table(ps.taxa.rel.sig)))
-rownames(matrix) <- as.character(tax_table(ps.taxa.rel.sig)[, "Species"])
-metadata_sub <- data.frame(sample_data(ps.taxa.rel.sig))
-
-# Define the annotation color for columns and rows
-rownames(annotation_col) = rownames(metadata_sub)
-
-annotation_row = data.frame(
-  Phylum = as.factor(tax_table(ps.taxa.rel.sig)[, "Phylum"])
-)
-rownames(annotation_row) = rownames(matrix)
-
-# ann_color should be named vectors
-phylum_col = RColorBrewer::brewer.pal(length(levels(annotation_row$Phylum)), "Paired")
-names(phylum_col) = levels(annotation_row$Phylum)
-ann_colors = list(
-  `Body site` = c(gut = "purple", tongue = "yellow"),
-  Phylum = phylum_col
-)
-
-ComplexHeatmap::pheatmap(matrix, scale= "row", 
-                         annotation_col = annotation_col, 
-                         annotation_row = annotation_row, 
-                         annotation_colors = ann_colors)
-  
-
-
-
-  
-
 
 
 #-----------------------------ANCOMBC------------------------------
-out <- ancombc(phyloseq = ps.no, formula = "Area", 
-               p_adj_method = "holm", lib_cut = 1000, 
-               group = "Area", struc_zero = TRUE, neg_lb = TRUE, tol = 1e-5, 
-               max_iter = 100, conserve = TRUE, alpha = 0.05, global = TRUE)
-#out <- ancombc(
+out = ancom(data = NULL, assay_name = NULL,
+            tax_level = "Family", phyloseq = ps.no,
+            p_adj_method = "holm", prv_cut = 0.10, lib_cut = 1000,
+            main_var = "Area", adj_formula = "Area",
+            rand_formula = NULL, lme_control = NULL,
+            struc_zero = TRUE, neg_lb = TRUE, alpha = 0.05, n_cl = 1)
+
+
+out = ancombc(
+  data = NULL,
+  phyloseq = ps.no,
+  tax_level = "Phylum",
+  formula = "Area", 
+  group = "Area",
+  p_adj_method = "holm",
+  lib_cut = 1000, 
+  struc_zero = FALSE, 
+  neg_lb = TRUE, 
+  tol = 1e-5, 
+  max_iter = 100, 
+  conserve = TRUE, 
+  alpha = 0.05)
+
+#out = ancombc(data = tse, assay_name = "counts", 
+#              tax_level = "Family", phyloseq = NULL, 
+#              formula = "age + region + bmi", 
+#              p_adj_method = "holm", prv_cut = 0.10, lib_cut = 1000, 
+#              group = "bmi", struc_zero = TRUE, neg_lb = TRUE, tol = 1e-5, 
+#              max_iter = 100, conserve = TRUE, alpha = 0.05, global = TRUE,
+#              n_cl = 1, verbose = TRUE)
+
+#out = ancombc(
 #  phyloseq = ps,
- # p_adj_method = "fdr",
-  #formula = "group",
-  #lib_cut = 0, 
-  #group = "Area", 
-  #struc_zero = TRUE, 
-  #neg_lb = TRUE,
-  #alpha = 0.05, 
-  #global = TRUE # multi group comparison will be deactivated automatically 
+#  p_adj_method = "fdr",
+#  formula = "group",
+#  lib_cut = 0, 
+#  group = "Area", 
+#  struc_zero = TRUE, 
+#  neg_lb = TRUE,
+#  alpha = 0.05, 
+#  global = TRUE # multi group comparison will be deactivated automatically 
 #)
 res = out$res
 
@@ -107,10 +82,6 @@ taxa_sig <- res.or_p[1:20]
 ps.taxa.rel.sig <- prune_taxa(taxa_sig, ps.taxa.rel)
 # Only keep gut and tongue samples 
 ps.taxa.rel.sig <- prune_samples(colnames(otu_table(ps.taxa.sub)), ps.taxa.rel.sig)
-
-
-
-
 
 ---------------
 tab_lfc = res$lfc
@@ -195,8 +166,8 @@ p_age = ggplot(data = df_fig_age,
         axis.text.x = element_text(angle = 60, hjust = 1))
 p_age
 
-#----------------------Volcano Plot--------------------------------------------
 
+#----------------------Volcano Plot--------------------------------------------
 # https://www.youtube.com/watch?v=sIRnaKo1aKE
 
 data = read_tsv("/home/amyparsons/data.tsv")
@@ -245,16 +216,10 @@ ggplot(data=data, aes(x= clr, y = W, col=diffexpressed, label=label)) +
 
 #Make a column called "area" with NAs
 Data$Area = "NO"
-a
+
 # Add labels to all significantly differentially abundant bacteria
 data$area[data$clr > 0 & data$sig.w == "TRUE" ] <- "SF Bay"
 data$area[data$clr < 0 & data$sig.w == "TRUE" ] <- "Mono Lake"
-
-
-
------------------
-  
-
 
 
 

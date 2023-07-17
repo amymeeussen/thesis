@@ -47,3 +47,9 @@ barplot(
   cex.axis = 1.5,
   cex.names = 1.5, 
   cex.lab = 1.5) 
+
+# Find mean and SE for each population
+
+
+
+
