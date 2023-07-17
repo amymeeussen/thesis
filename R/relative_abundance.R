@@ -40,6 +40,10 @@ custom_order_area <- c("SF", "ML")
 
 # Code from: https://www.yanh.org/2021/01/01/microbiome-r/#abundance-bar-plot
 
+
+
+# ------------------------Population and body site relative abundance----------------------------
+
 # Split by Cloaca, Mouth and Foot, and by population
 ps.melt = ps.melt %>% group_by(type, Phylum) %>% mutate(median=median(Abundance))
 keep = unique(ps.melt$Phylum[ps.melt$median > 1])
@@ -74,7 +78,7 @@ ggplot(ps.melt_sum, aes(x=Area, y=Abundance, fill=Phylum)) +
   theme(strip.background = element_blank()) +
   theme(text=element_text(size=15))
 
-
+# ------------------------Population only relative abundance----------------------------
 
 # Split by population only
 ps.melt = ps.melt %>% group_by(Phylum) %>% mutate(median=median(Abundance))
