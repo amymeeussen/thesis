@@ -91,8 +91,73 @@ head(adiv)
 adiv$type = factor(adiv$type, levels = custom_order_type)
 adiv$Area = factor(adiv$Area, levels = custom_order_area)
 
-# Faith's PD, by type
+# ------------------------------------Diversity by Area-------------------------------
 
+# Shannon Diversity, by area
+
+adiv %>%
+  gather(key = metric, value = value, c("Shannon")) %>%
+  mutate(metric = factor(metric, levels = c("Shannon"))) %>%
+  ggplot(aes(x = Area, y = value)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter(aes(color = Area), height = 0, width = .2) +
+  labs(x = "Population", y = "Shannon diversity index") +
+  theme(legend.position="none") +
+  theme_q2r() + 
+  labs(color = "Population") +
+  theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = 0))+
+  theme(text = element_text(size = 20)) +
+  stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) 
+
+# Faith's PD, by area
+
+adiv %>%
+  gather(key = metric, value = value, c("PD")) %>%
+  mutate(metric = factor(metric, levels = c("Observed", "Shannon", "PD"))) %>%
+  ggplot(aes(x = Area, y = value)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter(aes(color = Area), height = 0, width = .2) +
+  adiv %>% theme(legend.position="none") +
+  labs(x = "Location", y = "Faith\'s PD index") +
+  theme_classic() +
+  stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) + 
+  ggtitle("Faith\'s Phylogenetic Diversity Index of CAGU samples in SF and ML, by type") 
+
+# Peilou's Evenness, by area
+
+adiv %>%
+  gather(key = metric, value = value, c("pielou")) %>%
+  mutate(metric = factor(metric, levels = c("pielou"))) %>%
+  ggplot(aes(x = Area, y = value)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter(aes(color = Region), height = 0, width = .2) +
+  labs(x = "Location", y = "Pielou/'s evenness index") +
+  facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Feet", "M" = "Mouth"))) +
+  theme(legend.position="none") +
+  stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) + 
+  ggtitle("Pielou/'s evenness index for each body site")
+
+
+# ------------------------------------Diversity by body site------------------------------------
+
+# Shannon's by type
+adiv %>%
+  gather(key = metric, value = value, c("Shannon")) %>%
+  mutate(metric = factor(metric, levels = c("Shannon"))) %>%
+  ggplot(aes(x = Area, y = value)) +
+  geom_boxplot(outlier.color = NA) +
+  geom_jitter(aes(color = Area), height = 0, width = .2) +
+  labs(x = "Population", y = "Shannon diversity index") +
+  facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Feet", "M" = "Mouth"))) +
+  theme(legend.position="none") +
+  theme_q2r() + 
+  labs(color = "Population") +
+  theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = 0))+
+  theme(text = element_text(size = 20)) +
+  stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) 
+
+
+# Faith's PD, by type
 adiv %>%
   gather(key = metric, value = value, c("PD")) %>%
   mutate(metric = factor(metric, levels = c("Observed", "Shannon", "PD"))) %>%
@@ -106,21 +171,6 @@ adiv %>%
   stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) + 
   ggtitle("Faith\'s Phylogenetic Diversity Index of CAGU samples in SF and ML, by type") 
   
-
-# Shannon's by type
-adiv %>%
-  gather(key = metric, value = value, c("Shannon")) %>%
-  mutate(metric = factor(metric, levels = c("Shannon"))) %>%
-  ggplot(aes(x = Region, y = value)) +
-  geom_boxplot(outlier.color = NA) +
-  geom_jitter(aes(color = Region), height = 0, width = .2) +
-  labs(x = "Region", y = "Shannon diversity index") +
-  facet_wrap(~ type, labeller = labeller(type = c("C" = "Cloaca","F" = "Feet", "M" = "Mouth"))) +
-  theme(legend.position="none") +
-  theme_q2r() + 
-  theme(strip.background = element_blank(), axis.text.x.bottom = element_text(angle = 0))+
-  theme(text = element_text(size = 20)) +
-  stat_compare_means(method = "wilcox.test", label.x = 1, label.y = 1) 
 
 
 # Observed richness, by type
@@ -340,7 +390,6 @@ q = plot_richness(ps.rarefied, x="type", measures="Shannon", color = "type") +
 q + stat_compare_means(method = "kruskal.test", label.x = 1.5, label.y = 6)
                        
 
-
 # unweighted unifrac PCoA
 unifrac_dist = phyloseq::distance(ps.rarefied, method="unifrac", weighted=F)
 ordination = ordinate(ps.rarefied, method="PCoA", distance="unifrac")
@@ -369,7 +418,7 @@ plot_ordination(ps.rarefied.mouth, ordination, color="Area") + theme(aspect.rati
   theme_classic() + 
   theme(text = element_text(size = 15)) +
   ggtitle("Weighted Unifrac for Mouth samples by Area") +
-  labs(color = "Region") +
+  labs(color = "Population") +
   stat_ellipse(type = "norm", level=0.90, linetype = 2)
 
 # weighted unifrac PCoA for foot by area
@@ -379,7 +428,7 @@ plot_ordination(ps.rarefied.foot, ordination, color="Area") + theme(aspect.ratio
   theme_classic() + 
   theme(text = element_text(size = 15)) +
   ggtitle("Weighted Unifrac for Foot samples by Area") +
-  labs(color = "Region") +
+  labs(color = "Population") +
   stat_ellipse(type = "norm", level=0.9, linetype = 2)
 
 # weighted unifrac PCoA for cloaca by area
@@ -389,7 +438,7 @@ plot_ordination(ps.rarefied.cloaca, ordination, color="Area") + theme(aspect.rat
   theme_classic() + 
   theme(text = element_text(size = 15)) +
   ggtitle("Weighted Unifrac for Cloaca samples by Area") +
-  labs(color = "Region") +
+  labs(color = "Population") +
   stat_ellipse(type = "norm", level=0.9, linetype = 2)
 
 # PERMANOVA test for weighted unifrac
@@ -570,6 +619,7 @@ plot_ordination(ps.rarefied.new, ordination, color="sex") + theme(aspect.ratio=1
 
 # PERMANOVA test
 vegan::adonis2(wunifrac_dist ~ sample_data(ps.rarefied)$sex)
+
 
 
 
