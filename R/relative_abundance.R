@@ -24,21 +24,23 @@ ps = qza_to_phyloseq(
   taxonomy = "~/qiime/taxonomy/taxonomy.qza",
   metadata = "~/thesis/metadata/metadata_phyloseq.tsv")
 
-
 # filter out negative controls
 ps.no = subset_samples(ps, Area %in% c("ML", "SF"))
 tse = mia::makeTreeSummarizedExperimentFromPhyloseq(ps.no)
+
+# Relative abundance by Phylum
+ps.rel = transform_sample_counts(ps.no, function(x) x/sum(x)*100)
+glom = tax_glom(ps.rel, taxrank = "Phylum", NArm = FALSE)
+ps.melt = psmelt(glom)
+ps.melt$Phylum = as.character(ps.melt$Phylum)
 
 # Define ordering of labels in plots
 custom_order_type <- c("M", "C", "F")
 custom_order_area <- c("SF", "ML")
 
-# Cloaca, Mouth and Foot separate - other code path
 # Code from: https://www.yanh.org/2021/01/01/microbiome-r/#abundance-bar-plot
-ps.rel = transform_sample_counts(ps.no, function(x) x/sum(x)*100)
-glom = tax_glom(ps.rel, taxrank = "Phylum", NArm = FALSE)
-ps.melt = psmelt(glom)
-ps.melt$Phylum = as.character(ps.melt$Phylum)
+
+# Split by Cloaca, Mouth and Foot, and by population
 ps.melt = ps.melt %>% group_by(type, Phylum) %>% mutate(median=median(Abundance))
 keep = unique(ps.melt$Phylum[ps.melt$median > 1])
 ps.melt$Phylum[! (ps.melt$Phylum %in% keep)] <- "< 1%"
@@ -50,7 +52,6 @@ sum_by_category <- ps.melt_sum %>%
   summarise(sum_abundance = sum(Abundance))
 ps.melt_sum = merge(ps.melt_sum, sum_by_category, by=c("Area", "type"))
 ps.melt_sum$Abundance = ps.melt_sum$Abundance * 100 / ps.melt_sum$sum_abundance
-
 
 # Order the phylums by size
 sum_phylum <- ps.melt_sum %>%
@@ -67,8 +68,43 @@ ps.melt_sum$Phylum <- factor(ps.melt_sum$Phylum, levels = custom_order_phylum)
 
 ggplot(ps.melt_sum, aes(x=Area, y=Abundance, fill=Phylum)) +
   geom_bar(stat="identity", aes(fill=Phylum)) +
-  labs(x="Region", y="Relative Abundance") +
+  labs(x="Population", y="Relative Abundance") +
   facet_wrap(~type, scales="free_x", nrow=1, labeller = labeller(type = c("M" = "Mouth", "C" = "Cloaca","F" = "Feet"))) +
+  theme_classic() +
+  theme(strip.background = element_blank()) +
+  theme(text=element_text(size=15))
+
+
+
+# Split by population only
+ps.melt = ps.melt %>% group_by(Phylum) %>% mutate(median=median(Abundance))
+keep = unique(ps.melt$Phylum[ps.melt$median > 1])
+ps.melt$Phylum[! (ps.melt$Phylum %in% keep)] <- "< 1%"
+
+# Make sure sum adds up to 100 for each category
+ps.melt_sum = ps.melt %>% group_by(Area, Phylum) %>% summarise(Abundance=sum(Abundance))
+sum_by_category <- ps.melt_sum %>%
+  group_by(Area) %>%
+  summarise(sum_abundance = sum(Abundance))
+ps.melt_sum = merge(ps.melt_sum, sum_by_category, by=c("Area"))
+ps.melt_sum$Abundance = ps.melt_sum$Abundance * 100 / ps.melt_sum$sum_abundance
+
+# Order the phylums by size
+sum_phylum <- ps.melt_sum %>%
+  group_by(Phylum) %>%
+  summarise(sum_abundance = sum(Abundance))
+sum_phylum$sum_abundance[sum_phylum$Phylum == "< 1%"] = 0
+sum_phylum = sum_phylum[order(sum_phylum$sum_abundance, decreasing=TRUE), ]
+custom_order_phylum = as.list(sum_phylum$Phylum)
+
+# Set custom order for plot
+ps.melt_sum$Area <- factor(ps.melt_sum$Area, levels = custom_order_area)
+ps.melt_sum$Phylum <- factor(ps.melt_sum$Phylum, levels = custom_order_phylum)
+
+ggplot(ps.melt_sum, aes(x=Area, y=Abundance, fill=Phylum)) +
+  geom_bar(stat="identity", aes(fill=Phylum)) +
+  labs(x="Population", y="Relative Abundance") +
+  #facet_wrap(~type, scales="free_x", nrow=1, labeller = labeller(type = c("M" = "Mouth", "C" = "Cloaca","F" = "Feet"))) +
   theme_classic() +
   theme(strip.background = element_blank()) +
   theme(text=element_text(size=15))
